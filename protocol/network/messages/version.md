@@ -1,4 +1,4 @@
-# version
+# Handshake: Version (“version”)
 
   
 ## Services Bitmask
@@ -31,7 +31,7 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
 	*Supported by Bitcoin Unlimited only*
 
-* 7: NODE_WEAKBLOCKS <img src="/_static_/images/BitcoinCashFlag.svg" height=16>
+* 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png">
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
 
 * 8: NODE_CF <img src="/_static_/images/warning.png">height=16>
