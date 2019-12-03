@@ -1,5 +1,5 @@
 # Standard Messages
-## [version](/protocol/network/messages/version)
+## [Handshake: Version](/protocol/network/messages/version) ("version")
 ## verack
 ## ping
 ## pong
