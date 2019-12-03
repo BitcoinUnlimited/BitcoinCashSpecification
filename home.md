@@ -2,9 +2,8 @@
 -   Contributors
 -   Target Audience
 -   Wiki History
--   Protocol Specification
--   Blockchain Protocol
-    -   Structure
+-   Protocol
+    -   Blockchain
 	    -   Hash
 		    -   Sha256
 			-   Ripemd160
@@ -74,37 +73,37 @@
 		-   HF20181115
 		-   HF20190515
 		-   HF20191115
-	-   Network Protocol
-		-   Standard P2P Messages
-		-   version
-		-   verack
-		-   ping
-		-   pong
-		-   addr
-		-   getblocks
-		-   inv
-		-   mempool
-		-   getheaders
-		-   headers
-		-   getdata
-		-   block
-		-   tx
-		-   merkleblock
-		-   notfound
-		-   reject
-		-   sendheaders
-		-   feefilter
-		-   getaddr
-		-   filterload
-		-   filteradd
-		-   filterclear
-	-   Non-Standard P2P Messages
-		-   sendcmpct
-		-   get_xthin
-		-   xthinblock
-		-   thinblock
-		-   get_xblocktx
-		-   xblocktx
+	-   Peer-to-Peer Network
+		-   [Messages](/protocol/network/messages)
+			-   version
+			-   verack
+			-   ping
+			-   pong
+			-   addr
+			-   getblocks
+			-   inv
+			-   mempool
+			-   getheaders
+			-   headers
+			-   getdata
+			-   block
+			-   tx
+			-   merkleblock
+			-   notfound
+			-   reject
+			-   sendheaders
+			-   feefilter
+			-   getaddr
+			-   filterload
+			-   filteradd
+			-   filterclear
+		-   Non-Standard P2P Messages
+			-   sendcmpct
+			-   get_xthin
+			-   xthinblock
+			-   thinblock
+			-   get_xblocktx
+			-   xblocktx
     -   Simple Payment Verification (SPV)
 	    -   Bloom Filters
     -   Simple Ledger Protocol
