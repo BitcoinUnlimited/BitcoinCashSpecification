@@ -1,4 +1,4 @@
-# Hash
+# Hashes
 
  - Sha256
  - Ripemd160
