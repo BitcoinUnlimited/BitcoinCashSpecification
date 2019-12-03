@@ -23,20 +23,13 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 
 ### Node Specific Messages
 
-#### Bitcoin XT
-
- * 1: NODE_GETUTXO <img src="/_static_/images/warning.png">
-	 The node is capable of responding to the getutxo protocol request.  See [BIP 64](https://github.com/bitcoin/bips/blob/master/bip-0064.mediawiki) for details on how this is implemented.  *Supported by Bitcoin XT only*
-
 #### Bitcoin Unlimited
 
 * 4: NODE_XTHIN  <img src="/_static_/images/warning.png">
 	The node supports Xtreme Thinblocks
-	*Supported by Bitcoin Unlimited only*
 
 * 6: NODE_GRAPHENE <img src="/_static_/images/warning.png">
 	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
-	*Supported by Bitcoin Unlimited only*
 
 #### Bitcoin Verde
 
