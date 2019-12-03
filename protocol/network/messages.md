@@ -1,0 +1,30 @@
+# Standard Messages
+## version
+## verack
+## ping
+## pong
+## addr
+## getblocks
+## inv
+## mempool
+## getheaders
+## headers
+## getdata
+## block
+## tx
+## merkleblock
+## notfound
+## reject
+## sendheaders
+## feefilter
+## getaddr
+## filterload
+## filteradd
+## filterclear
+# Non-Standard Messages
+## sendcmpct
+## get_xthin
+## xthinblock
+## thinblock
+## get_xblocktx
+## xblocktx
