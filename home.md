@@ -4,7 +4,7 @@
 -   Wiki History
 -   Protocol
     -   Blockchain
-	    -   Hash
+	    -   [Hash](/protocol/blockchain/hash)
 		    -   Sha256
 			-   Ripemd160
 			-   Murmur
