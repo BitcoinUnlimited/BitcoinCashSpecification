@@ -1,5 +1,5 @@
 # Standard Messages
-## version
+## [version](/protocol/network/messages/version)
 ## verack
 ## ping
 ## pong
