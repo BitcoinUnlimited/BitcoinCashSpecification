@@ -34,7 +34,7 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 * 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png">
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
 
-* 8: NODE_CF <img src="/_static_/images/warning.png">height=16>
+* 8: NODE_CF <img src="/_static_/images/warning.png">
 	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](https://github.com/bitcoin/bips/blob/master/bip-0157.mediawiki), and [BIP158](https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki)).
 
 * 9: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
