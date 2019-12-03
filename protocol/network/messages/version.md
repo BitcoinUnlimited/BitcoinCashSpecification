@@ -18,10 +18,15 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 * 5: NODE_BITCOIN_CASH 
 	The node supports the BCH chain.  This is intended to be just a temporary service bit until the BTC/BCH fork actually happens.
 
-### Non-Standard/Unimplemented Services
+### Node Specific Messages
+
+#### Bitcoin XT
 
  * 1: NODE_GETUTXO <img src="/_static_/images/warning.png">
 	 The node is capable of responding to the getutxo protocol request.  See [BIP 64](https://github.com/bitcoin/bips/blob/master/bip-0064.mediawiki) for details on how this is implemented.  *Supported by Bitcoin XT only*
+
+
+#### Bitcoin Unlimited
 
 * 4: NODE_XTHIN  <img src="/_static_/images/warning.png">
 	The node supports Xtreme Thinblocks
@@ -30,6 +35,8 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 * 6: NODE_GRAPHENE <img src="/_static_/images/warning.png">
 	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
 	*Supported by Bitcoin Unlimited only*
+
+#### Proposed
 
 * 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png">
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
