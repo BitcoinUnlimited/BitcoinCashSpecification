@@ -1,6 +1,9 @@
 # Handshake: Version (“version”)
 
-  
+The version message is a part of the node connection handshake and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask below).
+
+## Message Format
+
 ## Services Bitmask
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
 
@@ -39,7 +42,10 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 * 8: SLP_INDEX_ENABLED <img src="/_static_/images/warning.png">
 	Indicates that the node tracks Simple Ledger Protocol validity and supports returning this status for individual transactions.
 
-#### Proposed
+#### Other Proposed/Previously Used Service Flags
+
+* 1: NODE_GETUTXO <img src="/_static_/images/warning.png">
+The node is capable of responding to the getutxo protocol request. See [BIP 64](https://github.com/bitcoin/bips/blob/master/bip-0064.mediawiki) for details on how this is implemented. _Was previously supported by Bitcoin XT only._
 
 * 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png">
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
@@ -47,5 +53,13 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 * 8: NODE_CF <img src="/_static_/images/warning.png">
 	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](https://github.com/bitcoin/bips/blob/master/bip-0157.mediawiki), and [BIP158](https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki)).
 
-* 9: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
+* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
 	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](https://github.com/bitcoin/bips/blob/master/bip-0159.mediawiki) for details on how this is implemented.
+
+## Node-Specific Behavior
+
+Generally, though node implementations may be aware of services they do not provide, they generally ignore those they don't supported.  Any notable deviations from that behavior are documented below.
+
+### Bitcoin ABC
+
+Bitcoin ABC nodes may, once they have reached their maximum number of peers, selectively disconnect from nodes that do not supported "desired services", though it appears currently this just <code>NODE_NETWORK</code> and/or <code>NODE_NETWORK_LIMITED</code>.  That is, it may prefer nodes that store and serve blocks.
