@@ -6,7 +6,7 @@ This page lays out the rules for contributing to the Bitcoin Cash specification.
 
 All contributions should be:
 
- - As accurate to the current state of Bitcoin Cash as possible
+ - As accurate as possible (see below)
  - As impartial as possible
  - As impersonal as possible
 
@@ -15,7 +15,7 @@ They should not:
 - Indicate a preference for a particular feature, configuration, or node implementation
 - Call others out by name or imply your personal involvement in making the change
 
-When referring to the "current state of Bitcoin Cash" above, there is not a single interpretation in mind.  One basic litmus test is whether a brand new implementation would need to have a certain change in order to operate without utilizing deprecated/fall-back functionality.  However, if a feature is implemented, and considered functionally complete, by the majority of active node implementations, that may also serve as a sufficient test of currency.
+When referencing accuracy above, the intent is to be as true to the current state of the Bitcoin Cash protocol as possible, though this obviously has many possible interpretations.  One basic litmus test is whether a brand new implementation would need to have a certain change in order to operate without utilizing deprecated/fall-back functionality.  However, if a feature is implemented, and considered functionally complete, by the majority of active node implementations, that may also serve as a sufficient test of currency.  As such, this specification may reflect everything from the basic necessary elements of the Bitcoin Cash protocol to those that are in widespread, but not universal, use.
 
 ## Node-Specific Content Guidelines
 
