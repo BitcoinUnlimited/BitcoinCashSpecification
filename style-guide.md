@@ -12,7 +12,7 @@ All contributions should be:
 
 They should not:
 
-- Indicate a preference for or otherwise advocate for the use of a particular feature, configuration, or node implementation
+- Indicate a preference for a particular feature, configuration, or node implementation
 - Call others out by name or imply your personal involvement in making the change
 
 When referring to the "current state of Bitcoin Cash" above, there is not a single interpretation in mind.  One basic litmus test is whether a brand new implementation would need to have a certain change in order to operate without utilizing deprecated/fall-back functionality.  However, if a feature is implemented, and considered functionally complete, by the majority of active node implementations, that may also serve as a sufficient test of currency.
