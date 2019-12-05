@@ -75,7 +75,7 @@
 		-   HF20191115
 	-   Peer-to-Peer Network
 		-   [Messages](/protocol/network/messages)
-			-   [Handshake: Version (“version”)]([https://bitcoinprotocol.cash/protocol/network/messages/version](/protocol/network/messages/version))
+			-   [Handshake: Version (“version”)](/protocol/network/messages/version)
 			-   verack
 			-   ping
 			-   pong
