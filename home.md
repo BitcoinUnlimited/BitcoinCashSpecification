@@ -1,4 +1,5 @@
 -   Home
+-   [Style Guide](style-guide)
 -   Contributors
 -   Target Audience
 -   Wiki History
