@@ -16,7 +16,7 @@ The node connection is not considered established until both nodes have sent and
 | nonce | 8 bytes | bytes<sup>[(LE)](/protocol/misc/endian/little)</sup> | Random nonce for the connection, used to detect connections to self. |
 | user agent | variable | [variable length string](/protocol/formats/variable-length-string) | A user agent string identifying the node implementation. |
 | block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
-| relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki). |
+| relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037). |
 
 ## Services Bitmask
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
@@ -43,7 +43,7 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 #### Bitcoin ABC
 
 * 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](https://github.com/bitcoin/bips/blob/master/bip-0159.mediawiki) for details on how this is implemented.
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Unlimited
 
@@ -54,7 +54,7 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
 
 * 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](https://github.com/bitcoin/bips/blob/master/bip-0159.mediawiki) for details on how this is implemented.
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Verde
 
@@ -67,13 +67,13 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 #### Other Proposed/Previously Used Service Flags
 
 * 1: NODE_GETUTXO <img src="/_static_/images/warning.png">
-The node is capable of responding to the getutxo protocol request. See [BIP 64](https://github.com/bitcoin/bips/blob/master/bip-0064.mediawiki) for details on how this is implemented. _Was previously supported by Bitcoin XT only._
+The node is capable of responding to the getutxo protocol request. See [BIP 64](/protocol/forks/bip-0064) for details on how this is implemented. _Was previously supported by Bitcoin XT only._
 
 * 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png">
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
 
 * 8: NODE_CF <img src="/_static_/images/warning.png">
-	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](https://github.com/bitcoin/bips/blob/master/bip-0157.mediawiki), and [BIP158](https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki)).
+	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](/protocol/forks/bip-0157), and [BIP158](/protocol/forks/bip-0158)).
 
 ## Node-Specific Behavior
 
