@@ -4,6 +4,19 @@ The version message is a part of the node connection handshake and indicates var
 
 ## Message Format
 
+| Field | Length | Format | Description |
+|--|--|--|--|
+| version | 4 bytes | uint |  |
+| services | 8 bytes | bitmask |  |
+| timestamp | 8 bytes | unix timestamp |  |
+| remote address | 26 bytes | network address |  |
+| local address | 26 bytes | network address |  |
+| nonce | 8 bytes | big-endian bytes |  |
+| user agent | variable | string |  |  |
+| block height | 4 bytes | uint |  |  |
+| relay indicator | 1 byte | boolean |  |  |
+
+
 ## Services Bitmask
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
 
