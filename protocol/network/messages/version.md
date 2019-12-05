@@ -8,14 +8,14 @@ The node connection is not considered established until both nodes have sent and
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| version | 4 bytes | unsigned integer (LE) | The version number supported by the sending node. |
-| services | 8 bytes | bitmask<sup>[(LE)](/protocol/misc/endian#little)</sup> | An indication of the services supported by the sending node.  See Services Bitmask section below. |
-| timestamp | 8 bytes | unix timestamp (LE) | The time the message was generated on the sending node. |
-| remote address | 26 bytes | network address | The network address of the remote node.  <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
-| local address | 26 bytes | network address | The network address of the sending node. <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
-| nonce | 8 bytes | bytes (LE) | Random nonce for the connection, used to detect connections to self. |
-| user agent | variable | user agent string | A user agent string identifying the node implementation. |
-| block height | 4 bytes | unsigned integer (LE) | The height of the block with the highest height known to the sending node. |
+| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version number supported by the sending node. |
+| services | 8 bytes | bitmask<sup>[(LE)](/protocol/misc/endian/little)</sup> | An indication of the services supported by the sending node.  See Services Bitmask section below. |
+| timestamp | 8 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | The time the message was generated on the sending node. |
+| remote address | 26 bytes | [network address](/protocol/formats/network-address) | The network address of the remote node.  <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
+| local address | 26 bytes | [network address](/protocol/formats/network-address) | The network address of the sending node. <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
+| nonce | 8 bytes | bytes<sup>[(LE)](/protocol/misc/endian/little)</sup> | Random nonce for the connection, used to detect connections to self. |
+| user agent | variable | [variable length string](/protocol/formats/variable-length-string) | A user agent string identifying the node implementation. |
+| block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
 | relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki). |
 
 ## Services Bitmask
