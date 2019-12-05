@@ -2,20 +2,21 @@
 
 The version message is a part of the node connection handshake and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask below).
 
+The node connection is not considered established until both nodes have sent and received both a [version](/protocol/network/messages/version) and [verack](/protocol/network/messages/verack) message.
+
 ## Message Format
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| version | 4 bytes | uint |  |
-| services | 8 bytes | bitmask |  |
-| timestamp | 8 bytes | unix timestamp |  |
-| remote address | 26 bytes | network address |  |
-| local address | 26 bytes | network address |  |
-| nonce | 8 bytes | big-endian bytes |  |
-| user agent | variable | string |  |  |
-| block height | 4 bytes | uint |  |  |
-| relay indicator | 1 byte | boolean |  |  |
-
+| version | 4 bytes | uint | The version number supported by the sending node. |
+| services | 8 bytes | bitmask | An indication of the services supported by the sending node.  See Services Bitmask section below. |
+| timestamp | 8 bytes | unix timestamp | The time the message was generated on the sending node. |
+| remote address | 26 bytes | network address | The network address of the remote node. |
+| local address | 26 bytes | network address | The network address of the sending node. |
+| nonce | 8 bytes | big-endian bytes | Random nonce for the connection, used to detect connections to self. |
+| user agent | variable | string | A user agent string identifying the node implementation as described in [BIP-14](https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki). |
+| block height | 4 bytes | uint | The height of the block with the highest height known to the sending node. |
+| relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki). |
 
 ## Services Bitmask
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
