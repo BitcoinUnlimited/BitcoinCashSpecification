@@ -1,7 +1,7 @@
 -   Home
 -   [Style Guide](style-guide)
--   Contributors
--   Target Audience
+-   [Contributors](contributors)
+-   [Target Audience](target-audience)
 -   Wiki History
 -   Protocol
     -   Blockchain
