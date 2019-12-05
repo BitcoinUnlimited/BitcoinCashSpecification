@@ -40,6 +40,11 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 
 ### Node Specific Messages
 
+#### Bitcoin ABC
+
+* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](https://github.com/bitcoin/bips/blob/master/bip-0159.mediawiki) for details on how this is implemented.
+
 #### Bitcoin Unlimited
 
 * 4: NODE_XTHIN  <img src="/_static_/images/warning.png">
@@ -47,6 +52,9 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 
 * 6: NODE_GRAPHENE <img src="/_static_/images/warning.png">
 	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
+
+* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](https://github.com/bitcoin/bips/blob/master/bip-0159.mediawiki) for details on how this is implemented.
 
 #### Bitcoin Verde
 
@@ -66,9 +74,6 @@ The node is capable of responding to the getutxo protocol request. See [BIP 64](
 
 * 8: NODE_CF <img src="/_static_/images/warning.png">
 	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](https://github.com/bitcoin/bips/blob/master/bip-0157.mediawiki), and [BIP158](https://github.com/bitcoin/bips/blob/master/bip-0158.mediawiki)).
-
-* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](https://github.com/bitcoin/bips/blob/master/bip-0159.mediawiki) for details on how this is implemented.
 
 ## Node-Specific Behavior
 
