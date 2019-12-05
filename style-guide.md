@@ -25,6 +25,8 @@ When it comes to documenting these changes, there is again a range of definition
 
 Furthermore, node-specific documentation may be best left to the developers of the implementations.  If you have a change you would like to make about node-specific functionality of an implementation you have not contributed to, at least check the master branch of that implementation's codebase.  When in doubt, reach out to a node developer to discuss the accuracy of, or best way to phrase, your contribution.  In general, content from that node implementation's developers is preferred but if they are not willing or able to, make the change yourself.
 
+Finally, to distinguish this node-specific content from more standard, node-independent, content, please designate such content with both text and the following icon: <img src="/_static_/images/warning.png">.  This icon will serve as a simple visual indicator that the user may have ventured into territory that is experimental or otherwise not yet fully supported.
+
 ## Creating Pages and Links
 
 While it is difficult to make hard-and-fast rules regarding the organization of something as complex as the Bitcoin Cash protocol, please take the time to observe the current organization of files (including URL paths and linking) before adding or moving pages.
