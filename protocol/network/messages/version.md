@@ -2,7 +2,7 @@
 
 The version message is a part of the node connection handshake and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask below).
 
-The node connection is not considered established until both nodes have sent and received both a [version](/protocol/network/messages/version) and [verack](/protocol/network/messages/verack) message.
+The node connection is not considered established until both nodes have sent and received both a <code>version</code> and [verack](/protocol/network/messages/verack) message.
 
 ## Message Format
 
@@ -11,10 +11,10 @@ The node connection is not considered established until both nodes have sent and
 | version | 4 bytes | uint | The version number supported by the sending node. |
 | services | 8 bytes | bitmask | An indication of the services supported by the sending node.  See Services Bitmask section below. |
 | timestamp | 8 bytes | unix timestamp | The time the message was generated on the sending node. |
-| remote address | 26 bytes | network address | The network address of the remote node. |
-| local address | 26 bytes | network address | The network address of the sending node. |
+| remote address | 26 bytes | network address | The network address of the remote node.  <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
+| local address | 26 bytes | network address | The network address of the sending node. <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
 | nonce | 8 bytes | big-endian bytes | Random nonce for the connection, used to detect connections to self. |
-| user agent | variable | string | A user agent string identifying the node implementation as described in [BIP-14](https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki). |
+| user agent | variable | user agent string | A user agent string identifying the node implementation. |
 | block height | 4 bytes | uint | The height of the block with the highest height known to the sending node. |
 | relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki). |
 
