@@ -18,6 +18,10 @@ The node connection is not considered established until both nodes have sent and
 | block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
 | relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037). |
 
+## Version
+
+The most recent version of the network protocol is `70015`.  The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/archives/protocol/network/version-history).  Node's should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.  Related: [node connection handshake](/protocol/network/node-handshake).
+
 ## Services Bitmask
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
 
