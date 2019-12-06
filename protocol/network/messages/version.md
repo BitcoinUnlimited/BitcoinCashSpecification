@@ -1,6 +1,6 @@
 # Handshake: Version (“version”)
 
-The version message is a part of the node connection handshake and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask below).
+The version message is a part of the node connection [handshake](/protocol/network/node-handshake) and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask [below](#services-bitmask)).
 
 The node connection is not considered established until both nodes have sent and received both a <code>version</code> and [verack](/protocol/network/messages/verack) message.
 
