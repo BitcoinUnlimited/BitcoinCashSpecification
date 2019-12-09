@@ -1,3 +1,4 @@
+
 # Handshake: Version (“version”)
 
 The version message is a part of the node connection [handshake](/protocol/network/node-handshake) and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask [below](#services-bitmask)).
@@ -20,7 +21,7 @@ The node connection is not considered established until both nodes have sent and
 
 ## Version
 
-The most recent version of the network protocol is `70015`.  The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/archives/protocol/network/version-history).  Node's should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.  Related: [node connection handshake](/protocol/network/node-handshake).
+The most recent version of the network protocol is `70015`.  The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/history/protocol-version).  Nodes should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.  Related: [node connection handshake](/protocol/network/node-handshake).
 
 ## Services Bitmask
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
