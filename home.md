@@ -116,3 +116,6 @@
     -   Cash Address
     -   Miscellaneous
 	    -   “Bitcoin Sign Message”
+   -   History
+	   - Bips
+	   - Protocol Version
