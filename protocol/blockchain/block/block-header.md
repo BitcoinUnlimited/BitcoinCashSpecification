@@ -16,8 +16,19 @@ Since validation of all the transactions in the block can be expensive, the abil
 | Field | Length | Format | Description |
 |--|--|--|--|
 | version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The block format version. |
-| previous block hash | 32 bytes | block hash<sup>[(LE)](/protocol/misc/endian/little)</sup> | The hash of the block immediately preceding this block in the blockchain. |
-| merkle root | 32 bytes | merkle root<sup>[(LE)](/protocol/misc/endian/little)</sup> | The merkle tree root of the transactions in the block. |
+| previous block hash | 32 bytes | [block hash](/protocol/blockchain/hash)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The hash of the block immediately preceding this block in the blockchain. |
+| merkle root | 32 bytes | [merkle root](/protocol/blockchain/merkle-tree)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The merkle tree root of the transactions in the block. |
 | timestamp | 4 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | The epoch timestamp of the block in seconds. |
-| difficulty | 4 bytes | difficulty<sup>[(LE)](/protocol/misc/endian/little)</sup> | The difficulty that the block must achieve to be valid.  This value is determined by the timestamps of previously mined blocks. |
+| difficulty target | 4 bytes | [difficulty target](#difficulty-target-encoding)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The difficulty that the block must achieve to be valid.  This value is determined by the timestamps of previously mined blocks. |
 | nonce | 4 bytes | bytes<sup>[(LE)](/protocol/misc/endian/little)</sup> | A random value that is repeatedly changes during block mining in order to achieve the block hash requirements. |
+
+### Difficulty Target Encoding
+
+Within the block header, the difficulty target uses a special floating-point representation that helps keep the size of the block header small.  While the [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) attempts to calculate the ideal target (i.e. the value the block hash must be "less than"), it undergoes a lossy conversion when put in the block header:
+
+| Field | Length | Format | Description |
+|--|--|--|--|
+| exponent | 1 byte | byte | Used to calculate the offset for the signficand.  The actual exponent is <code>8 * (exponent - 3)</code>. |
+| significand | 3 byte | bytes | The significand, or mantissa, of the value. |
+
+Ultimately, the difficult target is equal to: <code>significand * 2<sup>(8 * (exponent - 3))</sup></code>
