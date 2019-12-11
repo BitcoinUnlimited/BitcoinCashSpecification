@@ -85,7 +85,6 @@ Node Features
 `01`
 
 
-
 ### Node Specific Messages
 
 #### Bitcoin ABC
