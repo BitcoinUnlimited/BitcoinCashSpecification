@@ -6,13 +6,16 @@
 -   Protocol
     -   Blockchain
 	    -   [Hash](/protocol/blockchain/hash)
+		    -   Sha256
+			-   Ripemd160
+			-   Murmur
 	    -   Transaction
 		    -   Transaction Input
 			    -   Unlocking Script
 		    -   Transaction Output
 			    -   Locking Script
 	    -   Block
-		    -   [Header](/protocol/blockchain/block/block-header)
+		    -   Header
 	    -   Transactions
 		    -   Legacy Transaction Ordering
 		    -   Canonical Transaction Ordering (CTOR)
@@ -79,7 +82,7 @@
 	-   Peer-to-Peer Network
 		-   [Messages](/protocol/network/messages)
 			-   [Handshake: Version (“version”)](/protocol/network/messages/version)
-			-   [Handshake: Acknowledge ("verack")](/protocol/network/messages/verack)
+			-   verack
 			-   ping
 			-   pong
 			-   addr
@@ -113,6 +116,9 @@
     -   Cash Address
     -   Miscellaneous
 	    -   “Bitcoin Sign Message”
+	    - Endian
+		    - [Little](/protocol/misc/endian/little)</sup>
+		    - [Big](/protocol/misc/endian/big)
    -   History
 	   - Bips
 	   - Protocol Version
