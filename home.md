@@ -62,7 +62,7 @@
 	    -   Mining Pools
 	-   Forks
 	    -   Bip-16
-		-   Bip-34
+		-   [Bip-34](/protocol/forks/bip-0034)
 		-   [Bip-37](/protocol/forks/bip-0037)
 		-   [Bip-64](/protocol/forks/bip-0064)
 		-   Bip-65
