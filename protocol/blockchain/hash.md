@@ -11,7 +11,7 @@ A variety of hashing algorithms are used throughout the Bitcoin Cash protocol.  
 	 - This double hash removes the possibility of a [length extension attack](https://en.wikipedia.org/wiki/Length_extension_attack) which a single SHA-256 is vulnerable to.  While this is generally not a problem for Bitcoin Cash since the pre-image (the actual data of the block) is available, it trades a minor amount of inefficiency for confidence that this property of SHA-256 cannot be exploited.
  - Transaction Hashing
 	 - Transactions are hashed using a single application of SHA-256.  This is referred to as the transaction hash and is used to uniquely identify the transaction.  (NOTE: Historical transaction hashes are not universally unique two sets of two identical coinbase transactions, thus repeated hashes.  Since the block height is now required to be in the coinbase transaction, this should not be possible in the future.)
-	 - The two cases where this occurred are the transactions with the hashes <code></code> and <code></code>.
+	 - The two cases where this occurred are the transactions with the hashes <code>D5D27987D2A3DFC724E359870C6644B40E497BDC0589A033220FE15429D88599</code> and <code>E3BF3D07D4B0375638D5F1DB5255FE07BA2C4CB067CD81B84EE974B6585FB468</code>.
 
  ## RIPEMD-160
  
