@@ -116,7 +116,7 @@
     -   Cash Address
     -   Miscellaneous
 	    -   “Bitcoin Sign Message”
-	    - Endian
+	    - [Endian]([/protocol/misc/endian](https://bitcoinprotocol.cash/protocol/misc/endian))
 		    - [Little](/protocol/misc/endian/little)</sup>
 		    - [Big](/protocol/misc/endian/big)
    -   History
