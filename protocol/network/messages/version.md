@@ -43,6 +43,49 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 * 24-31: Reserved for experimental changes
 	These bits are reserved for temporary experiments. Just pick a bit that isn't getting used, or one not being used much, and notify the community. Remember that service bits are just unauthenticated advertisements, so your code must be robust against collisions and other cases where nodes may be advertising a service they do not actually support.
 
+## Example Serialized Data
+
+Net Magic<sup>[(LE)](/protocol/misc/endian/little)</sup>
+`E3E1F3E8`
+
+Command String ("version")<sup>[(BE)](/protocol/misc/endian/big)</sup>
+`76657273696F6E0000000000`
+
+Payload Byte Count<sup>[(LE)](/protocol/misc/endian/little)</sup>
+`6A000000`
+
+Payload Checksum<sup>[(LE)](/protocol/network/messages/message-checksum)</sup>
+`8FC7709F`
+
+Version Number
+`7F110100`
+
+Node Features
+`3500000000000000`
+
+Timestamp
+`AC66F15D00000000`
+
+Remote Address
+`240000000000000000000000000000000000FFFF0506070820`
+
+Local Address
+`8D350000000000000000000000000000000000FFFF01020304`
+
+Nonce
+`208D00F0E6495B9B`
+
+User Agent
+`4350142F426974636F696E204E6F64653A312E322E332F`
+
+Current Block Height
+`365A0900`
+
+Relay Transactions Flag
+`01`
+
+
+
 ### Node Specific Messages
 
 #### Bitcoin ABC
