@@ -63,25 +63,25 @@ Version Number
 Node Features
 `3500000000000000`
 
-Timestamp
+**Timestamp** *("1576101548")*
 `AC66F15D00000000`
 
-Remote Address
+**Remote Address** *("5.6.7.8:8333")*
 `240000000000000000000000000000000000FFFF0506070820`
 
-Local Address
+**Local Address** *("1.2.3.4:8333")*
 `8D350000000000000000000000000000000000FFFF01020304`
 
-Nonce
+**Nonce**
 `208D00F0E6495B9B`
 
-User Agent
+**User Agent** *("/Bitcoin Node:1.2.3/")*
 `4350142F426974636F696E204E6F64653A312E322E332F`
 
-Current Block Height
+**Current Block Height** *("612918L")*
 `365A0900`
 
-Relay Transactions Flag
+**Relay Transactions Flag** *("true")*
 `01`
 
 
