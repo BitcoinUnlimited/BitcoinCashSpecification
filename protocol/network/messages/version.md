@@ -9,7 +9,7 @@ The node connection is not considered established until both nodes have sent and
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version number supported by the sending node. |
+| version number | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version number supported by the sending node. |
 | services | 8 bytes | bitmask<sup>[(LE)](/protocol/misc/endian/little)</sup> | An indication of the services supported by the sending node.  See Services Bitmask section below. |
 | timestamp | 8 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | The time the message was generated on the sending node. |
 | remote address | 26 bytes | [network address](/protocol/formats/network-address) | The network address of the remote node.  <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
@@ -19,7 +19,7 @@ The node connection is not considered established until both nodes have sent and
 | block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
 | relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037). |
 
-## Version
+## Version Number
 
 The most recent version of the network protocol is `70015`.  The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/history/protocol-version).  Nodes should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.  Related: [node connection handshake](/protocol/network/node-handshake).
 
@@ -42,6 +42,49 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 
 * 24-31: Reserved for experimental changes
 	These bits are reserved for temporary experiments. Just pick a bit that isn't getting used, or one not being used much, and notify the community. Remember that service bits are just unauthenticated advertisements, so your code must be robust against collisions and other cases where nodes may be advertising a service they do not actually support.
+
+## Example Serialized Data
+
+Net Magic<sup>[(LE)](/protocol/misc/endian/little)</sup>
+`E3E1F3E8`
+
+Command String ("version")<sup>[(BE)](/protocol/misc/endian/big)</sup>
+`76657273696F6E0000000000`
+
+Payload Byte Count<sup>[(LE)](/protocol/misc/endian/little)</sup>
+`6A000000`
+
+Payload Checksum<sup>[(LE)](/protocol/network/messages/message-checksum)</sup>
+`8FC7709F`
+
+Version Number
+`7F110100`
+
+Node Features
+`3500000000000000`
+
+Timestamp
+`AC66F15D00000000`
+
+Remote Address
+`240000000000000000000000000000000000FFFF0506070820`
+
+Local Address
+`8D350000000000000000000000000000000000FFFF01020304`
+
+Nonce
+`208D00F0E6495B9B`
+
+User Agent
+`4350142F426974636F696E204E6F64653A312E322E332F`
+
+Current Block Height
+`365A0900`
+
+Relay Transactions Flag
+`01`
+
+
 
 ### Node Specific Messages
 
