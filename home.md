@@ -1,6 +1,7 @@
 -   Home
--   Contributors
--   Target Audience
+-   [Style Guide](style-guide)
+-   [Contributors](contributors)
+-   [Target Audience](target-audience)
 -   Wiki History
 -   Protocol
     -   Blockchain
@@ -60,14 +61,19 @@
 		-   Stratum Protocol
 	    -   Mining Pools
 	-   Forks
-	    -   Bip16
-		-   Bip34
-		-   Bip65
-		-   Bip66
-		-   Bip68
-		-   Bip112
-		-   Bip113
-		-   BCH UAHF (BUIP 55)
+	    -   Bip-16
+		-   Bip-34
+		-   [Bip-37](/protocol/forks/bip-0037)
+		-   [Bip-64](/protocol/forks/bip-0064)
+		-   Bip-65
+		-   Bip-66
+		-   Bip-68
+		-   Bip-112
+		-   Bip-113
+		-   [Bip-157](/protocol/forks/bip-0157)
+		-   [Bip-158](/protocol/forks/bip-0158)
+		-   [Bip-159](/protocol/forks/bip-0159)
+		-   BCH UAHF (BUIP-55)
 		-   HF20171113
 		-   HF20180515
 		-   HF20181115
@@ -75,7 +81,7 @@
 		-   HF20191115
 	-   Peer-to-Peer Network
 		-   [Messages](/protocol/network/messages)
-			-   version
+			-   [Handshake: Version (“version”)](/protocol/network/messages/version)
 			-   verack
 			-   ping
 			-   pong
@@ -110,3 +116,6 @@
     -   Cash Address
     -   Miscellaneous
 	    -   “Bitcoin Sign Message”
+   -   History
+	   - Bips
+	   - Protocol Version
