@@ -1,5 +1,5 @@
 # Hash
 
- - Sha256
- - Ripemd160
+ - SHA256
+ - RIPEMD160
  - Murmur
