@@ -6,16 +6,13 @@
 -   Protocol
     -   Blockchain
 	    -   [Hash](/protocol/blockchain/hash)
-		    -   Sha256
-			-   Ripemd160
-			-   Murmur
 	    -   Transaction
 		    -   Transaction Input
 			    -   Unlocking Script
 		    -   Transaction Output
 			    -   Locking Script
 	    -   Block
-		    -   Header
+		    -   [Header](/protocol/blockchain/block/block-header)
 	    -   Transactions
 		    -   Legacy Transaction Ordering
 		    -   Canonical Transaction Ordering (CTOR)
