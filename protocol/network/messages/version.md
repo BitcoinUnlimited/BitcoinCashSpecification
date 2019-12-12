@@ -17,7 +17,9 @@ The node connection is not considered established until both nodes have sent and
 | nonce | 8 bytes | bytes<sup>[(LE)](/protocol/misc/endian/little)</sup> | Random nonce for the connection, used to detect connections to self. |
 | user agent | variable | [variable length string](/protocol/formats/variable-length-string) | A user agent string identifying the node implementation. |
 | block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
-| relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037). |
+| relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037).  This flag is sometimes referred to as "fRelay". |
+
+Note: appending extra data after the `relay flag` is ignored.  Historically, extra data after the `relay flag` would sometimes result in the connection being banned, although this is no longer standard behavior.
 
 ## Version Number
 
@@ -129,3 +131,7 @@ Generally, though node implementations may be aware of services they do not prov
 ### Bitcoin ABC
 
 Bitcoin ABC nodes may, once they have reached their maximum number of peers, selectively disconnect from nodes that do not supported "desired services", though it appears currently this just <code>NODE_NETWORK</code> and/or <code>NODE_NETWORK_LIMITED</code>.  That is, it may prefer nodes that store and serve blocks.
+
+### Bitcoin Verde
+
+Bitcoin Verde nodes ignores any data after the `relay flag` field.
