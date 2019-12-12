@@ -18,6 +18,7 @@ The P2P network has a variety of message types.  All P2P messages follow a binar
 | net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/little)</sup> |
 | command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/little)</sup> |
 | payload byte count | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
+| payload checksum | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
 | payload | variable |  |
 
 ### Net Magic
@@ -67,3 +68,9 @@ The following messages are well known, but not implemented by all node implement
 | thinblock |  |  |
 | get_xblocktx |  |  |
 | xblocktx |  |  |
+
+### Payload Byte Count
+
+### Payload Checksum
+
+### Payload
