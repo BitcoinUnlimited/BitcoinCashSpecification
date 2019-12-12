@@ -11,7 +11,7 @@
 			    -   Unlocking Script
 		    -   Transaction Output
 			    -   Locking Script
-	    -   Block
+	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
 	    -   Transactions
 		    -   Legacy Transaction Ordering
