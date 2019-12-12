@@ -15,7 +15,7 @@
 		    -   Transaction Output
 			    -   Locking Script
 	    -   Block
-		    -   Header
+		    -   [Header](/protocol/blockchain/block/block-header)
 	    -   Transactions
 		    -   Legacy Transaction Ordering
 		    -   Canonical Transaction Ordering (CTOR)
