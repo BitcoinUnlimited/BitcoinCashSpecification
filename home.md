@@ -6,9 +6,6 @@
 -   Protocol
     -   Blockchain
 	    -   [Hash](/protocol/blockchain/hash)
-		    -   Sha256
-			-   Ripemd160
-			-   Murmur
 	    -   Transaction
 		    -   Transaction Input
 			    -   Unlocking Script
@@ -115,7 +112,7 @@
     -   Simple Ledger Protocol
     -   Cash Address
     -   Miscellaneous
-	    -   “Bitcoin Sign Message”
+	    - “Bitcoin Sign Message”
 	    - [Endian](/protocol/misc/endian)
 		    - [Little](/protocol/misc/endian/little)
 		    - [Big](/protocol/misc/endian/big)
