@@ -12,6 +12,7 @@ This specification is intended to meet a variety of needs, depending on their le
  - Bitcoin Cash Service Providers
 	 - Provide information on how to create and submit transactions to the Bitcoin Cash network
 	 - Provide information on how to collect and parse information about the state of the Bitcoin Cash blockchain and network
+ - Wallet Developers
  - Interested Non-Technical Parties
 	 - Provide a high-level description of the major terms and concepts required to understand how Bitcoin Cash operates and its current operational state
 	 - Provide insight into how Bitcoin Cash differs from Bitcoin Core
