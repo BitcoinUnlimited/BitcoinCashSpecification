@@ -79,7 +79,7 @@
 	-   Peer-to-Peer Network
 		-   [Messages](/protocol/network/messages)
 			-   [Handshake: Version (“version”)](/protocol/network/messages/version)
-			-   verack
+			-   [Handshake: Acknowledge Version ("verack”)](/protocol/network/messages/verack)
 			-   ping
 			-   pong
 			-   addr
