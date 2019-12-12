@@ -47,7 +47,7 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 
 ## Example Serialized Data
 
-Net Magic<sup>[(LE)](/protocol/misc/endian/little)</sup>
+Net Magic<sup>[(BE)](/protocol/misc/endian/little)</sup>
 `E3E1F3E8`
 
 Command String ("version")<sup>[(BE)](/protocol/misc/endian/big)</sup>
