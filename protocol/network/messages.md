@@ -26,7 +26,7 @@ The `command string` is a fixed-length 12 byte ASCII string.  The command string
 
 The following messages are considered standard by all node implementations.
 
-| command string | name |
+| Command String | Name |
 | -- | -- |
 | version | [Handshake: Version](/protocol/network/messages/version) |
 | verack | [Handshake: Acknowledge Version](/protocol/network/messages/verack) |
@@ -53,7 +53,7 @@ The following messages are considered standard by all node implementations.
 
 The following messages are well known, but not implemented by all node implementations.
 
-| command string | name | supported implementations |
+| Command String | Name | Supported Implementations |
 | -- | -- | -- |
 | sendcmpct |  |  |
 | get_xthin |  |  |
