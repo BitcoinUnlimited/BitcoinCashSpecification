@@ -8,7 +8,7 @@ This `verack` message consists of only a message header; the command string is "
 
 ## Example Serialized Data
 
-Net Magic<sup>[(LE)](/protocol/misc/endian/little)</sup>
+Net Magic<sup>[(BE)](/protocol/misc/endian/little)</sup>
 `E3E1F3E8`
 
 Command String ("verack")<sup>[(BE)](/protocol/misc/endian/big)</sup>
