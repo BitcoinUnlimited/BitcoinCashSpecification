@@ -1,6 +1,13 @@
 # Standard Messages
 
-The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, usually transmitted via TCP.  The P2P network is similar to a gossip network, where nodes listen for messages and then relays that message to its other peers if it believes that message's content is valid.
+The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted via TCP.  The P2P network is similar to a gossip network, where nodes listen for messages and then relays that message to its other peers if it believes that message's content is valid.
+
+P2P network messages do not necessarily have a reply and there is no way to unambiguously connect a sent message to a reply, although many communications are often request/response pairs.  Nodes may handle incoming messages in parallel, so a message reply order cannot be assumed.  Messages that cannot be fulfilled are sometimes dropped with no reply, and sometimes replied to via a `reject` message.
+
+These design decisions were made with consideration to communication with untrusted/uncooperative partners.
+
+A common message strategy is to wait for any message that provides the required data (with a timeout), and then separately issue the request in a retry loop to multiple peers.  If a timeout occurs, return to higher level software which should re-assess whether the data is still needed, since in nodes in the network may have converged to a competing block or transaction, and therefore may not be serving the requested data.
+
 
 ## Message Format
 
