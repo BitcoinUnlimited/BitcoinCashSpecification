@@ -31,4 +31,4 @@ Within the block header, the difficulty target uses a special floating-point rep
 | exponent | 1 byte | byte | Used to calculate the offset for the signficand.  The actual exponent is <code>8 * (exponent - 3)</code>. |
 | significand | 3 byte | bytes | The significand, or mantissa, of the value. |
 
-Ultimately, the difficult target is equal to: <code>significand * 2<sup>(8 * (exponent - 3))</sup></code>
+Ultimately, the difficulty target is equal to: <code>significand * 2<sup>(8 * (exponent - 3))</sup></code>
