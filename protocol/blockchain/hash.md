@@ -10,8 +10,8 @@ A variety of hashing algorithms are used throughout the Bitcoin Cash protocol.  
 	 - A SHA-256 hash is taken of the block header.  The output hash is then hashed again with SHA-256.  This resultant hash is referred to simply as the block hash and is used as a unique identifier for the block.
 	 - This double hash removes the possibility of a [length extension attack](https://en.wikipedia.org/wiki/Length_extension_attack) which a single SHA-256 is vulnerable to.  While this is generally not a problem for Bitcoin Cash since the pre-image (the actual data of the block) is available, it trades a minor amount of inefficiency for confidence that this property of SHA-256 cannot be exploited.
 	 - Double SHA-256 has it's own operation for ease-of-use, [OP_HASH256](/protocol/blockchain/script/opcodes/op-hash256)
- - Transaction Hashing
-	 - Transactions are hashed using a single application of SHA-256.  This is referred to as the transaction hash and is used to uniquely identify the transaction.  (NOTE: Historical transaction hashes are not universally unique, there are two sets of two identical coinbase transactions and thus repeated hashes.  Since [BIP-34](/protocol/forks/bip-0034), the block height is now required to be in the coinbase transaction, so this should not be possible in the future.)
+ - Transaction Hashing (Double SHA-256)
+	 - Transactions are also hashed using a double application of SHA-256.  This is referred to as the transaction hash and is used to uniquely identify the transaction.  (NOTE: Historical transaction hashes are not universally unique, there are two sets of two identical coinbase transactions and thus repeated hashes.  Since [BIP-34](/protocol/forks/bip-0034), the block height is now required to be in the coinbase transaction, so this should not be possible in the future.)
 	 - The two cases where this occurred are the following transactions which each appear in two blocks:
 		 - <code>D5D27987D2A3DFC724E359870C6644B40E497BDC0589A033220FE15429D88599</code>
 		 - <code>E3BF3D07D4B0375638D5F1DB5255FE07BA2C4CB067CD81B84EE974B6585FB468</code>
