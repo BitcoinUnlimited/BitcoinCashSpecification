@@ -1,8 +1,8 @@
 -   Home
--   [Style Guide](style-guide)
--   [Contributors](contributors)
--   [Target Audience](target-audience)
--   Wiki History
+-   [Style Guide](/style-guide)
+-   [Contributors](/contributors)
+-   [Target Audience](/target-audience)
+-   [Project History](/project-history)
 -   Protocol
     -   Blockchain
 	    -   [Hash](/protocol/blockchain/hash)
@@ -116,8 +116,8 @@
     -   Cash Address
     -   Miscellaneous
 	    -   “Bitcoin Sign Message”
-	    - [Endian]([/protocol/misc/endian](https://bitcoinprotocol.cash/protocol/misc/endian))
-		    - [Little](/protocol/misc/endian/little)</sup>
+	    - [Endian](/protocol/misc/endian)
+		    - [Little](/protocol/misc/endian/little)
 		    - [Big](/protocol/misc/endian/big)
    -   History
 	   - Bips
