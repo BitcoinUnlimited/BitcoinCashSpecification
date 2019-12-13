@@ -22,16 +22,5 @@
 ## Protocols
 [Full Node (P2P) Protocol](protocol)
 
-[Light Client (Electron Cash) Protocol](electrs__protocol)
-
-[Identity Protocol (Login)](identity__protocol)
-## Software
-
-[Bitcoin Unlimited Cash Full Node](bu_bitcoind)
-
-[Cwik (This site's software)](cwik) 
-
 ## Miscellaneous
 [Glossary](glossary)
-
-[test recursive dir](/newdir/nd/test.md)
