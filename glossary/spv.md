@@ -1,0 +1,1 @@
+SPV is an acronym for "Simplified Payment Validation".
