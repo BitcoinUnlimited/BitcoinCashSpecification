@@ -6,11 +6,9 @@
 -   Protocol
     -   Blockchain
 	    -   [Hash](/protocol/blockchain/hash)
-	    -   Transaction
-		    -   Transaction Input
-			    -   Unlocking Script
-		    -   Transaction Output
-			    -   Locking Script
+	    -   [Transaction](/protocol/blockchain/transaction)
+		    -   [Unlocking Script](/protocol/blockchain/transaction/unlocking-script)
+		    -   [Locking Script](/protocol/blockchain/transaction/locking-script)
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
 	    -   Transactions
