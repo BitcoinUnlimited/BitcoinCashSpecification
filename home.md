@@ -119,5 +119,3 @@
    -   History
 	   - Bips
 	   - Protocol Version
-
-??
