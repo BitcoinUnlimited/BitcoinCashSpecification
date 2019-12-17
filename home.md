@@ -119,4 +119,3 @@
    -   History
 	   - Bips
 	   - Protocol Version
-

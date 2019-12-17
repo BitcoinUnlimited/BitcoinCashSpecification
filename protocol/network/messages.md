@@ -1,4 +1,4 @@
-# Standard Messages
+# P2P Network Messages
 
 The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted via TCP.  The P2P network is similar to a gossip network, where nodes listen for messages and then relays that message to its other peers if it believes that message's content is valid.
 
@@ -14,7 +14,7 @@ The P2P network has a variety of message types.  All P2P messages follow a binar
 
 
 | Field | Length | Format |
-|--|--|--|--|
+|--|--|--|
 | net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/little)</sup> |
 | command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/little)</sup> |
 | payload byte count | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
