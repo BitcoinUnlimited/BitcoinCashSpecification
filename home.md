@@ -13,12 +13,12 @@
 		    -   [Locking Script](/protocol/blockchain/transaction/locking-script)
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
-	    -   Transactions
-		    -   Legacy Transaction Ordering
-		    -   Canonical Transaction Ordering (CTOR)
-	    -   Merkle Tree
-		    -   Merkle Root
-		    -   Partial Merkle Tree
+		    -   Merkle Tree
+			    -   Merkle Root
+			    -   Partial Merkle Tree
+		    -   Transactions
+			    -   Legacy Transaction Ordering
+			    -   Canonical Transaction Ordering (CTOR)
 	    -   [Script](/protocol/blockchain/script)
 		    -   Opcodes
 			       ...
@@ -120,4 +120,7 @@
 	   - Bips
 	   - Protocol Version
 
+<<<<<<< HEAD
 💵
+=======
+>>>>>>> branch 'master' of /opt/jwik/data/repository
