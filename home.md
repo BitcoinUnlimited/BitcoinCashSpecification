@@ -78,8 +78,8 @@
 		-   HF20191115
 	-   Peer-to-Peer Network
 		-   [Messages](/protocol/network/messages)
-			-   [Handshake: Version (?version?)](/protocol/network/messages/version)
-			-   [Handshake: Acknowledge Version ("verack?)](/protocol/network/messages/verack)
+			-   [Handshake: Version ("version")](/protocol/network/messages/version)
+			-   [Handshake: Acknowledge Version ("verack")](/protocol/network/messages/verack)
 			-   ping
 			-   pong
 			-   addr
@@ -112,7 +112,7 @@
     -   Simple Ledger Protocol
     -   Cash Address
     -   Miscellaneous
-	    - ?Bitcoin Sign Message?
+	    - Bitcoin Sign Message
 	    - [Endian](/protocol/misc/endian)
 		    - [Little](/protocol/misc/endian/little)
 		    - [Big](/protocol/misc/endian/big)
