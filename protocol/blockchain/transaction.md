@@ -4,6 +4,15 @@ A transaction is how transfers are made in the blockchain. It comprises of a set
 
 ## Format
 
+| Field | Length | Format | Description |
+|--|--|--|--|
+| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version of the transaction format.  Currently `0x02000000`. |
+| input count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of inputs in the transaction. |
+| transaction inputs | variable | `input count` [transaction inputs](#transaction-input) | Each of the transaction's inputs serialized in order. |
+| output count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of output in the transaction. |
+| transaction outputs | variable | `output count` [transaction outputs](#transaction-output) | Each of the transaction's inputs serialized in order. |
+|  |  |  |  |
+
 
 
 ## Transaction Inputs
