@@ -120,7 +120,5 @@
 	   - Bips
 	   - Protocol Version
 
-<<<<<<< HEAD
 💵
-=======
->>>>>>> branch 'master' of /opt/jwik/data/repository
+
