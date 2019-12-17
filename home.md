@@ -17,7 +17,7 @@
 	    -   Merkle Tree
 		    -   Merkle Root
 		    -   Partial Merkle Tree
-	    -   Script
+	    -   [Script](/protocol/blockchain/script)
 		    -   Opcodes
 			       ...
 	    -   Script Execution
