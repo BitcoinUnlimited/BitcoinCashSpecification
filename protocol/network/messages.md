@@ -14,7 +14,7 @@ The P2P network has a variety of message types.  All P2P messages follow a binar
 
 
 | Field | Length | Format |
-|--|--|--|--|
+|--|--|--|
 | net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/little)</sup> |
 | command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/little)</sup> |
 | payload byte count | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
