@@ -13,10 +13,7 @@
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
 		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
-			    -   [Partial Merkle Tree](/protocol/blockchain/block/merkle-tree/partial-merkle-tree)
-		    -   Transactions
-			    -   Legacy Transaction Ordering
-			    -   Canonical Transaction Ordering (CTOR)
+		    -   [Transaction Ordering](/protocol/blockchain/block/transaction-ordering)
 	    -   [Script](/protocol/blockchain/script)
 		    -   Opcodes
 			       ...

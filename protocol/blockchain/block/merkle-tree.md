@@ -6,4 +6,4 @@ In Bitcoin Cash, the transactions in a [block](/protocol/blockchain/block) are b
 
 Using a merkle tree to manage hashing the transactions in a block enables efficient addition of newly submitted transactions to a block being mined.  Rather than re-hashing the entirety of the data of the transactions to be included in the block, the new transaction can be hash and then a small number of hashes can be recalculated, leading up to the merkle root.  For large blocks this can heavily reduce the amount of data to be (re-)hashed.
 
-Using merkle trees also allows for transferring only a subset of a block while still providing confidence that the data provided in fact appeared in the block in question.  For more information, see [Partial Merkle Tree](/protocol/blockchain/block/merkle-tree/partial-merkle-tree). 
+Using merkle trees also allows for transferring only a subset of a block while still providing confidence that the data provided in fact appeared in the block in question.  For more information, see [Merkle Block](/protocol/network/messages/merkleblock). 
