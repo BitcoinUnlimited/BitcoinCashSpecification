@@ -12,13 +12,13 @@
 		    -   [Locking Script](/protocol/blockchain/transaction/locking-script)
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
-	    -   Transactions
-		    -   Legacy Transaction Ordering
-		    -   Canonical Transaction Ordering (CTOR)
-	    -   Merkle Tree
-		    -   Merkle Root
-		    -   Partial Merkle Tree
-	    -   Script
+		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
+			    -   Merkle Root
+			    -   Partial Merkle Tree
+		    -   Transactions
+			    -   Legacy Transaction Ordering
+			    -   Canonical Transaction Ordering (CTOR)
+	    -   [Script](/protocol/blockchain/script)
 		    -   Opcodes
 			       ...
 	    -   Script Execution

@@ -4,6 +4,8 @@ A locking script is a [Script](/protocol/blockchain/script) that is used dictate
 
 ## Standard Scripts
 
+The below locking script formats are regarded as "standard" on the Bitcoin Cash network and, as a result, are the three forms of transactions that will be relayed among nodes for mining.  It is possible to have transactions without these standard locking script formats mined into a block, but such transactions are at a disadvantage due since they will not be as widely propagated.
+
 ### Pay to Public Key (P2PK) <img src="/_static_/images/warning.png" />
 
 The P2PK locking script expects the unlocking script to push a signature to the stack.  If the signature is valid for the specified public key in the locking script, the output is allowed to be spent.
