@@ -1,19 +1,19 @@
 # Locking Script
 
-A locking script is a [Script](/protocol/blockchain/script) that is used dictate how funds can be spent in the future.  Locking scripts do this by defining a set of operations that must end in a successful script execution.  The rest of the script execution is to be provided in an [unlocking script](/protocol/blockchain/transaction/unlocking-script) in a future transaction's input.  It is important that the locking script is executed after the unlocking script.  If the unlocking script were run second, it could end by removing any values currently on the stack and replacing it with a success value.  For more information about how script execution works, see [Script](/protocol/blockchain/script).
+A locking script is a [Script](/protocol/blockchain/script) that is used dictate how funds can be spent in the future.  Locking scripts do this by defining a set of operations that must end in a successful script execution.  The rest of the script execution is to be provided in an [unlocking script](/protocol/blockchain/transaction/unlocking-script) in a future transaction's input.  Every locking script is executed after the unlocking script.  If the unlocking script were run second, it could end by removing any values currently on the stack and replacing it with a success value.  For more information about how script execution works, see [Script](/protocol/blockchain/script).
 
 ## Standard Scripts
 
-### Pay to Public Key (P2PK)
+### Pay to Public Key (P2PK) <img src="/_static_/images/warning.png" />
 
-Pay to Public Key is a largely obsolete type of locking script, though it is arguably the most straightforward.  It expects the unlocking script to push a signature to the stack.  If the signature is valid and was made by the private key corresponding to the public key in the locking script, the funds are allowed to be transferred.
+The P2PK locking script expects the unlocking script to push a signature to the stack.  If the signature is valid for the specified public key in the locking script, the script is valid.
 
 | Operation | Description |
 |--|--|
 | [push data](/protocol/blockchain/script/opcodes/push-data) (public key) | Add the recipient's public key to the stack.  The data pushed must be either a compressed or uncompressed public key with appropriate length for the type for the script to be recognized as P2PK. |
 | [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Check the public key at the top of the stack against the signature below it on the stack. |
 
-This type of locking script is no longer recommended due to the fact that it leaks the public key of the recipient.  This results in:
+<img src="/_static_/images/warning.png" /> **NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked.  Additionally, this paradigm results in:
 
 1. More data to be transferred to request funds, since a public key is larger than the addresses used in other standard scripts.
 2. Decreased security in the event of a break in the ECDSA signature algorithm.  That is, if it ever becomes possible to create a signature using a public key (not currently known to be possible), the public key is readily available.

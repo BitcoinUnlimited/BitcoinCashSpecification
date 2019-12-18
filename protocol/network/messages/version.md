@@ -91,37 +91,37 @@ Node Features
 
 #### Bitcoin ABC
 
-* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
+* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png" />
 	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Unlimited
 
-* 4: NODE_XTHIN  <img src="/_static_/images/warning.png">
+* 4: NODE_XTHIN  <img src="/_static_/images/warning.png" />
 	The node supports Xtreme Thinblocks
 
-* 6: NODE_GRAPHENE <img src="/_static_/images/warning.png">
+* 6: NODE_GRAPHENE <img src="/_static_/images/warning.png" />
 	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
 
-* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png">
+* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png" />
 	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Verde
 
-* 7: BLOCKCHAIN_INDEX_ENABLED <img src="/_static_/images/warning.png">
+* 7: BLOCKCHAIN_INDEX_ENABLED <img src="/_static_/images/warning.png" />
 	Indicates that the node is an indexing node and supports returning information custom to the requesting user's addresses.
 
-* 8: SLP_INDEX_ENABLED <img src="/_static_/images/warning.png">
+* 8: SLP_INDEX_ENABLED <img src="/_static_/images/warning.png" />
 	Indicates that the node tracks Simple Ledger Protocol validity and supports returning this status for individual transactions.
 
 #### Other Proposed/Previously Used Service Flags
 
-* 1: NODE_GETUTXO <img src="/_static_/images/warning.png">
+* 1: NODE_GETUTXO <img src="/_static_/images/warning.png" />
 The node is capable of responding to the getutxo protocol request. See [BIP 64](/protocol/forks/bip-0064) for details on how this is implemented. _Was previously supported by Bitcoin XT only._
 
-* 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png">
+* 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png" />
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
 
-* 8: NODE_CF <img src="/_static_/images/warning.png">
+* 8: NODE_CF <img src="/_static_/images/warning.png" />
 	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](/protocol/forks/bip-0157), and [BIP158](/protocol/forks/bip-0158)).
 
 ## Node-Specific Behavior
