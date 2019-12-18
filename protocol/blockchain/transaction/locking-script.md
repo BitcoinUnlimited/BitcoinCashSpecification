@@ -6,7 +6,7 @@ A locking script is a [Script](/protocol/blockchain/script) that is used dictate
 
 ### Pay to Public Key (P2PK) <img src="/_static_/images/warning.png" />
 
-The P2PK locking script expects the unlocking script to push a signature to the stack.  If the signature is valid for the specified public key in the locking script, the script is valid.
+The P2PK locking script expects the unlocking script to push a signature to the stack.  If the signature is valid for the specified public key in the locking script, the output is allowed to be spent.
 
 | Operation | Description |
 |--|--|
@@ -21,7 +21,7 @@ The P2PK locking script expects the unlocking script to push a signature to the 
 
 ### Pay to Public Key Hash (P2PKH)
 
-Pay to Public Key Hash is a widely used standard locking script format, that works similarly to P2PK but instead of pushing the public key, it pushes a hash of the public key, commonly referred to as an address.  This heavily reduces the risks associated with a plain P2PK script as the hashing algorithms used provide a considerable barrier to determining the public key a priori.  To spend an output locked with this type of script, the unlocking script is expected to push a signature and then the public key corresponding to the private key that created the signature.  If that public key hashes to the expected address, and the signature is valid, the funds are allowed to be transferred.
+Pay to Public Key Hash is a widely used standard locking script format, that works similarly to P2PK but instead of pushing the public key, it pushes a hash of the public key, commonly referred to as an address.  This heavily reduces the risks associated with a plain P2PK script as the hashing algorithms used provide a considerable barrier to determining the public key a priori.  To spend an output locked with this type of script, the unlocking script is expected to push a signature and then the public key corresponding to the private key that created the signature.  If that public key hashes to the expected address, and the signature is valid, the output is allowed to be spent.
 
 | Operation | Description |
 |--|--|
@@ -33,7 +33,7 @@ Pay to Public Key Hash is a widely used standard locking script format, that wor
 
 ### Pay to Script Hash (P2SH)
 
-Pay to Script Hash is used to require the spender of an output to include a specific set of operations in their unlocking script.  To achieve this, the unlocking script is expected to end by pushing data to the stack that is the expected script to be executed. Once this data is verified to match the expected script hash, this internal script is executed on the pre-locking-script-execution stack.  If this internal script finishes execution successfully, the funds are allowed to be transferred.
+Pay to Script Hash is used to require the spender of an output to include a specific set of operations in their unlocking script.  To achieve this, the unlocking script is expected to end by pushing data to the stack that is the expected script to be executed. Once this data is verified to match the expected script hash, this internal script is executed on the pre-locking-script-execution stack.  If this internal script finishes execution successfully, the output is allowed to be spent.
 
 | Operation | Description |
 |--|--|
