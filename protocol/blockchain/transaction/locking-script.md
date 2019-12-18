@@ -13,7 +13,7 @@ The P2PK locking script expects the unlocking script to push a signature to the 
 | [push data](/protocol/blockchain/script/opcodes/push-data) (public key) | Add the recipient's public key to the stack.  The data pushed must be either a compressed or uncompressed public key with appropriate length for the type for the script to be recognized as P2PK. |
 | [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Check the public key at the top of the stack against the signature below it on the stack. |
 
-**NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked.  Additionally, this paradigm results in:
+<img src="/_static_/images/warning.png" /> **NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked.  Additionally, this paradigm results in:
 
 1. More data to be transferred to request funds, since a public key is larger than the addresses used in other standard scripts.
 2. Decreased security in the event of a break in the ECDSA signature algorithm.  That is, if it ever becomes possible to create a signature using a public key (not currently known to be possible), the public key is readily available.
