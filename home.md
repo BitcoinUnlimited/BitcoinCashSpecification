@@ -106,6 +106,7 @@
 			-   thinblock
 			-   get_xblocktx
 			-   xblocktx
+      -   [Node Handshake](/protocol/network/node-handshake)
     -   Simple Payment Verification (SPV)
 	    -   Bloom Filters
     -   Simple Ledger Protocol

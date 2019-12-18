@@ -23,7 +23,7 @@ The P2P network has a variety of message types.  All P2P messages follow a binar
 
 ### Net Magic
 
-The `net magic` field is always `E3E1F3E8`.  Any message received that does not begin with the `net magic` should be ignored.
+The network identifier is used to separate blockchains and test networks. This reduces unnecessary load on peers, allowing them to rapidly ban nodes rather then forcing the peer to do a blockchain analysis before banning or disconnecting.  For Bitcoin Cash main net, the `net magic` field is always `E3E1F3E8`.  Any message received that does not begin with the `net magic` is invalid.
 
 The `net magic` is designed to be unlikely to occur in normal data--the characters are rarely used upper ASCII, are not valid as UTF-8, and produce a large 32-bit integer with any alignment.  `E3E1F3E8` is the ASCII string, "cash", with each byte's highest bit set.
 
