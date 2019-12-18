@@ -88,4 +88,4 @@ The message payload is defined by the message type.
 
 ### Payload Checksum
 
-Bitcoin ABC does not validate the message checksum since messages are sent via TCP which has its own checksum paradigm.
+Bitcoin Unlimited does not validate the message checksum since messages are sent via TCP which has its own checksum paradigm.
