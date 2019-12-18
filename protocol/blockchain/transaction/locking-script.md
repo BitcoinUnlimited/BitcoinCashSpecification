@@ -19,7 +19,7 @@ This type of locking script is no longer recommended due to the fact that it lea
 2. Decreased security in the event of a break in the ECDSA signature algorithm.  That is, if it ever becomes possible to create a signature using a public key (not currently known to be possible), the public key is readily available.
 3. Decreased privacy for the recipient, since anyone aware of who owns the public key knows that they can spend the locked funds.
 
-### Pay To Public Key Hash (P2PKH)
+### Pay to Public Key Hash (P2PKH)
 
 Pay to Public Key Hash is a widely used standard locking script format, that works similarly to P2PK but instead of pushing the public key, it pushes a hash of the public key, commonly referred to as an address.  This heavily reduces the risks associated with a plain P2PK script as the hashing algorithms used provide a considerable barrier to determining the public key a priori.  To spend an output locked with this type of script, the unlocking script is expected to push a signature and then the public key corresponding to the private key that created the signature.  If that public key hashes to the expected address, and the signature is valid, the funds are allowed to be transferred.
 
@@ -31,4 +31,12 @@ Pay to Public Key Hash is a widely used standard locking script format, that wor
 | [OP_EQUALVERIFY](/protocol/blockchain/script/opcodes/op-equalverify) | Verify that the hash of the copied value matches the expected hash that was pushed. |
 | [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Verify that the stack now contains only a public key (which was duplicated, hashed, and checked against the expected value) and a signature and verify that the signature is valid for that public key. |
 
-### Pay To Script Hash (P2SH)
+### Pay to Script Hash (P2SH)
+
+Pay to Script Hash is used to require the spender of an output to include a specific set of operations in their unlocking script.  To achieve this, the unlocking script is expected to end by pushing data to the stack that is the expected script to be executed. Once this data is verified to match the expected script hash, this internal script is executed on the pre-locking-script-execution stack.  If this internal script finishes execution successfully, the funds are allowed to be transferred.
+
+| Operation | Description |
+|--|--|
+| [OP_HASH160](/protocol/blockchain/script/opcodes/op-hash160) |  |
+| [push data](/protocol/blockchain/script/opcodes/push-data) (20 bytes) |  |
+| [OP_EQUAL](/protocol/blockchain/script/opcodes/op-equal) |  |
