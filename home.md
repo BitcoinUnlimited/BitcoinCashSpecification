@@ -1,6 +1,6 @@
 # Bitcoin Cash Protocol
 
--   Home
+-   [Home](/)
 -   [Style Guide](/style-guide)
 -   [Contributors](/contributors)
 -   [Target Audience](/target-audience)
@@ -13,13 +13,13 @@
 		    -   [Locking Script](/protocol/blockchain/transaction/locking-script)
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
-		    -   Merkle Tree
-			    -   Merkle Root
-			    -   Partial Merkle Tree
-		    -   Transactions
-			    -   Legacy Transaction Ordering
-			    -   Canonical Transaction Ordering (CTOR)
-	    -   [Script](/protocol/blockchain/script)
+	    -   Transactions
+		    -   Legacy Transaction Ordering
+		    -   Canonical Transaction Ordering (CTOR)
+	    -   Merkle Tree
+		    -   Merkle Root
+		    -   Partial Merkle Tree
+	    -   Script
 		    -   Opcodes
 			       ...
 	    -   Script Execution
@@ -50,7 +50,7 @@
 			    -   Bech32
 			    -   Cash Address
 	    -   Proof of Work
-		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
+		    -   Difficulty Adjustment Algorithm
 			    -   Legacy DAA
 			    -   Emergency DAA
 			    -   BCH Adaptive DAA
@@ -78,8 +78,8 @@
 		-   HF20191115
 	-   Peer-to-Peer Network
 		-   [Messages](/protocol/network/messages)
-			-   [Handshake: Version ("version")](/protocol/network/messages/version)
-			-   [Handshake: Acknowledge Version ("verack")](/protocol/network/messages/verack)
+			-   [Handshake: Version (“version”)](/protocol/network/messages/version)
+			-   [Handshake: Acknowledge Version ("verack”)](/protocol/network/messages/verack)
 			-   ping
 			-   pong
 			-   addr
@@ -112,7 +112,7 @@
     -   Simple Ledger Protocol
     -   Cash Address
     -   Miscellaneous
-	    - Bitcoin Sign Message
+	    - “Bitcoin Sign Message”
 	    - [Endian](/protocol/misc/endian)
 		    - [Little](/protocol/misc/endian/little)
 		    - [Big](/protocol/misc/endian/big)
