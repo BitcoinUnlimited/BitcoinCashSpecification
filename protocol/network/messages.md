@@ -71,6 +71,9 @@ The following messages are well known, but not implemented by all node implement
 
 ### Payload Byte Count
 
+The payload byte count is the size of the payload, encoded as a [little-endian](/protocol/misc/endian/little) 4-byte integer.  The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes.
+
 ### Payload Checksum
+
 
 ### Payload
