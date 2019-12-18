@@ -76,32 +76,32 @@
               - filterclear
               - filterload
               - inv
-	      - *Requests*
-            - feefilter
-            - getaddr
-            - getblocks
-            - getdata
-            - getheaders
-            - [Ping](/protocol/network/messages/ping)
-            - sendheaders
-            - [Handshake: Version](/protocol/network/messages/version)
-          - *Responses*
-            - addr
-            - block
-            - headers
-            - notfound
-            - merkleblock
-            - [Pong](/protocol/network/messages/pong)
-            - reject
-            - tx
-            - [Handshake: Acknowledge Version](/protocol/network/messages/verack)
-          - *Non-Standard*
-            - sendcmpct
-            - get_xthin
-            - xthinblock
-            - thinblock
-            - get_xblocktx
-            - xblocktx
+	        - *Requests*
+              - feefilter
+              - getaddr
+              - getblocks
+              - getdata
+              - getheaders
+              - [Ping](/protocol/network/messages/ping)
+              - sendheaders
+              - [Handshake: Version](/protocol/network/messages/version)
+            - *Responses*
+              - addr
+              - block
+              - headers
+              - notfound
+              - merkleblock
+              - [Pong](/protocol/network/messages/pong)
+              - reject
+              - tx
+              - [Handshake: Acknowledge Version](/protocol/network/messages/verack)
+            - *Non-Standard*
+              - sendcmpct
+              - get_xthin
+              - xthinblock
+              - thinblock
+              - get_xblocktx
+              - xblocktx
         - [Node Handshake](/protocol/network/node-handshake)
     -   Simple Payment Verification (SPV)
 	    -   Bloom Filters
