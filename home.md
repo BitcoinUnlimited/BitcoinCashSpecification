@@ -20,8 +20,6 @@
 	    -   [Script](/protocol/blockchain/script)
 		    -   Opcodes
 			       ...
-	    -   Script Execution
-		    -   Stack
 	    -   Transaction Validation
 		    -   Block Level Validation Rules
 		    -   Network Level Validation Rules
