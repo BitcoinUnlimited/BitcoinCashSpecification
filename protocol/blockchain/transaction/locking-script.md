@@ -27,9 +27,8 @@ Pay to Public Key Hash is a widely used standard locking script format, that wor
 |--|--|
 | [OP_DUP](/protocol/blockchain/script/opcodes/op-dup) | Copy the value at the top of the stack (public key of the recipient). |
 | [OP_HASH160](/protocol/blockchain/script/opcodes/op-hash160) | Perform a SHA-256 then a RIPEMD-160 on the copied value. |
-| [push data](/protocol/blockchain/script/opcodes/push-data) (20 bytes) | Push the excepted 20 byte address. |
+| [push data](/protocol/blockchain/script/opcodes/push-data) (20 bytes) | Push the expected 20 byte address. |
 | [OP_EQUALVERIFY](/protocol/blockchain/script/opcodes/op-equalverify) | Verify that the hash of the copied value matches the expected hash that was pushed. |
 | [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Verify that the stack now contains only a public key (which was duplicated, hashed, and checked against the expected value) and a signature and verify that the signature is valid for that public key. |
 
 ### Pay To Script Hash (P2SH)
-
