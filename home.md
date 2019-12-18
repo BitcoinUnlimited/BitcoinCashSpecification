@@ -13,8 +13,7 @@
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
 		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
-			    -   Merkle Root
-			    -   Partial Merkle Tree
+			    -   [Partial Merkle Tree](/protocol/blockchain/block/merkle-tree/partial-merkle-tree)
 		    -   Transactions
 			    -   Legacy Transaction Ordering
 			    -   Canonical Transaction Ordering (CTOR)
