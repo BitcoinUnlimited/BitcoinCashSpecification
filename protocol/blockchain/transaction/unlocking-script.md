@@ -15,4 +15,3 @@ While unlocking scripts are generally not restricted in their format, they are o
 
 
 ### Pay to Script Hash
-
