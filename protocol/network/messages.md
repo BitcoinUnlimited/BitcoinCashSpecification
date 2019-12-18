@@ -33,41 +33,51 @@ The `command string` is a fixed-length 12 byte ASCII string.  Commands may not b
 
 The following messages are considered standard by all node implementations.
 
+#### Announcements
 | Command String | Name |
 | -- | -- |
-| version | [Handshake: Version](/protocol/network/messages/version) |
-| verack | [Handshake: Acknowledge Version](/protocol/network/messages/verack) |
-| ping | [Ping](/protocol/network/messages/ping) |
-| pong | [Pong](/protocol/network/messages/pong) |
-| addr |  |
-| getblocks |  |
-| inv |  |
-| mempool |  |
-| getheaders |  |
-| headers |  |
-| getdata |  |
-| block |  |
-| tx |  |
-| merkleblock |  |
-| notfound |  |
-| reject |  |
-| sendheaders |  |
-| feefilter |  |
-| getaddr |  |
-| filterload |  |
 | filteradd |  |
 | filterclear |  |
+| filterload |  |
+| inv |  |
+
+#### Requests
+| Command String | Name |
+| -- | -- |
+| feefilter |  |
+| getaddr |  |
+| getblocks |  |
+| getdata |  |
+| getheaders |  |
+| ping | [Ping](/protocol/network/messages/ping) |
+| sendheaders |  |
+| version | [Handshake: Version](/protocol/network/messages/version) |
+
+
+#### Responses
+| Command String | Name |
+| -- | -- |
+| addr |  |
+| block |  |
+| headers |  |
+| notfound |  |
+| merkleblock |  |
+| pong | [Pong](/protocol/network/messages/pong) |
+| reject |  |
+| tx |  |
+| verack | [Handshake: Acknowledge Version](/protocol/network/messages/verack) |
 
 The following messages are well known, but not implemented by all node implementations.
 
 | Command String | Name | Supported Implementations |
 | -- | -- | -- |
-| sendcmpct |  |  |
-| get_xthin |  |  |
-| xthinblock |  |  |
-| thinblock |  |  |
 | get_xblocktx |  |  |
+| get_xthin |  |  |
+| mempool |  |
+| sendcmpct |  |  |
+| thinblock |  |  |
 | xblocktx |  |  |
+| xthinblock |  |  |
 
 ### Payload Byte Count
 
