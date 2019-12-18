@@ -15,10 +15,10 @@ The P2P network has a variety of message types.  All P2P messages follow a binar
 
 | Field | Length | Format |
 |--|--|--|
-| net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/little)</sup> |
-| command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/little)</sup> |
+| net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> |
+| command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/big)</sup> |
 | payload byte count | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
-| payload checksum | 4 bytes | byte array<sup>[(LE)](/protocol/misc/endian/little)</sup> |
+| payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> |
 | payload | variable |  |
 
 ### Net Magic
@@ -71,9 +71,21 @@ The following messages are well known, but not implemented by all node implement
 
 ### Payload Byte Count
 
-The payload byte count is the size of the payload, encoded as a [little-endian](/protocol/misc/endian/little) 4-byte integer.  The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes.
+The payload byte count is the size of the payload, encoded as a [little-endian](/protocol/misc/endian/little) 4-byte integer.  The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes.  The payload byte count may be zero, but must not be negative.
 
 ### Payload Checksum
 
+The message checksum is the first 4 bytes of a double-sha256 hash of the payload.  The checksum is transmitted as a byte array, and is encoded as [big-endian](/protocol/misc/endian/big).
+
 
 ### Payload
+
+The message payload is defined by the message type.
+
+# Node Specific Behavior
+
+## Bitcoin ABC
+
+### Payload Checksum
+
+Bitcoin ABC does not validate the message checksum since messages are sent via TCP which has its own checksum paradigm.
