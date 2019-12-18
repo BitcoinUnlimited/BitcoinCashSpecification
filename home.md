@@ -70,39 +70,39 @@
 		-   HF20190515
 		-   HF20191115
 	-   Peer-to-Peer Network
-		-   [Messages](/protocol/network/messages)
-         - *Announcements*
+        - [Messages](/protocol/network/messages)
+            - *Announcements*
               - filteradd
               - filterclear
               - filterload
               - inv
-         - *Requests*
-              - feefilter
-              - getaddr
-              - getblocks
-              - getdata
-              - getheaders
-              - [Ping](/protocol/network/messages/ping)
-              - sendheaders
-              - [Handshake: Version](/protocol/network/messages/version)
-         - *Responses*
-              - addr
-              - block
-              - headers
-              - notfound
-              - merkleblock
-              - [Pong](/protocol/network/messages/pong)
-              - reject
-              - tx
-              - [Handshake: Acknowledge Version](/protocol/network/messages/verack)
+	      - *Requests*
+            - feefilter
+            - getaddr
+            - getblocks
+            - getdata
+            - getheaders
+            - [Ping](/protocol/network/messages/ping)
+            - sendheaders
+            - [Handshake: Version](/protocol/network/messages/version)
+          - *Responses*
+            - addr
+            - block
+            - headers
+            - notfound
+            - merkleblock
+            - [Pong](/protocol/network/messages/pong)
+            - reject
+            - tx
+            - [Handshake: Acknowledge Version](/protocol/network/messages/verack)
           - *Non-Standard*
-              - sendcmpct
-              - get_xthin
-              - xthinblock
-              - thinblock
-              - get_xblocktx
-              - xblocktx
-      - [Node Handshake](/protocol/network/node-handshake)
+            - sendcmpct
+            - get_xthin
+            - xthinblock
+            - thinblock
+            - get_xblocktx
+            - xblocktx
+        - [Node Handshake](/protocol/network/node-handshake)
     -   Simple Payment Verification (SPV)
 	    -   Bloom Filters
     -   Simple Ledger Protocol
