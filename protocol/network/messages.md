@@ -84,7 +84,7 @@ The message payload is defined by the message type.
 
 # Node Specific Behavior
 
-## Bitcoin ABC
+## Bitcoin Unlimited
 
 ### Payload Checksum
 
