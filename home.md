@@ -1,6 +1,5 @@
 # Bitcoin Cash Protocol
 
--   [Home](/)
 -   [Style Guide](/style-guide)
 -   [Contributors](/contributors)
 -   [Target Audience](/target-audience)
