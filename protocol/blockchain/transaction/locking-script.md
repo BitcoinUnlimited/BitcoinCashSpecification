@@ -13,7 +13,7 @@ The P2PK locking script expects the unlocking script to push a signature to the 
 | [push data](/protocol/blockchain/script/opcodes/push-data) (public key) | Add the recipient's public key to the stack.  The data pushed must be either a compressed or uncompressed public key with appropriate length for the type for the script to be recognized as P2PK. |
 | [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Check the public key at the top of the stack against the signature below it on the stack. |
 
-<img src="/_static_/images/warning.png" /> **NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked.  Additionally, this paradigm results in:
+<img src="/_static_/images/warning.png" /> **NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked, resulting in:
 
 1. More data to be transferred to request funds, since a public key is larger than the addresses used in other standard scripts.
 2. Decreased security in the event of a break in the ECDSA signature algorithm.  That is, if it ever becomes possible to create a signature using a public key (not currently known to be possible), the public key is readily available.
@@ -37,6 +37,14 @@ Pay to Script Hash is used to require the spender of an output to include a spec
 
 | Operation | Description |
 |--|--|
-| [OP_HASH160](/protocol/blockchain/script/opcodes/op-hash160) |  |
-| [push data](/protocol/blockchain/script/opcodes/push-data) (20 bytes) |  |
-| [OP_EQUAL](/protocol/blockchain/script/opcodes/op-equal) |  |
+| [OP_HASH160](/protocol/blockchain/script/opcodes/op-hash160) | Hash the data at the top of the stack, this should be the script to be executed. |
+| [push data](/protocol/blockchain/script/opcodes/push-data) (20 bytes) | Push the expected script hash. |
+| [OP_EQUAL](/protocol/blockchain/script/opcodes/op-equal) | Verify that the hash of the provided script is equal to the expected hash. |
+
+Due to the nature of this type of locking script, the following steps must be performed by a node executing this script:
+
+1. After executing the unlocking scripts, create a copy of the stack for later use.  Since the final value (the internal script) will be consumed by the locking script, we want to return to this state after verifying that the hash is correct.
+2. Execute the locking script, and ensure that the result of the OP_EQUAL is TRUE.  If not, fail the script execution and treat the transaction as invalid.
+3. Return the stack to the pre-locking-script-execution state.  Remove the (now verified) internal script and interpret it as a new set of operations to be executed.
+4. Execute the internal script against the new state of the stack (with any values places on the stack by the unlocking script *except* the internal script).
+5. Evaluate the success of the script as usual (a single non-zero value left on the stack).
