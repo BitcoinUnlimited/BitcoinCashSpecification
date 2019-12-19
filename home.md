@@ -1,5 +1,4 @@
-# Bitcoin Cash Protocol
-
+-   Home
 -   [Style Guide](/style-guide)
 -   [Contributors](/contributors)
 -   [Target Audience](/target-audience)
@@ -12,10 +11,16 @@
 		    -   [Locking Script](/protocol/blockchain/transaction/locking-script)
 	    -   [Block](/protocol/blockchain/block)
 		    -   [Header](/protocol/blockchain/block/block-header)
-		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
-		    -   [Transaction Ordering](/protocol/blockchain/block/transaction-ordering)
+	    -   Transactions
+		    -   Legacy Transaction Ordering
+		    -   Canonical Transaction Ordering (CTOR)
+	    -   Merkle Tree
+		    -   Merkle Root
+		    -   Partial Merkle Tree
 	    -   [Script](/protocol/blockchain/script)
 		    -   Opcodes
+	      -   Script Execution
+		    -   Stack
 			       ...
 	    -   Transaction Validation
 		    -   Block Level Validation Rules
@@ -70,39 +75,36 @@
 		-   HF20190515
 		-   HF20191115
 	-   Peer-to-Peer Network
-        - [Messages](/protocol/network/messages)
-            - *Announcements*
-              - filteradd
-              - filterclear
-              - filterload
-              - inv
-	        - *Requests*
-              - feefilter
-              - getaddr
-              - getblocks
-              - getdata
-              - getheaders
-              - [Ping](/protocol/network/messages/ping)
-              - sendheaders
-              - [Handshake: Version](/protocol/network/messages/version)
-            - *Responses*
-              - addr
-              - block
-              - headers
-              - notfound
-              - merkleblock
-              - [Pong](/protocol/network/messages/pong)
-              - reject
-              - tx
-              - [Handshake: Acknowledge Version](/protocol/network/messages/verack)
-            - *Non-Standard*
-              - sendcmpct
-              - get_xthin
-              - xthinblock
-              - thinblock
-              - get_xblocktx
-              - xblocktx
-        - [Node Handshake](/protocol/network/node-handshake)
+		-   [Messages](/protocol/network/messages)
+			-   [Handshake: Version (“version”)](/protocol/network/messages/version)
+			-   [Handshake: Acknowledge Version ("verack”)](/protocol/network/messages/verack)
+			-   ping
+			-   pong
+			-   addr
+			-   getblocks
+			-   inv
+			-   mempool
+			-   getheaders
+			-   headers
+			-   getdata
+			-   block
+			-   tx
+			-   merkleblock
+			-   notfound
+			-   reject
+			-   sendheaders
+			-   feefilter
+			-   getaddr
+			-   filterload
+			-   filteradd
+			-   filterclear
+		-   Non-Standard P2P Messages
+			-   sendcmpct
+			-   get_xthin
+			-   xthinblock
+			-   thinblock
+			-   get_xblocktx
+			-   xblocktx
     -   Simple Payment Verification (SPV)
 	    -   Bloom Filters
     -   Simple Ledger Protocol

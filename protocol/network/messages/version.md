@@ -134,4 +134,4 @@ Bitcoin ABC nodes may, once they have reached their maximum number of peers, sel
 
 ### Bitcoin Verde
 
-Bitcoin Verde nodes ignores any data after the `relay flag` field.
+Bitcoin Verde nodes ignore any data after the `relay flag` field.
