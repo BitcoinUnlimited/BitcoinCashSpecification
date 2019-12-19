@@ -9,7 +9,7 @@ A variety of hashing algorithms are used throughout the Bitcoin Cash protocol.  
  - Block Hashing (Double SHA-256)
 	 - A SHA-256 hash is taken of the block header.  The output hash is then hashed again with SHA-256.  This resultant hash is referred to simply as the block hash and is used as a unique identifier for the block.
 	 - This double hash removes the possibility of a [length extension attack](https://en.wikipedia.org/wiki/Length_extension_attack) which a single SHA-256 is vulnerable to.  While this is generally not a problem for Bitcoin Cash since the pre-image (the actual data of the block) is available, it trades a minor amount of inefficiency for confidence that this property of SHA-256 cannot be exploited.
-	 - Double SHA-256 has it's own operation for ease-of-use, [OP_HASH256](/protocol/blockchain/script/opcodes/op-hash256)
+	 - Double SHA-256 has it's own script operation for ease-of-use, [OP_HASH256](/protocol/blockchain/script/opcodes/op-hash256)
  - Transaction Hashing (Double SHA-256)
 	 - Transactions are also hashed using a double application of SHA-256.  This is referred to as the transaction hash and is used to uniquely identify the transaction.  (NOTE: Historical transaction hashes are not universally unique, there are two sets of two identical coinbase transactions and thus repeated hashes.  Since [BIP-34](/protocol/forks/bip-0034), the block height is now required to be in the coinbase transaction, so this should not be possible in the future.)
 	 - The two cases where this occurred are the following transactions which each appear in two blocks:
@@ -18,7 +18,7 @@ A variety of hashing algorithms are used throughout the Bitcoin Cash protocol.  
 
 ## RIPEMD-160
 
-[RIPEMD-160](https://en.wikipedia.org/wiki/RIPEMD) is used in Bitcoin Cash scripts to create short, quasi-anonymous representations of payees for transactions.  Since its brevity is also a potential liability for the anonymity it provides (since shorter hashes generally provide less collision-resistance), it is used in conjunction with SHA-256 when generating an address from a public key.  That is, <code>(public key) -> SHA-256 -> RIPEMD-160 -> (address)</code>.  This SHA-256 then RIPEMD-160 process has its own operation for ease-of-use, [OP_HASH160](/protocol/blockchain/script/op-codes/op-hash160).
+[RIPEMD-160](https://en.wikipedia.org/wiki/RIPEMD) is used in Bitcoin Cash scripts to create short, quasi-anonymous representations of payees for transactions.  Since its brevity is also a potential liability for the anonymity it provides (since shorter hashes generally provide less collision-resistance), it is used in conjunction with SHA-256 when generating an address from a public key.  That is, <code>(public key) -> SHA-256 -> RIPEMD-160 -> (address)</code>.  This SHA-256 then RIPEMD-160 process has its own script operation for ease-of-use, [OP_HASH160](/protocol/blockchain/script/op-codes/op-hash160).
 
 ## Murmur
 
