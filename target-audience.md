@@ -1,6 +1,7 @@
 # Target Audience
 
-This specification is intended to meet a variety of needs, depending on their level of comfort with the material involved.  In order of precedence, the goal of this specification is to meet the needs of:
+This specification is intended to meet a variety of needs, depending on their level of comfort with the material involved.
+In order of precedence, the goal of this specification is to meet the needs of:
 
  - Node Developers
 	 - Provide all the details necessary to write a Bitcoin Cash Node implementation from scratch.
