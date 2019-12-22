@@ -3,7 +3,7 @@
 
 The version message is a part of the node connection [handshake](/protocol/network/node-handshake) and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask [below](#services-bitmask)).
 
-The node connection is not considered established until both nodes have sent and received both a <code>version</code> and [verack](/protocol/network/messages/verack) message.
+The node connection is not considered established until both nodes have sent and received both a `version` and [verack](/protocol/network/messages/verack) message.
 
 ## Message Format
 
@@ -19,18 +19,25 @@ The node connection is not considered established until both nodes have sent and
 | block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
 | relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037).  This flag is sometimes referred to as "fRelay". |
 
-Note: appending extra data after the `relay flag` is ignored.  Historically, extra data after the `relay flag` would sometimes result in the connection being banned, although this is no longer standard behavior.
+Note: appending extra data after the `relay flag` is ignored.
+Historically, extra data after the `relay flag` would sometimes result in the connection being banned, although this is no longer standard behavior.
 
 ## Version Number
 
-The most recent version of the network protocol is `70015`.  The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/history/protocol-version).  Nodes should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.  Related: [node connection handshake](/protocol/network/node-handshake).
+The most recent version of the network protocol is `70015`.
+The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/history/protocol-version).
+Nodes should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.
+
+Related: [node connection handshake](/protocol/network/node-handshake).
 
 ## Services Bitmask
-The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.  The following capabilities are defined, by bit position:
+The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.
+The following capabilities are defined, by bit position:
 
 ### Standard Services
 * 0: NODE_NETWORK
-	The node is capable of serving the complete block chain. It is currently set by all full nodes, and is unset by SPV clients or other peers that just want network services but don't provide them.
+	The node is capable of serving the complete block chain.
+It is currently set by all full nodes, and is unset by SPV clients or other peers that just want network services but don't provide them.
 
 * 2: NODE_BLOOM 
 	The node is capable and willing to handle bloom-filtered connections.
@@ -40,10 +47,13 @@ The services field is an 8 byte little-endian-serialized bitfield that described
 	*Bitcoin Cash nodes do not have witness data so this flag should be ignored on receipt and set to 0 when sent*
 
 * 5: NODE_BITCOIN_CASH 
-	The node supports the BCH chain.  This is intended to be just a temporary service bit until the BTC/BCH fork actually happens.
+	The node supports the BCH chain.
+This is intended to be just a temporary service bit until the BTC/BCH fork actually happens.
 
 * 24-31: Reserved for experimental changes
-	These bits are reserved for temporary experiments. Just pick a bit that isn't getting used, or one not being used much, and notify the community. Remember that service bits are just unauthenticated advertisements, so your code must be robust against collisions and other cases where nodes may be advertising a service they do not actually support.
+	These bits are reserved for temporary experiments.
+Just pick a bit that isn't getting used, or one not being used much, and notify the community.
+Remember that service bits are just unauthenticated advertisements, so implementations must be robust against collisions and other cases where nodes may be advertising a service they do not actually support.
 
 ## Example Serialized Data
 
@@ -92,7 +102,8 @@ Node Features
 #### Bitcoin ABC
 
 * 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png" />
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.
+See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Unlimited
 
@@ -100,10 +111,12 @@ Node Features
 	The node supports Xtreme Thinblocks
 
 * 6: NODE_GRAPHENE <img src="/_static_/images/warning.png" />
-	The node supports Graphene blocks.  If this is turned off then the node will not service graphene requests nor make graphene requests.
+	The node supports Graphene blocks.
+If this is turned off then the node will not service graphene requests nor make graphene requests.
 
 * 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png" />
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.  See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.
+See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Verde
 
@@ -116,7 +129,9 @@ Node Features
 #### Other Proposed/Previously Used Service Flags
 
 * 1: NODE_GETUTXO <img src="/_static_/images/warning.png" />
-The node is capable of responding to the getutxo protocol request. See [BIP 64](/protocol/forks/bip-0064) for details on how this is implemented. _Was previously supported by Bitcoin XT only._
+The node is capable of responding to the getutxo protocol request.
+See [BIP 64](/protocol/forks/bip-0064) for details on how this is implemented.
+_Was previously supported by Bitcoin XT only._
 
 * 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png" />
 	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
@@ -126,11 +141,13 @@ The node is capable of responding to the getutxo protocol request. See [BIP 64](
 
 ## Node-Specific Behavior
 
-Generally, though node implementations may be aware of services they do not provide, they generally ignore those they don't supported.  Any notable deviations from that behavior are documented below.
+Generally, though node implementations may be aware of services they do not provide, they generally ignore those they don't supported.
+Any notable deviations from that behavior are documented below.
 
 ### Bitcoin ABC
 
-Bitcoin ABC nodes may, once they have reached their maximum number of peers, selectively disconnect from nodes that do not supported "desired services", though it appears currently this just <code>NODE_NETWORK</code> and/or <code>NODE_NETWORK_LIMITED</code>.  That is, it may prefer nodes that store and serve blocks.
+Bitcoin ABC nodes may, once they have reached their maximum number of peers, selectively disconnect from nodes that do not supported "desired services", though it appears currently this just `NODE_NETWORK` and/or `NODE_NETWORK_LIMITED`.
+That is, it may prefer nodes that store and serve blocks.
 
 ### Bitcoin Verde
 

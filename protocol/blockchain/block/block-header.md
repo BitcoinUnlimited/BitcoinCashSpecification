@@ -1,12 +1,14 @@
 # Block Header
 
-Block headers serve an important intermediary role in the creation and transmission of blocks.  They are a fixed-width (80-byte) representation of the entire block.  With a block header, you can:
+Block headers serve an important intermediary role in the creation and transmission of blocks.
+They are a fixed-width (80-byte) representation of the entire block.
+With a block header, you can:
 
- 1. Calculate the hash of the block
-	 - The double SHA-256 hash of the block header
- 2. Confirm the proof of work was executed correctly
-	 - See [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) for more details
- 3. Determine the relative location of the block in the blockchain
+ 1. Calculate the hash of the block.
+	 - The double SHA-256 hash of the block header.
+ 2. Confirm the proof of work was executed correctly.
+	 - See [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) for more details.
+ 3. Determine the relative location of the block in the blockchain.
 	 - Using the previous block hash contained in the header
 
 Since validation of all the transactions in the block can be expensive, the ability to perform these checks on the block before downloading and validating its transactions helps make denial-of-service attacks on the network significantly more expensive for attackers.
@@ -24,11 +26,13 @@ Since validation of all the transactions in the block can be expensive, the abil
 
 ### Difficulty Target Encoding
 
-Within the block header, the difficulty target uses a special floating-point representation that helps keep the size of the block header small.  While the [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) attempts to calculate the ideal target (i.e. the value the block hash must be "less than"), it undergoes a lossy conversion when put in the block header:
+Within the block header, the difficulty target uses a special floating-point representation that helps keep the size of the block header small.
+While the [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) attempts to calculate the ideal target (i.e. the value the block hash must be "less than"), it undergoes a lossy conversion when put in the block header:
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| exponent | 1 byte | byte | Used to calculate the offset for the signficand.  The actual exponent is <code>8 * (exponent - 3)</code>. |
+| exponent | 1 byte | byte | Used to calculate the offset for the signficand.  The actual exponent is `8 * (exponent - 3)`. |
 | significand | 3 byte | bytes | The significand, or mantissa, of the value. |
 
-Ultimately, the difficulty target is equal to: <code>significand * 2<sup>(8 * (exponent - 3))</sup></code>
+Ultimately, the difficulty target is equal to:
+<pre>significand * 2<sup>(8 * (exponent - 3))</sup></pre>
