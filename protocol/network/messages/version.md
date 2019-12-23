@@ -19,8 +19,12 @@ The node connection is not considered established until both nodes have sent and
 | block height | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The height of the block with the highest height known to the sending node. |
 | relay flag | 1 byte | boolean | Indicates whether the sending node would like all broadcasted transactions relayed to it.  See [BIP-37](/protocol/forks/bip-0037).  This flag is sometimes referred to as "fRelay". |
 
-Note: appending extra data after the `relay flag` is ignored.
-Historically, extra data after the `relay flag` would sometimes result in the connection being banned, although this is no longer standard behavior.
+Note: Protocol version `70001` introduced the optional `relay flag`.
+Transmitting the `relay flag` byte to Nodes with a version less than `70001` may result in incompatibility with versions that validate the Version message for a specific byte count.
+
+Note: Historically, transmitting extra data after the `relay flag` would result in the connection being banned by some Nodes.
+Modern Nodes ignore extra data after the `relay flag`.
+
 
 ## Version Number
 
