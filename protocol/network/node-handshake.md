@@ -17,6 +17,17 @@ Once each Node has sent and received a Verack message, normal node operation may
 
 When a local Node initiates a connection to a remote Node, the remote Node will remain silent it receives a version message.
 
+```diagramLabel
+
+1. Local sends Version Message to Remote containing Local's Version Number.
+
+2. Remote sends Version Message containing Remote's Version Number.
+
+3. If Local's Version Number is compatible, Remote uses the lower of the two Version Numbers and sends Verack Message.
+
+4. If Remote's Version Number is compatible, Local uses the lower of the two Version Numbers and sends Verack Message.
+```
+
 ```mermaid
 sequenceDiagram
 
@@ -29,13 +40,3 @@ Remote->>Local: Verack
 Local->>Remote: Verack
     Note Right of Remote:  #35;4
 ```
-
-
-1. Local sends Version Message to Remote containing Local's Version Number.
-
-2. Remote sends Version Message containing Remote's Version Number.
-
-3. If Local's Version Number is compatible, Remote uses the lower of the two Version Numbers and sends Verack Message.
-
-4. If Remote's Version Number is compatible, Local uses the lower of the two Version Numbers and sends Verack Message.
-
