@@ -7,8 +7,6 @@ The handshake informs the peer of its:
 - Block Height
 - Supported [Network Services](/protocol/network/messages/version#services-bitmask)
 
-Either Node may then decide to disconnect from the peer.
-
 Neither Node should send any data other than a [Version](/protocol/network/messages/version) message to the peer until it has also received a Version message.
 Once a node has received (and sent) a Version message, it may send a [Verack](/protocol/network/messages/verack) message.
 Once each Node has sent and received a Verack message, normal node operation may begin.
