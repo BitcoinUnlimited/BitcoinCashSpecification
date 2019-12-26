@@ -36,29 +36,14 @@ The table below lists the currently allocated op codes.  Op codes marked with **
 
 | Op Code Range | Name |
 |--|--|
-| 0x00 | OP_0 / OP_FALSE |
-| 0x01 - 0x4B | [push data](/protocol/blockchain/script/op-codes/push-data) |
+| 0x00 | [OP_0](/protocol/blockchain/script/op-codes/op-x), OP_FALSE |
+| 0x01 - 0x4B | [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) |
 | 0x4C | OP_PUSHDATA1 |
 | 0x4D | OP_PUSHDATA2 |
 | 0x4E | OP_PUSHDATA4 |
 | 0x4F | OP_1NEGATE |
 | 0x50 | OP_RESERVED **(disabled)** |
-| 0x51 | OP_1 / OP_TRUE |
-| 0x52 | OP_2 |
-| 0x53 | OP_3 |
-| 0x54 | OP_4 |
-| 0x55 | OP_5 |
-| 0x56 | OP_6 |
-| 0x57 | OP_7 |
-| 0x58 | OP_8 |
-| 0x59 | OP_9 |
-| 0x5A | OP_10 |
-| 0x5B | OP_11 |
-| 0x5C | OP_12 |
-| 0x5D | OP_13 |
-| 0x5E | OP_14 |
-| 0x5F | OP_15 |
-| 0x60 | OP_16 |
+| 0x51 - 0x60 | [OP_1](/protocol/blockchain/script/op-codes/op-x) - OP_16, OP_TRUE |
 | 0x61 | OP_NOP |
 | 0x62 | OP_VER **(disabled)** |
 | 0x63 | OP_IF |
@@ -160,38 +145,38 @@ Some node implementations define custom op codes.
 
 | Op Code Range | Name |
 |--|--|
-| 0xFA | OP_SMALLINTEGER |
-| 0xFB | OP_PUBKEYS |
-| 0xFD | OP_PUBKEYHASH |
-| 0xFE | OP_PUBKEY |
-| 0xFF | OP_INVALIDOPCODE |
+| 0xFA | OP_SMALLINTEGER <img src="/_static_/images/warning.png" /> |
+| 0xFB | OP_PUBKEYS <img src="/_static_/images/warning.png" /> |
+| 0xFD | OP_PUBKEYHASH <img src="/_static_/images/warning.png" /> |
+| 0xFE | OP_PUBKEY <img src="/_static_/images/warning.png" /> |
+| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
 
 #### Bitcoin ABC
 
 | Op Code Range | Name |
 |--|--|
-| 0xF0 | OP_PREFIX_BEGIN |
-| 0xF7 | OP_PREFIX_END |
-| 0xFF | OP_INVALIDOPCODE |
+| 0xF0 | OP_PREFIX_BEGIN <img src="/_static_/images/warning.png" /> |
+| 0xF7 | OP_PREFIX_END <img src="/_static_/images/warning.png" /> |
+| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
 
 #### Bitcoin Unlimited
 
 | Op Code Range | Name |
 |--|--|
-| 0xF0 | OP_BIGINTEGER |
-| 0xF1 | OP_DATA |
-| 0xFA | OP_SMALLINTEGER |
-| 0xFB | OP_PUBKEYS |
-| 0xFD | OP_PUBKEYHASH |
-| 0xFE | OP_PUBKEY |
-| 0xFF | OP_INVALIDOPCODE |
+| 0xF0 | OP_BIGINTEGER <img src="/_static_/images/warning.png" /> |
+| 0xF1 | OP_DATA <img src="/_static_/images/warning.png" /> |
+| 0xFA | OP_SMALLINTEGER <img src="/_static_/images/warning.png" /> |
+| 0xFB | OP_PUBKEYS <img src="/_static_/images/warning.png" /> |
+| 0xFD | OP_PUBKEYHASH <img src="/_static_/images/warning.png" /> |
+| 0xFE | OP_PUBKEY <img src="/_static_/images/warning.png" /> |
+| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
 
 #### Flowee the Hub
 
 | Op Code Range | Name |
 |--|--|
-| 0xFA | OP_SMALLINTEGER |
-| 0xFB | OP_PUBKEYS |
-| 0xFD | OP_PUBKEYHASH |
-| 0xFE | OP_PUBKEY |
-| 0xFF | OP_INVALIDOPCODE |
+| 0xFA | OP_SMALLINTEGER <img src="/_static_/images/warning.png" /> |
+| 0xFB | OP_PUBKEYS <img src="/_static_/images/warning.png" /> |
+| 0xFD | OP_PUBKEYHASH <img src="/_static_/images/warning.png" /> |
+| 0xFE | OP_PUBKEY <img src="/_static_/images/warning.png" /> |
+| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
