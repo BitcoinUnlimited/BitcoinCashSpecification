@@ -15,8 +15,7 @@
 		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
 		    -   [Transaction Ordering](/protocol/blockchain/block/transaction-ordering)
 	    -   [Script](/protocol/blockchain/script)
-		    -   Opcodes
-			       ...
+		    -   [Op Codes](/protocol/blockchain/script#op-codes)
 	    -   Transaction Validation
 		    -   Block Level Validation Rules
 		    -   Network Level Validation Rules
