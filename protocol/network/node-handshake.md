@@ -38,3 +38,9 @@ Remote->>Local: Verack
 Local->>Remote: Verack
     Note Right of Remote:  #35;4
 ```
+
+The Remote Node may send a `Verack` message before it sends its own `Version` messages.
+
+A Node may only send a `Version` message once.
+
+Although a Node may connect to itself, it is usually undesired.  Nodes typically check for a connection to itself by checking if the `nonce` provided by a `Version` message is a nonce it has used recently.
