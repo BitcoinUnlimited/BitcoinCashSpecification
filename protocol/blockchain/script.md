@@ -29,3 +29,169 @@ Additionally, in order for the combined script to be valid, the following must b
  - **Contained Control Flow** - an IF/ELSE block cannot start in the unlocking script and end in the locking script, the script must be in the top-level scope when the locking script execution begins.
  - **Permitted Operations Only** - the locking script must not contain.
  - **Push Only** - the unlocking script must contain only push operations (i.e. those with op codes 0x60 or less).  Added in [HF20181115](/protocol/forks/HF20181115).
+
+## Op Codes
+
+The table below lists the currently allocated op codes.  Op codes marked with **(ignored)** are permitted but will do nothing when executed.  Op codes marked with **(disabled)** are permitted in scripts so long as they are not executed.  Op codes marked with **(do not use)** will make a transaction invalid merely be being present.
+
+| Op Code Range | Name |
+|--|--|
+| 0x00 | OP_0 / OP_FALSE |
+| 0x01 - 0x4B | [push data](/protocol/blockchain/script/op-codes/push-data) |
+| 0x4C | OP_PUSHDATA1 |
+| 0x4D | OP_PUSHDATA2 |
+| 0x4E | OP_PUSHDATA4 |
+| 0x4F | OP_1NEGATE |
+| 0x50 | OP_RESERVED **(disabled)** |
+| 0x51 | OP_1 / OP_TRUE |
+| 0x52 | OP_2 |
+| 0x53 | OP_3 |
+| 0x54 | OP_4 |
+| 0x55 | OP_5 |
+| 0x56 | OP_6 |
+| 0x57 | OP_7 |
+| 0x58 | OP_8 |
+| 0x59 | OP_9 |
+| 0x5A | OP_10 |
+| 0x5B | OP_11 |
+| 0x5C | OP_12 |
+| 0x5D | OP_13 |
+| 0x5E | OP_14 |
+| 0x5F | OP_15 |
+| 0x60 | OP_16 |
+| 0x61 | OP_NOP |
+| 0x62 | OP_VER **(disabled)** |
+| 0x63 | OP_IF |
+| 0x64 | OP_NOTIF |
+| 0x65 | OP_VERIF **(do not use)** |
+| 0x66 | OP_VERNOTIF **(do not use)** |
+| 0x67 | OP_ELSE |
+| 0x68 | OP_ENDIF |
+| 0x69 | OP_VERIFY |
+| 0x6A | OP_RETURN |
+| 0x6B | OP_TOALTSTACK |
+| 0x6C | OP_FROMALTSTACK |
+| 0x6D | OP_2DROP |
+| 0x6E | OP_2DUP |
+| 0x6F | OP_3DUP |
+| 0x70 | OP_2OVER |
+| 0x71 | OP_2ROT |
+| 0x72 | OP_2SWAP |
+| 0x73 | OP_IFDUP |
+| 0x74 | OP_DEPTH |
+| 0x75 | OP_DROP |
+| 0x76 | OP_DUP |
+| 0x77 | OP_NIP |
+| 0x78 | OP_OVER |
+| 0x79 | OP_PICK |
+| 0x7A | OP_ROLL |
+| 0x7B | OP_ROT |
+| 0x7C | OP_SWAP |
+| 0x7D | OP_TUCK |
+| 0x7E | OP_CAT |
+| 0x7F | OP_SUBSTR |
+| 0x80 | OP_LEFT |
+| 0x81 | OP_RIGHT |
+| 0x82 | OP_SIZE |
+| 0x83 | OP_INVERT |
+| 0x84 | OP_AND |
+| 0x85 | OP_OR |
+| 0x86 | OP_XOR |
+| 0x87 | OP_EQUAL |
+| 0x88 | OP_EQUALVERIFY |
+| 0x89 | OP_RESERVED1 **(do not use)** |
+| 0x8A | OP_RESERVED2 **(do not use)** |
+| 0x8B | OP_1ADD |
+| 0x8C | OP_1SUB |
+| 0x8D | OP_2MUL |
+| 0x8E | OP_2DIV |
+| 0x8F | OP_NEGATE |
+| 0x90 | OP_ABS |
+| 0x91 | OP_NOT |
+| 0x92 | OP_0NOTEQUAL |
+| 0x93 | OP_ADD |
+| 0x94 | OP_SUB |
+| 0x95 | OP_MUL |
+| 0x96 | OP_DIV |
+| 0x97 | OP_MOD |
+| 0x98 | OP_LSHIFT |
+| 0x99 | OP_RSHIFT |
+| 0x9A | OP_BOOLAND |
+| 0x9B | OP_BOOLOR |
+| 0x9C | OP_NUMEQUAL |
+| 0x9D | OP_NUMEQUALVERIFY |
+| 0x9E | OP_NUMNOTEQUAL |
+| 0x9F | OP_LESSTHAN |
+| 0xA0 | OP_GREATERTHAN |
+| 0xA1 | OP_LESSTHANOREQUAL |
+| 0xA2 | OP_GREATERTHANOREQUAL |
+| 0xA3 | OP_MIN |
+| 0xA4 | OP_MAX |
+| 0xA5 | OP_WITHIN |
+| 0xA6 | OP_RIPEMD160 |
+| 0xA7 | OP_SHA1 |
+| 0xA8 | OP_SHA256 |
+| 0xA9 | OP_HASH160 |
+| 0xAA | OP_HASH256 |
+| 0xAB | OP_CODESEPARATOR |
+| 0xAC | OP_CHECKSIG |
+| 0xAD | OP_CHECKSIGVERIFY |
+| 0xAE | OP_CHECKMULTISIG |
+| 0xAF | OP_CHECKMULTISIGVERIFY |
+| 0xB0 | OP_NOP1 **(ignored)** |
+| 0xB1 | OP_CHECKLOCKTIMEVERIFY |
+| 0xB2 | OP_CHECKSEQUENCEVERIFY |
+| 0xB3 | OP_NOP4 **(ignored)** |
+| 0xB4 | OP_NOP5 **(ignored)** |
+| 0xB5 | OP_NOP6 **(ignored)** |
+| 0xB6 | OP_NOP7 **(ignored)** |
+| 0xB7 | OP_NOP8 **(ignored)** |
+| 0xB8 | OP_NOP9 **(ignored)** |
+| 0xB9 | OP_NOP10 **(ignored)** |
+| 0xBA | OP_CHECKDATASIG |
+| 0xBB | OP_CHECKDATASIGVERIFY |
+| 0xBC - 0xFF | Unused **(disabled)** |
+
+### Node-Specific Behavior
+
+Some node implementations define custom op codes.
+
+#### bchd
+
+| Op Code Range | Name |
+|--|--|
+| 0xFA | OP_SMALLINTEGER |
+| 0xFB | OP_PUBKEYS |
+| 0xFD | OP_PUBKEYHASH |
+| 0xFE | OP_PUBKEY |
+| 0xFF | OP_INVALIDOPCODE |
+
+#### Bitcoin ABC
+
+| Op Code Range | Name |
+|--|--|
+| 0xF0 | OP_PREFIX_BEGIN |
+| 0xF7 | OP_PREFIX_END |
+| 0xFF | OP_INVALIDOPCODE |
+
+#### Bitcoin Unlimited
+
+| Op Code Range | Name |
+|--|--|
+| 0xF0 | OP_BIGINTEGER |
+| 0xF1 | OP_DATA |
+| 0xFA | OP_SMALLINTEGER |
+| 0xFB | OP_PUBKEYS |
+| 0xFD | OP_PUBKEYHASH |
+| 0xFE | OP_PUBKEY |
+| 0xFF | OP_INVALIDOPCODE |
+
+#### Flowee the Hub
+
+| Op Code Range | Name |
+|--|--|
+| 0xFA | OP_SMALLINTEGER |
+| 0xFB | OP_PUBKEYS |
+| 0xFD | OP_PUBKEYHASH |
+| 0xFE | OP_PUBKEY |
+| 0xFF | OP_INVALIDOPCODE |
