@@ -5,7 +5,7 @@
 -   [Target Audience](/target-audience)
 -   [Project History](/project-history)
 -   Protocol
-    -   Blockchain
+    -   [Blockchain](/protocol/blockchain)
 	    -   [Hash](/protocol/blockchain/hash)
 	    -   [Transaction](/protocol/blockchain/transaction)
 		    -   [Unlocking Script](/protocol/blockchain/transaction/unlocking-script)

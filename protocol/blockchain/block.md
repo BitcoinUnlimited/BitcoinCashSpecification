@@ -30,3 +30,5 @@ The block reward started at 5,000,000,000 satoshis (50 BCH) and decreases by hal
 
 Transaction fees are often required by the network for transactions to be relayed across the network.
 Satoshis provided as inputs to a transaction, but not consumed by its outputs, are collected by the coinbase transaction as implicit inputs.
+
+## Genesis Block
