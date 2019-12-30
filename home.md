@@ -17,8 +17,8 @@
 	    -   [Script](/protocol/blockchain/script)
 		    -   [Op Codes](/protocol/blockchain/script#op-codes)
 	    -   [Transaction Validation](/protocol/blockchain/transaction-validation)
-		    -   [Block Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules)
-		    -   [Network Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
+		    -   [Block-Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules)
+		    -   [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
 			    -   Standardness Rules
 				    -   Custom / Non Standard
 	    -   Cryptography
