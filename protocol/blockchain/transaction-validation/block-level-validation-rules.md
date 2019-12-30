@@ -1,1 +1,5 @@
 # Block-Level Validation Rules
+
+When validating a transaction, it must be done within the context of a block.  That may be a historical (or new) block that the transaction is a part of or it may be as a part of a hypothetical "next" block.  The latter category, often referred to as "mempool" transactions, represent transactions that a node is aware of, and considers valid, but that have not yet been added to a block.  In this case, they are treated as though they are all in a new block that follows after the last block in the longest chain the node is currently aware of.
+
+The reason that transaction validation is context-dependent in this way stems from what is probably the most important validation rule: the inputs to a transaction must be a UTXO.  That is, transactions must spend transaction outputs that were created by a prior transaction but that have not been spent by another transaction in the target block or its history.  
