@@ -61,7 +61,10 @@ graph LR
 1 --> 2b
 2b --> 3
 
-style 2a stroke: #AAAAAA, stroke-dasharray: 5, 5
+style 2a stroke-width: 3px, stroke-dasharray: 5
 ```
+
+Switching from one chain to another chain is often called a "Reorg"&mdash;short for "Blockchain Reorganization".
+When a Reorg occurs, Transactions that were previously valid may become invalid if a Transaction on the other chain spent the same [Transaction Output](/protocol/blockchain/transaction#transaction-output) as one if its [Transaction Inputs](/protocol/blockchain/transaction#transaction-input).
 
 ## Genesis Block

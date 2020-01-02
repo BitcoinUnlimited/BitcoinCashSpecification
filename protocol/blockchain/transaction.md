@@ -7,7 +7,7 @@ The mining nodes and full node software ensures that every transaction follows t
 Verification of a transaction ensures that:
 - The Transaction Inputs have not already been spent.
 - The total value contained in the Transaction Inputs is greater than (or equal) to the value specified within the Transaction Outputs.
-- The Transaction is syntactically and cryptographically valid, and that the previous Unspent Transaction Outputs' [Locking Script](/protocol/blockchain/transaction/locking-script)s are correctly unlocked via the Transaction Inputs' [Unlocking Script](/protocol/blockchain/transaction/unlocking-script).
+- The Transaction is syntactically and cryptographically valid, and that the previous Unspent Transaction Outputs' [Locking Scripts](/protocol/blockchain/transaction/locking-script) are correctly unlocked via the Transaction Inputs' [Unlocking Script](/protocol/blockchain/transaction/unlocking-script).
 
 ## Format
 
@@ -20,7 +20,7 @@ Verification of a transaction ensures that:
 | transaction outputs | variable | `output count` [transaction outputs](#transaction-outputs) | Each of the transaction's outputs serialized in order. |
 | lock time | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The block height or timestamp after which this transaction is allowed to be included in a block.  If less than `500,000,000`, this is interpreted as a block height.  If more than `500,000,000`, this is interpreted as a unix timestamp in seconds.  Ignored if all of the transaction input sequence numbers are `0xFFFFFFFF`.<br/><br/>Note that at 10 minutes per block, it will take over 9,500 years to reach block height 500,000,000.  Also note that when Bitcoin was created the unix timestamp was well over 1,000,000,000. |
 
-## Transaction Inputs
+## Transaction Input
 
 Transaction inputs are the "debits" of Bitcoin Cash and not only designate the satoshis that will be transferred as a part of the transaction, but they also provide proof of ownership via the [Unlocking Script](/protocol/blockchain/transaction/unlocking-script).
 A Transaction Input references an unspent Transaction Output (oftern referred to as a "UTXO"), from a prior transaction.
@@ -36,7 +36,7 @@ The Transaction Output that is being spent by a Transaction Input is often refer
 | unlocking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the unlocking script in bytes. |
 | unlocking script | variable | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The contents of the unlocking script. |
 
-## Transaction Outputs
+## Transaction Output
 
 Transaction outputs are the "credits" of Bitcoin Cash.
 Each transaction output denotes a number of satoshis and the requirements are spending them.
@@ -52,6 +52,6 @@ A Transaction Output that is being spent by a Transaction Input is often referre
 | locking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the unlocking script in bytes. |
 | locking script | variable | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The contents of the locking script. |
 
-## Transaction Fees
+## Transaction Fee
 
 Extra satoshis from the Transaction Inputs that are not accounted for in the Transaction Outputs may be collected by the miner as the transaction fee.
