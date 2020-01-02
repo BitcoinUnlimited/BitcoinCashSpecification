@@ -44,9 +44,9 @@
 			    -   Legacy DAA
 			    -   Emergency DAA
 			    -   BCH Adaptive DAA
-	-   Mining
-		-   Stratum Protocol
-	    -   Mining Pools
+			-   Mining
+				-   Stratum Protocol
+			    -   Mining Pools
 	-   Forks
 	    -   Bip-16
 		-   [Bip-34](/protocol/forks/bip-0034)
