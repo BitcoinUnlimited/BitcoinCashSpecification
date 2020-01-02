@@ -39,8 +39,8 @@
 			    -   Legacy (Base 58)
 			    -   Bech32
 			    -   Cash Address
-	    -   Proof of Work
-		    -   Difficulty Adjustment Algorithm
+	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
+		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
 			    -   Legacy DAA
 			    -   Emergency DAA
 			    -   BCH Adaptive DAA
