@@ -11,9 +11,9 @@ Standard transactions are those that:
  - Have a valid version number (currently only version 2 is valid)
  - Have input scripts that only contain push operations
  - Have input scripts with unlocking scripts below the 1650 byte maximum
- - Have at most one data (OP_RETURN) output
+ - Have at most one [data output](/protocol/blockchain/transaction/locking-script#Data%20Output)
  - Have non-data outputs with amount above the [dust](#dust) threshold
 
-Be aware, however, that these rules may vary from node-to-node as they are often configurable.  Some nodes may also accept and relay non-standard transactions.  For this reason, among others, it is always wise to send transactions to many nodes.
+Be aware, however, that these rules may vary from node-to-node as they are often configurable.  Some nodes may also accept and relay non-standard transactions.  For this reason, among others, it is always wise to send transactions to multiple nodes.
 
 ### Dust
