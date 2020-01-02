@@ -60,7 +60,7 @@
 		-   [Bip-157](/protocol/forks/bip-0157)
 		-   [Bip-158](/protocol/forks/bip-0158)
 		-   [Bip-159](/protocol/forks/bip-0159)
-		-   BCH UAHF (BUIP-55)
+		-   BCH-UAHF (BUIP-55)
 		-   [HF-20171113](/protocol/forks/hf-20171113)
 		-   HF-20180515
 		-   HF-20181115
