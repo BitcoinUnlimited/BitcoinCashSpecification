@@ -21,9 +21,6 @@
 		    -   [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
 	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
 		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
-			    -   Legacy DAA
-			    -   Emergency DAA
-			    -   BCH Adaptive DAA
 			-   Mining
 				-   Stratum Protocol
 			    -   Mining Pools
