@@ -12,8 +12,10 @@ Standard transactions are those that:
  - Have input scripts that only contain push operations
  - Have input scripts with unlocking scripts below the 1650 byte maximum
  - Have at most one [data output](/protocol/blockchain/transaction/locking-script#Data%20Output)
+ - For [multisig](/protocol/blockchain/transaction/locking-script#Multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
  - Have non-data outputs with amount above the [dust](#dust) threshold
 
 Be aware, however, that these rules may vary from node-to-node as they are often configurable.  Some nodes may also accept and relay non-standard transactions.  For this reason, among others, it is always wise to send transactions to multiple nodes.
 
 ### Dust
+

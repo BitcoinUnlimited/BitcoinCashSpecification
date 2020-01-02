@@ -84,7 +84,7 @@ One drawback of this is that it is not possible to determine whether certain ins
 This makes retirement of opcodes impossible.
 However, it's also possible for people to create transactions and not commit them to the blockchain, so the viability of opcode retirement is questionable anyway.
 
-### Multisig Script
+### Multisig
 
 Multiple-signature, or multisig, scripts provide a mechanism to have multiple private keys coordinate with spending funds.
 For example, three people could share funds and require that for some transactions any one of them could spend it while, for others, two of them would need to agree, and for others still, all three people would need to agree to spend the funds.
