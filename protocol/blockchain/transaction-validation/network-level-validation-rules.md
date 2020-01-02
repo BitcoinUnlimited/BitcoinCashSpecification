@@ -9,13 +9,13 @@ Custom transactions are defined as those which are not considered standard.
 
 Standard transactions are those that:
 
- - Only have outputs that use [standard locking scripts](/protocol/blockchain/transaction/locking-script#Standard%20Scripts)
+ - Only have outputs that use [standard locking scripts](/protocol/blockchain/transaction/locking-script#standard-scripts)
  - Are below the maximum transaction size of 100,000 bytes
  - Have a valid version number (currently only version 2 is valid)
  - Have input scripts that only contain push operations
  - Have input scripts with unlocking scripts below the 1650 byte maximum
- - Have at most one [data output](/protocol/blockchain/transaction/locking-script#Data%20Output)
- - For [multisig](/protocol/blockchain/transaction/locking-script#Multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
+ - Have at most one [data output](/protocol/blockchain/transaction/locking-script#data-output)
+ - For [multisig](/protocol/blockchain/transaction/locking-script#multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
  - Have non-data outputs with amount above the [dust](#dust) threshold
 
 Be aware, however, that these rules may vary from node-to-node as they are often configurable.

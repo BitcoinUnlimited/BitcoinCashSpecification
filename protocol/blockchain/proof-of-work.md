@@ -1,7 +1,7 @@
 # Proof of Work
 
 Bitcoin Cash uses a [hashcash](https://en.wikipedia.org/wiki/Hashcash)-like algorithm as a primary metric for validating new blocks.
-The [block header](/protocol/blockchain/block/block-header) is hashed, its nonce is changed, and it is hashed again, until the resulting hash begins with an expected number of zero-bits.
+The [block header](/protocol/blockchain/block/block-header) is hashed, its nonce is changed, and it is hashed again, until the resulting hash begins with an expected number of zero-bits or, more precisely, is below a certain [target difficulty](#target-difficulty).
 This repeated hashing with an updated nonce is referred to as mining.
 For more information on how the number of zero-bits required is determined, see [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm).
 For more information on how mining is performed in practice, see [Mining](/protocol/blockchain/proof-of-work/mining).
@@ -14,6 +14,10 @@ Because SHA-256 is used to hash block headers, and it is not known how to find a
 
 This is only quasi-random because the likelihood of building a block with an appropriate hash is directly proportional to the computational power (often referred to as hashing power), available to each individual mining blocks.
 
+## Target Difficulty
+
+
+
 ## Extra Nonce
 
 Ideally in such a proof-of-work system, the dynamic parameters of the data being hashed (i.e. the block header) would provide enough variability to guarantee any possible output of the hash function used.
@@ -22,5 +26,5 @@ As a result, there was a need for additional data to be varied.
 
 The only other parameter of the block header that a miner has any power over is the merkle root.
 In order to change the merkle root, the transactions in the block would need to be changed.
-But since the [coinbase transaction](/protocol/blockchain/block#Coinbase%20Transaction) is already created by the miner of the block, and updating its hash would allow for efficient re-calculation of the merkle root, putting this "extra nonce" in the coinbase transaction was the logical conclusion.
+But since the [coinbase transaction](/protocol/blockchain/block#coinbase-transaction) is already created by the miner of the block, and updating its hash would allow for efficient re-calculation of the merkle root, putting this "extra nonce" in the coinbase transaction was the logical conclusion.
 Ultimately, the extra nonce is included as a part of the coinbase message, usually following the block height that is required to be first.
