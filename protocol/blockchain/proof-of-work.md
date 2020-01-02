@@ -16,7 +16,10 @@ This is only quasi-random because the likelihood of building a block with an app
 
 ## Target Difficulty
 
-
+As the network's hashing power changes, the proof-of-work algorithm adjusts to compensate.
+With a stated goal of averaging 10 minutes per block mined, the work required to successfully mine a block is periodically adjusted to match the actual rate at which blocks were mined over a given period of time.
+At any given point, the next block to be mined must hash to a value that, when interpreted as an integer, must be below a target value, called the difficulty, that is deterministically calculated using the difficulties and timestamps of prior blocks.
+See [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) for more details.
 
 ## Extra Nonce
 
