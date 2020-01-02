@@ -2,7 +2,7 @@
 
 Bitcoin Cash transactions make use of a scripting language to authorize and secure transfers.
 While, colloquially, there is a tendency to refer to transactions as "sending" Bitcoin Cash to "an address", that is merely an abstraction.
-In fact, the only thing that permits the spending of existing [UTXOs](/protocol/blockchain/transaction#transaction-outputs) is the successful execution of a script.
+In fact, the only thing that permits the spending of existing [UTXOs](/protocol/blockchain/transaction#transaction-output) is the successful execution of a script.
 The only thing preventing the spending of newly created UTXOs is the difficulty of producing a successfully executing script.
 Through the use of cryptographic signatures and hash functions, such scripts are often designed specifically to be difficult to produce unless you are the intended spender of a given UTXO, though that need not necessarily be the case.
 
@@ -16,7 +16,7 @@ Scripts are executed using a stack-based memory model and have an intentionally 
 
 Scripts are run when validating transactions, and successful execution of all of the scripts defined by the transaction is a necessary, but not sufficient, condition for transaction validity.  See [Transaction Validation](/protocol/blockchain/transaction-validation) for more details.
 
-As a part of validating a transaction, a script is built for each input spent by the transaction.  Each script is the concatenation of the [unlocking script](/protocol/blockchain/transaction/unlocking-script) provided with the input definition (which is used that the beginning of the script) and the locking script provided by the [previous output](/protocol/blockchain/transaction#transaction-outputs) being referenced (which is the end of the script).  The exception to this is [pay to script hash](/protocol/blockchain/transaction/locking-script#standard-scripts), which has an altered execution workflow.  In general, though, this combined unlocking/locking script is then executed and considered successful if and only if the following conditions are met:
+As a part of validating a transaction, a script is built for each input spent by the transaction.  Each script is the concatenation of the [unlocking script](/protocol/blockchain/transaction/unlocking-script) provided with the input definition (which is used that the beginning of the script) and the locking script provided by the [previous output](/protocol/blockchain/transaction#transaction-output) being referenced (which is the end of the script).  The exception to this is [pay to script hash](/protocol/blockchain/transaction/locking-script#standard-scripts), which has an altered execution workflow.  In general, though, this combined unlocking/locking script is then executed and considered successful if and only if the following conditions are met:
 
  - **Non-Zero Value** - after execution the top of the stack must contain a non-zero (TRUE) value.
  - **No Stack Overflows** - no operation should attempt to pop a value from the stack when the stack is empty.
