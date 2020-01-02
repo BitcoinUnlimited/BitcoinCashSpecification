@@ -19,6 +19,22 @@
 	    -   [Transaction Validation](/protocol/blockchain/transaction-validation)
 		    -   [Block-Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules)
 		    -   [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
+	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
+		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
+			    -   Legacy DAA
+			    -   Emergency DAA
+			    -   BCH Adaptive DAA
+			-   Mining
+				-   Stratum Protocol
+			    -   Mining Pools
+	    -   Addresses
+		    -   Pay To Public Key
+			-   Pay To Public Key Hash
+		    -   Pay To Script Hash
+		    -   Encodings
+			    -   Legacy (Base 58)
+			    -   Bech32
+			    -   Cash Address
 	    -   Cryptography
 		    -   Secp256k1
 			    -   Public Key
@@ -31,22 +47,6 @@
 			    -   DER Encoding
 				    -   (OpenSSL History?)
 			    -   N-of-M Multisig Signatures
-	    -   Bitcoin Address
-		    -   Pay To Public Key
-			-   Pay To Public Key Hash
-		    -   Pay To Script Hash
-		    -   Encodings
-			    -   Legacy (Base 58)
-			    -   Bech32
-			    -   Cash Address
-	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
-		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
-			    -   Legacy DAA
-			    -   Emergency DAA
-			    -   BCH Adaptive DAA
-			-   Mining
-				-   Stratum Protocol
-			    -   Mining Pools
 	-   Forks
 	    -   Bip-16
 		-   [Bip-34](/protocol/forks/bip-0034)
