@@ -61,11 +61,11 @@
 		-   [Bip-158](/protocol/forks/bip-0158)
 		-   [Bip-159](/protocol/forks/bip-0159)
 		-   BCH UAHF (BUIP-55)
-		-   HF20171113
-		-   HF20180515
-		-   HF20181115
-		-   HF20190515
-		-   HF20191115
+		-   [HF-20171113](/protocol/forks/hf-20171113)
+		-   HF-20180515
+		-   HF-20181115
+		-   HF-20190515
+		-   HF-20191115
 	-   Peer-to-Peer Network
         - [Messages](/protocol/network/messages)
             - *Announcements*
