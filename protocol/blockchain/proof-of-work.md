@@ -13,3 +13,14 @@ Because SHA-256 is used to hash block headers, and it is not known how to find a
  3. The receipt of the fees for the block.
 
 This is only quasi-random because the likelihood of building a block with an appropriate hash is directly proportional to the computational power (often referred to as hashing power), available to each individual mining blocks.
+
+## Extra Nonce
+
+Ideally in such a proof-of-work system, the dynamic parameters of the data being hashed (i.e. the block header) would provide enough variability to guarantee any possible output of the hash function used.
+However, SHA-256 outputs 32 bytes and the only part of the block header that can be changed rapidly are the nonce, which is only 4 bytes long, and the timestamp, which while also 4 bytes must remain close to the current time.
+As a result, there was a need for additional data to be varied.
+
+The only other parameter of the block header that a miner has any power over is the merkle root.
+In order to change the merkle root, the transactions in the block would need to be changed.
+But since the [coinbase transaction](/protocol/blockchain/block#Coinbase%20Transaction) is already created by the miner of the block, and updating its hash would allow for efficient re-calculation of the merkle root, putting this "extra nonce" in the coinbase transaction was the logical conclusion.
+Ultimately, the extra nonce is included as a part of the coinbase message, usually following the block height that is required to be first.

@@ -31,4 +31,6 @@ The block reward started at 5,000,000,000 satoshis (50 BCH) and decreases by hal
 Transaction fees are often required by the network for transactions to be relayed across the network.
 Satoshis provided as inputs to a transaction, but not consumed by its outputs, are collected by the coinbase transaction as implicit inputs.
 
+The coinbase message is provided in the inputs unlocking script.  The unlocking script is required to begin a push of the block height which can then be followed why whatever data is desired.  The block height encoded as a variable-length, little-endian integer.  The [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) operation is used to push the necessary number of bytes to encode the length.
+
 ## Genesis Block
