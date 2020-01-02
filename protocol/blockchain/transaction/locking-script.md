@@ -95,7 +95,7 @@ An unlocking script is therefore expected to provide the required number of sign
 | Operation | Description |
 |--|--|
 | [OP_X](/protocol/blockchain/script/op-codes/op-x) | Push the number of parties required to provide signatures. |
-| 2 or more [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (public key) | Push 2 or more public keys, indicating all of the parties that could provide signatures. |
+| 1 or more [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (public key) | Push 2 or more public keys, indicating all of the parties that could provide signatures. |
 | [OP_X](/protocol/blockchain/script/op-codes/op-x) | The total number of parties added (i.e. the number of public keys pushed). |
 | [OP_CHECKMULTISIG](/protocol/blockchain/script/op-codes/op-checkmultisig) | Check for signatures matching the number of required parties, verify that they correspond to permitted public keys, and that the signatures are valid. |
 
