@@ -2,34 +2,34 @@
 
 ## What is a Blockchain
 
-The Bitcoin Cash Blockchain is a linear collection of [Blocks](/protocol/blockchain/block).
-The "state" of the blockchain is calculated by sequentially executing each set of changes (in the form of [Transactions](/protocol/blockchain/transaction)) included in each Block.
+The Bitcoin Cash blockchain is a linear collection of [blocks](/protocol/blockchain/block).
+The "state" of the blockchain is calculated by sequentially executing each set of changes (in the form of [transactions](/protocol/blockchain/transaction)) included in each block.
 
-When a Block is created it includes the [Hash](/protocol/blockchain/hash) of the previous block; this cryptographically ensures the Block's parent block cannot be changed without completely rebuilding the new block.
-This chaining structure is similar to [Git](//git-scm.com) commits&mdash;where a block is analogous to a commit (a set of file changes), and each commit's parent is tied directly to its parent, forming a chain.
-Unlike Git, in order to create a commit (i.e. a Block) a certain amount of work must be performed.
-This [Proof of Work](/protocol/blockchain/proof-of-work) prevents blocks from being created instantly, and is the mechanic that prevents old history from being rewritten, since modifying a block would change its hash and disconnect it from its previous children.
+When a block is created it includes the [hash](/protocol/blockchain/hash) of the previous block; this cryptographically ensures the block's parent block cannot be changed without completely rebuilding the new block.
+This chaining structure is similar to [git](//git-scm.com) commits&mdash;where a block is analogous to a commit (a set of file changes), and each commit's parent is tied directly to its parent, forming a chain.
+Unlike git, in order to create a commit (i.e. a block) a certain amount of work must be performed.
+This [proof of work](/protocol/blockchain/proof-of-work) prevents blocks from being created instantly, and is the mechanic that prevents old history from being rewritten, since modifying a block would change its hash and disconnect it from its previous children.
 Therefore, changing a block requires that each of the child blocks be recreated as well.
-With this property, changing old blocks becomes nearly impossible as long as the Work to create a block is sufficiently time-intensive.
+With this property, changing old blocks becomes nearly impossible as long as the work to create a block is sufficiently time-intensive.
 
 ## Block Height
 
-Blocks are applied sequentially, and therefore for a given chain, a block can be identified by its distance from the Genesis Block.
-This distance is commonly referred to as `Block Height`.
-There may be multiple blocks at the same `Block Height` if two blocks are built that share a previous Block's Hash.
-Multiple Blocks with the same `Block Height` are often referred to as "sibling" Blocks, or "contentious" blocks.
-Sibling Blocks can happen if a Block is created with sufficient Work before the mining Node has been made aware of the new (Sibling) Block.
-Sibling Blocks are incompatible with one another, and eventually one will become orphaned.
-The [Genesis Block](/protocol/blockchain#genesis-block) is the first Block in a chain, and has a `Block Height` of `0` (as its distance to the Genesis Block is zero).
+Blocks are applied sequentially, and therefore for a given chain, a block can be identified by its distance from the genesis block.
+This distance is commonly referred to as `block height`.
+There may be multiple blocks at the same block height if two blocks are built that share a previous block's hash.
+Multiple blocks with the same block height are often referred to as "sibling" blocks, or "contentious" blocks.
+Sibling blocks can happen if a block is created with sufficient work before the mining node has been made aware of the new (sibling) block.
+Sibling blocks are incompatible with one another, and eventually one will become orphaned.
+The [genesis block](/protocol/blockchain#genesis-block) is the first block in a chain, and has a block height of `0` (as its distance to the genesis block is zero).
 
-As of [BIP-0034](/blockchain/forks/bip-34), the `Block Height` is included within the [Coinbase Transaction](/protocol/blockchain/block#coinbase-transaction).
+As of [BIP-0034](/blockchain/forks/bip-34), the `block height` is included within the [coinbase transaction](/protocol/blockchain/block#coinbase-transaction).
 
 ## Work
 
-The longest valid chain with the most [Proof of Work](/protocol/blockchain/proof-of-work) is generally considered to be the main chain.
-Work can be quickly verified by evaluating the Block's [Difficulty](/protocol/blockchain/proof-of-work/difficulty) and validated by checking the Block's hash.
-[Chainwork](/protocol/blockchain/proof-of-work#chainwork) is the summation of all work done on each block up to a point on the Blockchain.
-As of [HF-20171113](/protocol/forks/hf-20171113), Chainwork is used to calculate new Block's [difficulty adjustment](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) as of Block Height.
+The longest valid chain with the most [proof of work](/protocol/blockchain/proof-of-work) is generally considered to be the main chain.
+Work can be quickly verified by evaluating the block's [difficulty](/protocol/blockchain/proof-of-work/difficulty) and validated by checking the block's hash.
+[Chainwork](/protocol/blockchain/proof-of-work#chainwork) is the summation of all work done on each block up to a point on the blockchain.
+As of [HF-20171113](/protocol/forks/hf-20171113), chainwork is used to calculate new block's [difficulty adjustment](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) as of block height 504032.
 
 ## Blockchain Reorganization
 
@@ -47,9 +47,9 @@ In this case, the process repeats and the race continues until consensus is reac
 
 1.  Blocks 2a and 2b are mined before the either have fully propogated throughout the network.
 
-2.  Some Nodes follow Block 2a, others follow Block 2b, depending on which Block they received first.
+2.  Some nodes follow block 2a, others follow block 2b, depending on which block they received first.
 
-3.  Block 3 is mined on top of Block 2b.  Nodes originally following Block 2a abandon Block 2A, and begin following Block 2b/3.
+3.  Block 3 is mined on top of block 2b.  Nodes originally following block 2a abandon block 2A, and begin following block 2b/3.
 
 ```
 
@@ -64,9 +64,9 @@ graph LR
 style 2a stroke-width: 3px, stroke-dasharray: 5
 ```
 
-Switching from one chain to another chain is often called a "Reorg"&mdash;short for "Blockchain Reorganization".
-When a Reorg occurs, Transactions that were previously valid may become invalid if a Transaction on the other chain spent the same [Transaction Output](/protocol/blockchain/transaction#transaction-output) as the original Transaction.
-During a Reorg, Transactions that were dependent upon a Transaction that was not included in the other chain will transitively become invalid as well.
+Switching from one chain to another chain is often called a "reorg"&mdash;short for "blockchain reorganization".
+When a reorg occurs, transactions that were previously valid may become invalid if a transaction on the other chain spent the same [transaction output](/protocol/blockchain/transaction#transaction-output) as the original transaction.
+During a reorg, transactions that were dependent upon a transaction that was not included in the other chain will transitively become invalid as well.
 
 ```mermaid
 graph LR
@@ -92,6 +92,21 @@ style tx4 stroke-width: 3px, stroke-dasharray: 5
 style tx2a stroke-width: 3px, stroke-dasharray: 5
 ```
 
-When a Reorg is processed, Transactions that were originally accepted from the old chain are migrated to the new chain's [Memory Pool](/protocol/blockchain/memory-pool) if they are still valid.
+When a reorg is processed, transactions that were originally accepted from the old chain are migrated to the new chain's [memory pool](/protocol/blockchain/memory-pool) if they are still valid.
 
 ## Genesis Block
+
+The genesis block is the first block created within the blockchain.
+The genesis block's [hash](/protocol/blockchain/hash) is hard-coded into software.
+
+The properties that compose of the genesis block are:
+| Property | Value |
+|--|--|
+| Hash | `000000000019D6689C085AE165831E934FF763AE46A2A6C172B3F1B60A8CE26F` | 
+| Previous Block Hash | `0000000000000000000000000000000000000000000000000000000000000000` |
+| Timestamp | 1231006505 |
+| Difficulty | `1D00FFFF` |
+| Nonce | 2083236893 |
+| Merkle Root | `4A5E1E4BAAB89F3A32518A88C31BC87F618F76673E2CC77AB2127B7AFDEDA33B` |
+
+
