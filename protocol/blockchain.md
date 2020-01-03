@@ -47,9 +47,9 @@ In this case, the process repeats and the race continues until consensus is reac
 
 1.  Blocks 2a and 2b are mined before the either have fully propogated throughout the network.
 
-2.  Some nodes follow block 2a, others follow block 2b, depending on which block they received first.
+2.  Some nodes follow Block 2a, others follow Block 2b, depending on which block they received first.
 
-3.  Block 3 is mined on top of block 2b.  Nodes originally following block 2a abandon block 2A, and begin following block 2b/3.
+3.  Block 3 is mined on top of Block 2b.  Nodes originally following Block 2a abandon Block 2A, and begin following Block 2b/3.
 
 ```
 
