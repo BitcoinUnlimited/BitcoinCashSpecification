@@ -35,6 +35,7 @@ The Transaction Output that is being spent by a Transaction Input is often refer
 | output index | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The zero-based index of the output to spent in the previous output's transaction. |
 | unlocking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the unlocking script in bytes. |
 | unlocking script | variable | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The contents of the unlocking script. |
+| sequence number | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | Currently disabled and always set to 0xFFFFFFFF.  Intended for future use in replacing transactions.  For example, if locktime was specified in the transaction and in the future, the transaction could be replaced before that locktime.  In that case, the sequence number of any changed inputs is expected to be incremented. |
 
 ## Transaction Output
 

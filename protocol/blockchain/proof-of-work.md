@@ -1,7 +1,7 @@
 # Proof of Work
 
 Bitcoin Cash uses a [hashcash](https://en.wikipedia.org/wiki/Hashcash)-like algorithm as a primary metric for validating new blocks.
-The [block header](/protocol/blockchain/block/block-header) is hashed, its nonce is changed, and it is hashed again, until the resulting hash begins with an expected number of zero-bits or, more precisely, is below a certain [target difficulty](#target-difficulty).
+The [block header](/protocol/blockchain/block/block-header) is hashed, its nonce is changed, and it is hashed again, until the resulting hash begins with an expected number of zero-bits or, more precisely, is below a certain [target](#target).
 This repeated hashing with an updated nonce is referred to as mining.
 For more information on how the number of zero-bits required is determined, see [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm).
 For more information on how mining is performed in practice, see [Mining](/protocol/blockchain/proof-of-work/mining).
@@ -14,12 +14,17 @@ Because SHA-256 is used to hash block headers, and it is not known how to find a
 
 This is only quasi-random because the likelihood of building a block with an appropriate hash is directly proportional to the computational power (often referred to as hashing power), available to each individual mining blocks.
 
-## Target Difficulty
+## Target
 
 As the network's hashing power changes, the proof-of-work algorithm adjusts to compensate.
 With a stated goal of averaging 10 minutes per block mined, the work required to successfully mine a block is periodically adjusted to match the actual rate at which blocks were mined over a given period of time.
-At any given point, the next block to be mined must hash to a value that, when interpreted as an integer, must be below a target value, called the difficulty, that is deterministically calculated using the difficulties and timestamps of prior blocks.
-See [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) for more details.
+At any given point, the next block to be mined must hash to a value that, when interpreted as an integer, must be below a value that is deterministically calculated using the difficulties and timestamps of prior blocks.
+This is value is referred to as the target.
+For more details on how the target is calculated, see [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm).
+
+## Difficulty
+
+
 
 ## Chainwork
 
