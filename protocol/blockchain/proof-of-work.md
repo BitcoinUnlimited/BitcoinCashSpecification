@@ -24,7 +24,10 @@ For more details on how the target is calculated, see [Difficulty Adjustment Alg
 
 ## Difficulty
 
+Though the term difficulty is often used colloquially to refer generally to the changes to the target as blocks are mined, it can also refer specifically to the integer value of one target divided by another.  Generally, the numerator is a base target, e.g. the [genesis block](/protocol/blockchain#genesis-block) target, while the denominator is the target of the block whose "difficulty" is to be calculated.  This results in two benefits relative to using targets directly:
 
+ - **More Intuitive:** Higher numbers mean the block required more hashing power to mine, while lower number mean less hashing power was required.  Increased difficulty is easier to understand than decreased target, even though these means the same thing.
+ - **More Manageable:** The difficulty calculation produces much more human-readable numbers than trying to interpret targets as an integer directory.
 
 ## Chainwork
 
