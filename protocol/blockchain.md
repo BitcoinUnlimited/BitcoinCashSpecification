@@ -98,15 +98,74 @@ When a reorg is processed, transactions that were originally accepted from the o
 
 The genesis block is the first block created within the blockchain.
 The genesis block's [hash](/protocol/blockchain/hash) is hard-coded into software.
-
 The properties that compose of the genesis block are:
+
+### Block Header
+
 | Property | Value |
-|--|--|
+| -- | -- |
 | Hash | `000000000019D6689C085AE165831E934FF763AE46A2A6C172B3F1B60A8CE26F` | 
 | Previous Block Hash | `0000000000000000000000000000000000000000000000000000000000000000` |
-| Timestamp | 1231006505 |
-| Difficulty | `1D00FFFF` |
-| Nonce | 2083236893 |
+| Timestamp | `1231006505` |
+| Hash Target | `1D00FFFF` |
+| Nonce | `2083236893` |
 | Merkle Root | `4A5E1E4BAAB89F3A32518A88C31BC87F618F76673E2CC77AB2127B7AFDEDA33B` |
 
+The genesis block's merkle tree consists of a single coinbase transaction.
 
+### Coinbase Transaction
+
+| Property | Value |
+| -- | -- |
+| Version | `1` |
+| Lock Time | `0` |
+| Transaction Input Sequence Number | `4294967295` |
+| Transaction Output Amount | `5000000000` |
+
+#### Unlocking Script
+
+The unlocking script performs three pushes:
+1. The block's encoded target hash.
+2. An extra nonce (`4`).
+3. The ASCII encoded string: `The Times 03/Jan/2009 Chancellor on brink of second bailout for banks`
+
+Encoded as [script](/protocol/blockchain/script):
+
+1.    `0x04 0xFFFF001D`
+2.    `0x01 0x04`
+3.    `0x45`<br/>`54686520 54696D65 73203033 2F4A616E`<br/>`2F323030 39204368 616E6365 6C6C6F72`<br/>`206F6E20 6272696E 6B206F66 20736563`<br/>`6F6E6420 6261696C 6F757420 666F7220`<br/>`62616E6B 73`
+
+#### Locking Script
+
+The locking script is a [pay to public key](/protocol/blockchain/address#pay-to-public-key) script for public key:
+
+    04678AFD B0FE5548 271967F1 A67130B7
+    105CD6A8 28E03909 A67962E0 EA1F61DE
+    B649F6BC 3F4CEF38 C4F35504 E51EC112
+    DE5C384D F7BA0B8D 578A4C70 2B6BF11D
+    5F
+    
+    
+### Serialized
+
+The serialized genesis block has the hex encoded value of:
+
+    01000000 00000000 00000000 00000000
+    00000000 00000000 00000000 00000000
+    00000000 3BA3EDFD 7A7B12B2 7AC72C3E
+    67768F61 7FC81BC3 888A5132 3A9FB8AA
+    4B1E5E4A 29AB5F49 FFFF001D 1DAC2B7C
+    01010000 00010000 00000000 00000000
+    00000000 00000000 00000000 00000000
+    00000000 0000FFFF FFFF4D04 FFFF001D
+    01044554 68652054 696D6573 2030332F
+    4A616E2F 32303039 20436861 6E63656C
+    6C6F7220 6F6E2062 72696E6B 206F6620
+    7365636F 6E642062 61696C6F 75742066
+    6F722062 616E6B73 FFFFFFFF 0100F205
+    2A010000 00434104 678AFDB0 FE554827
+    1967F1A6 7130B710 5CD6A828 E03909A6
+    7962E0EA 1F61DEB6 49F6BC3F 4CEF38C4
+    F35504E5 1EC112DE 5C384DF7 BA0B8D57
+    8A4C702B 6BF11D5F AC000000 00
+    
