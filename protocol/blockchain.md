@@ -92,4 +92,6 @@ style tx4 stroke-width: 3px, stroke-dasharray: 5
 style tx2a stroke-width: 3px, stroke-dasharray: 5
 ```
 
+When a Reorg is processed, Transactions that were originally accepted from the old chain are migrated to the new chain's [Memory Pool](/protocol/blockchain/memory-pool) if they are still valid.
+
 ## Genesis Block
