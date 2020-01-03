@@ -49,22 +49,47 @@ In this case, the process repeats and the race continues until consensus is reac
 
 2.  Some Nodes follow Block 2a, others follow Block 2b, depending on which Block they received first.
 
-3. Block 3 is mined on top of Block 2b.  Nodes originally following Block 2a abandon Block 2A, and begin following Block 2b/3.
+3.  Block 3 is mined on top of Block 2b.  Nodes originally following Block 2a abandon Block 2A, and begin following Block 2b/3.
 
 ```
 
 ```mermaid
 graph LR
 
-0 --> 1
-1 --> 2a
-1 --> 2b
-2b --> 3
+0[Block 0] --- 1[Block 1]
+1 --- 2b[Block 2b]
+1 -.- 2a[Block 2a]
+2b --- 3[Block 3]
 
 style 2a stroke-width: 3px, stroke-dasharray: 5
 ```
 
 Switching from one chain to another chain is often called a "Reorg"&mdash;short for "Blockchain Reorganization".
-When a Reorg occurs, Transactions that were previously valid may become invalid if a Transaction on the other chain spent the same [Transaction Output](/protocol/blockchain/transaction#transaction-output) as one if its [Transaction Inputs](/protocol/blockchain/transaction#transaction-input).
+When a Reorg occurs, Transactions that were previously valid may become invalid if a Transaction on the other chain spent the same [Transaction Output](/protocol/blockchain/transaction#transaction-output) as the original Transaction.
+During a Reorg, Transactions that were dependent upon a Transaction that was not included in the other chain will transitively become invalid as well.
+
+```mermaid
+graph LR
+
+subgraph Block 0
+    tx0(...)
+end
+subgraph Block 1
+    tx0 --- tx1(Tx 1)
+end
+subgraph  Block 2b
+    tx1 --- tx2b(Tx 2b)
+end
+subgraph  Block 3
+    tx2b --- tx3(Tx 3)
+end
+subgraph  Block 2a
+    tx1 -.- tx2a(Tx 2a)
+end
+tx2a -.- tx4(Tx 4)
+
+style tx4 stroke-width: 3px, stroke-dasharray: 5
+style tx2a stroke-width: 3px, stroke-dasharray: 5
+```
 
 ## Genesis Block
