@@ -21,6 +21,10 @@ With a stated goal of averaging 10 minutes per block mined, the work required to
 At any given point, the next block to be mined must hash to a value that, when interpreted as an integer, must be below a target value, called the difficulty, that is deterministically calculated using the difficulties and timestamps of prior blocks.
 See [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) for more details.
 
+## Chainwork
+
+Chainwork is a representation of the work performed through a block's entire history.  It is calculated using the difficulties of each of the blocks in the chain.  The work for a single block is calculated as <code>2<sup>256</sup> / (target + 1)</code>, or equivalently in 256-bit two's-complement arithmetic, <code>(~target / (target + 1)) + 1</code>, where `~` is the bitwise NOT operation.  The chainwork for a block is the sum of its work with the work of all the blocks preceeding it.  As such, when a new block is mined, its chainwork is simply its work plus the chainwork of the block before it.
+
 ## Extra Nonce
 
 Ideally in such a proof-of-work system, the dynamic parameters of the data being hashed (i.e. the block header) would provide enough variability to guarantee any possible output of the hash function used.

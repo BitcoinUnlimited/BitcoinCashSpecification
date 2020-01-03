@@ -28,8 +28,8 @@ As of [BIP-0034](/blockchain/forks/bip-34), the `Block Height` is included withi
 
 The longest valid chain with the most [Proof of Work](/protocol/blockchain/proof-of-work) is generally considered to be the main chain.
 Work can be quickly verified by evaluating the Block's [Difficulty](/protocol/blockchain/proof-of-work/difficulty) and validated by checking the Block's hash.
-[Chain Work](/protocol/blockchain/proof-of-work#chain-work) is the summation of all work done on each block up to a point on the Blockchain.
-As of [HF-20171113](/protocol/forks/hf-20171113), Chain Work is used to calculate new Block's [difficulty adjustment](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) as of Block Height.
+[Chainwork](/protocol/blockchain/proof-of-work#chainwork) is the summation of all work done on each block up to a point on the Blockchain.
+As of [HF-20171113](/protocol/forks/hf-20171113), Chainwork is used to calculate new Block's [difficulty adjustment](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) as of Block Height.
 
 ## Blockchain Reorganization
 
