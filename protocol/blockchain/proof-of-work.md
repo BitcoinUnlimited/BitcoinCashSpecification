@@ -1,9 +1,7 @@
 # Proof of Work
 
 Bitcoin Cash uses a [hashcash](https://en.wikipedia.org/wiki/Hashcash)-like algorithm as a primary metric for validating new blocks.
-The [block header](/protocol/blockchain/block/block-header) is hashed, its nonce is changed, and it is hashed again, until the resulting hash begins with an expected number of zero-bits or, more precisely, is below a certain [target](#target).
-This repeated hashing with an updated nonce is referred to as mining.
-For more information on how the number of zero-bits required is determined, see [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm).
+The [block header](/protocol/blockchain/block/block-header) is hashed, its nonce is changed, and it is hashed again, until the resulting hash is below a certain [target](#target).
 For more information on how mining is performed in practice, see [Mining](/protocol/blockchain/proof-of-work/mining).
 
 Because SHA-256 is used to hash block headers, and it is not known how to find a input matching a certain output format, the proof-of-work system employed by Bitcoin Cash distributes the following quasi-randomly to the individual that successfully creates a block that meets the proof-of-work requirements:
