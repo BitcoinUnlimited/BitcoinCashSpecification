@@ -21,7 +21,7 @@
 		    -   [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
 	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
 		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
-			-   Mining
+			-   [Mining](/protocol/blockchain/proof-of-work/mining)
 				-   Stratum Protocol
 			    -   Mining Pools
 	    -   Addresses
