@@ -46,19 +46,19 @@
 			    -   N-of-M Multisig Signatures
 	    -   [Memory Pool](/protocol/blockchain/memory-pool)
 	-   Forks
-	    -   Bip-16
+	    -   [Bip-16](/protocol/forks/bip-0016)
 		-   [Bip-34](/protocol/forks/bip-0034)
 		-   [Bip-37](/protocol/forks/bip-0037)
 		-   [Bip-64](/protocol/forks/bip-0064)
-		-   Bip-65
-		-   Bip-66
-		-   Bip-68
-		-   Bip-112
-		-   Bip-113
+		-   [Bip-65](/protocol/forks/bip-0065)
+		-   [Bip-66](/protocol/forks/bip-0066)
+		-   [Bip-68](/protocol/forks/bip-0068)
+		-   [Bip-112](/protocol/forks/bip-0112)
+		-   [Bip-113](/protocol/forks/bip-0113)
 		-   [Bip-157](/protocol/forks/bip-0157)
 		-   [Bip-158](/protocol/forks/bip-0158)
 		-   [Bip-159](/protocol/forks/bip-0159)
-		-   BCH-UAHF (BUIP-55)
+		-   [BCH-UAHF]((/protocol/forks/bch-uahf)) (BUIP-55)
 		-   [HF-20171113](/protocol/forks/hf-20171113)
 		-   HF-20180515
 		-   HF-20181115
