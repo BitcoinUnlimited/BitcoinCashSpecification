@@ -43,14 +43,14 @@ The following capabilities are defined, by bit position:
 	The node is capable of serving the complete block chain.
 It is currently set by all full nodes, and is unset by SPV clients or other peers that just want network services but don't provide them.
 
-* 2: NODE_BLOOM 
+* 2: NODE_BLOOM
 	The node is capable and willing to handle bloom-filtered connections.
 
 * 3: NODE_WITNESS
-	Indicates that a node can be asked for blocks and transactions including witness data.  
+	Indicates that a node can be asked for blocks and transactions including witness data.
 	*Bitcoin Cash nodes do not have witness data so this flag should be ignored on receipt and set to 0 when sent*
 
-* 5: NODE_BITCOIN_CASH 
+* 5: NODE_BITCOIN_CASH
 	The node supports the BCH chain.
 This is intended to be just a temporary service bit until the BTC/BCH fork actually happens.
 
