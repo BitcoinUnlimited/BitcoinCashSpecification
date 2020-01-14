@@ -13,7 +13,7 @@ Other documentation sources include:
 
 In early 2019, Jonathan Silverblood proposed BUIP121, "Create formal BCH specifications", to Bitcoin Unlimited.
 Soon after, the proposal and an initial budget were approved.
-Later in 2019 at the Bitcoin Cash City conference in Townsville, QLD Australia, some members of the BCH development community, including Johnathon Silverblood, John Nieri, Josh Ellithorpe, and Mark Lundeberg approached Josh Green of Software Verde to lead the effort of a consolidated descriptive specification for the protocol.
+Later in 2019 at the Bitcoin Cash City conference in Townsville, QLD Australia, some members of the BCH development community, including Jonathan Silverblood, John Nieri, Josh Ellithorpe, and Mark Lundeberg approached Josh Green of Software Verde to lead the effort of a consolidated descriptive specification for the protocol.
 After the conference concluded, Software Verde approached Bitcoin Unlimited with an implementation proposal and it was accepted by Andrew Clifford and Andrew Stone.
 The proposal includes the work of Andrew Stone who had previously started BUwiki with similar objectives.
 
