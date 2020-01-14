@@ -5,14 +5,13 @@
 
 *Provides a contiguous set of block headers*  
 
-**HEADERS Message Format**
+## HEADERS Message Format
 
-| compact int  | ... | compact int |
-|----|---------------|-----------|------------|
-| [vector](/protocol/p2p/vector) size N containing: |  [block header](/protocol/p2p/block__header)| number tx in block | 
+|Size in bytes|Description|Data type|
+|-------------|-----------|---------|
+|1+           | Number of headers | varint|
+|(81 + (1+)) * count  |[Block headers](/protocol/blockchain/block/block-header/) and number of txs in the block|Blockheader + varint|
 
-*[vector](/protocol/p2p/vector) size N containing*:  This message contains a vector of block headers.  No more than 2000 block headers may be sent at one time.
+No more than 2000 block headers may be sent at one time. Block headers in this array MUST be sequential, ordered by height and without range gaps.
 
-*block header*:  A block header.  Block headers in this array MUST be sequential.
-
-*number tx in block*: **DEPRECATED** This field should be ignored and servers may send 0 regardless of the actual number of transactions in the block.
+The number of txs in header is **DEPRECATED** and should be ignored. Nodes are allowed to send 0 regardless of the actual number of transactions in the block.
