@@ -4,7 +4,7 @@
 -   [Contributors](/contributors)
 -   [Target Audience](/target-audience)
 -   [Project History](/project-history)
--   [Protocol](/protocol)
+-   Protocol
     -   [Blockchain](/protocol/blockchain)
 	    -   [Hash](/protocol/blockchain/hash)
 	    -   [Transaction](/protocol/blockchain/transaction)
