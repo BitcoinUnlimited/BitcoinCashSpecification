@@ -11,9 +11,9 @@ Standard transactions are those that:
 
  - Only have outputs that use [standard locking scripts](/protocol/blockchain/transaction/locking-script#standard-scripts)
  - Are below the maximum transaction size of 100,000 bytes
- - Have a valid version number (currently only version 2 is valid)
+ - Have a version 1 or [version 2](/protocol/forks/bip-0068/)
  - Have input scripts that only contain push operations
- - Have input scripts with unlocking scripts below the 1650 byte maximum
+ - Have input scripts with unlocking scripts less or equal to 1650 bytes in length (see scriptSig limit below)
  - Have at most one [data output](/protocol/blockchain/transaction/locking-script#data-output)
  - For [multisig](/protocol/blockchain/transaction/locking-script#multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
  - Have non-data outputs with amount above the [dust](#dust) threshold
@@ -21,6 +21,20 @@ Standard transactions are those that:
 Be aware, however, that these rules may vary from node-to-node as they are often configurable.
 Some nodes may also accept and relay non-standard transactions.
 For this reason, among others, it is always wise to send transactions to multiple nodes.
+
+### The input scriptSig limit
+
+The transaction input scriptSig limit must be less or equal to 1650 bytes to be considered standard. The rationale for the number `1650` byte limit was described in the code base as:
+
+```
+Biggest 'standard' txin is a 15-of-15 P2SH multisig with compressed  
+keys. (remember the 520 byte limit on redeemScript size) That works
+out to a (15*(33+1))+3=513 byte redeemScript, 513+1+15*(73+1)+3=1627
+bytes of scriptSig, which we round off to 1650 bytes for some minor
+future-proofing. That's also enough to spend a 20-of-20              
+CHECKMULTISIG scriptPubKey, though such a scriptPubKey is not        
+considered standard)
+```
 
 ### Dust
 
