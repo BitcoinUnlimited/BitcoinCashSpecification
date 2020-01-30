@@ -36,3 +36,7 @@ The unlocking script is required to begin with a push of the block height which 
 The block height encoded as a variable-length, little-endian integer.
 The [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) operation is used to push the necessary number of bytes to encode the length.
 This requirement was added with version 2 blocks as a part of [BIP-34](/protocol/forks/bip-0034).
+
+Each coinbase transaction may only have one transaction input.
+
+Each coinbase transaction's unlocking script must be less than or equal to 100 bytes.
