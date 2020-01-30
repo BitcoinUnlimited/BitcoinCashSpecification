@@ -19,3 +19,9 @@ The following are miscellaneous rules.
 
 The genesis block's coinbase may not be spent.
 Furthermore, this coinbase's output is not considered an unspent transaction output.
+
+### Extra Coinbase Validation Rules
+
+Coinbases may only have one transaction input.
+
+All coinbase unlocking script must be less than or equal to 100 bytes in size.
