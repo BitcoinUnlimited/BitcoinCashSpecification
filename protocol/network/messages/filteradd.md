@@ -3,7 +3,11 @@
 "related":["/protocol","/protocol/p2p/getdata","/protocol/p2p/filterload","/protocol/p2p/filterclear"]
 }</div>
 
+# Request: Filter Add (“filteradd”)
+
 Add an entry into the installed bloom filter.
+
+## Message Format
 
 | compact int | N bytes | 
 |-------------|---------|

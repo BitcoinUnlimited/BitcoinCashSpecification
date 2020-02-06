@@ -1,13 +1,18 @@
 <div class="cwikmeta" style="visibility:hidden;">
 {
 "title":"PING",
-"related":["/protocol/p2p/pong"]
+"related":["/protocol/network/messages/pong.md"]
 } </div>
+
+# Request: Ping ("ping")
 
 Connection keep-alive, "aliveness" and latency discovery.
 
-|  nonce  |
-|---------|
-| 8 bytes |
+If a node receives a PING message, it replies as quickly as possible with a [PONG](/protocol/network/messages/pong.md) message with the provided *nonce*.
 
-If a node receives a PING message, it replies as quickly as possible with a [PONG](/protocol/p2p/pong) message with the provided *nonce*.
+
+## Message Format
+
+| Field | Length | Format | Description |  
+|--|--|--|--|
+|  nonce  | 8 bytes | unsigned 64 bit integer<sup>[(LE)](/protocol/misc/endian/little.md)</sup> | An arbitrary value provided to connect the ping message with the pong reply

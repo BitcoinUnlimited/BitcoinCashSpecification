@@ -1,13 +1,15 @@
 <div class="cwikmeta" style="visibility:hidden;">
 {
 "title":"PONG",
-"related":["/protocol/p2p/ping"]
+"related":["/protocol/network/messages/ping.md"]
 } </div>
 
-Connection keep-alive, "aliveness" and latency discovery.
+# Response: Pong ("pong")
 
-|  nonce  |
-|---------|
-| 8 bytes |
+Connection keep-alive, "aliveness" and latency discovery.  This message is sent in response to a [PING](/protocol/network/messages/ping.md) message.
 
-This message is sent in response to a [PING](/protocol/p2p/ping) message.
+## Message Format
+
+| Field | Length | Format | Description |    
+|--|--|--|--|  
+| nonce | 8 bytes | unsigned 64 bit integer<sup>[(LE)](/protocol/misc/endian/little)</sup>  | The value provided by the [PING](/protocol/network/messages/ping.md) message.

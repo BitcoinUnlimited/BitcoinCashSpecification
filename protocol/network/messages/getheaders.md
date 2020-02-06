@@ -4,12 +4,16 @@
 "related":["/protocol"]
 } </div>
 
+# Request: Get Headers ("getheaders")
+
 Request a sequence of block hash identifiers
 
-|        locator                                                                                | stop at hash | 
-|-----------------------------------------------------------------------------------------------|----------|
-| [vector](/protocol/p2p/vector) of 32 byte block [hash identifiers](/glossary/hash__identifier)| 32 bytes |
+## Message Format
 
+| Field | Length | Format | Description |
+|--|--|--|--|
+| locator | variable | [vector](/protocol/p2p/vector) of 32 byte block [hash identifiers](/glossary/hash__identifier) | identifies the location of the desired headers |
+| stop at hash | 32 bytes | bytes | stop providing headers at this hash
 
 ### Locator
 
@@ -31,4 +35,8 @@ If the locator is empty, the response includes only the header identified by thi
 
 *Use an empty locator and a valid block hash identifier to request the header of a specific block.*
 
-Server Implementations: [Bitcoin Unlimited](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/bucash1.7.0.0/src/net_processing.cpp#L1131)
+## Server Implementations
+
+[Bitcoin Unlimited](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/bucash1.7.0.0/src/net_processing.cpp#L1131)
+
+## Client Implementations
