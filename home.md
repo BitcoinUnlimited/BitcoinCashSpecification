@@ -1,112 +1,64 @@
 # Bitcoin Cash Protocol
 
--   [Style Guide](/style-guide)
--   [Contributors](/contributors)
--   [Target Audience](/target-audience)
--   [Project History](/project-history)
--   [Protocol](/protocol)
-    -   [Blockchain](/protocol/blockchain)
-	    -   [Hash](/protocol/blockchain/hash)
-	    -   [Transaction](/protocol/blockchain/transaction)
-		    -   [Unlocking Script](/protocol/blockchain/transaction/unlocking-script)
-		    -   [Locking Script](/protocol/blockchain/transaction/locking-script)
-	    -   [Block](/protocol/blockchain/block)
-		    -   [Header](/protocol/blockchain/block/block-header)
-		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
-		    -   [Transaction Ordering](/protocol/blockchain/block/transaction-ordering)
-	    -   [Script](/protocol/blockchain/script)
-		    -   [Op Codes](/protocol/blockchain/script#op-codes)
-	    -   [Transaction Validation](/protocol/blockchain/transaction-validation)
-		    -   [Block-Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules)
-		    -   [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
-	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
-		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
-			-   [Mining](/protocol/blockchain/proof-of-work/mining)
-				-   Stratum Protocol
-			    -   Mining Pools
-	    -   Addresses
-		    -   Pay To Public Key
-			-   Pay To Public Key Hash
-		    -   Pay To Script Hash
-		    -   Encodings
-			    -   Legacy (Base 58)
-			    -   Bech32
-			    -   Cash Address
-	    -   Cryptography
-		    -   Secp256k1
-			    -   Public Key
-				    -   Compressed
-				    -   Uncompressed
-			    -   Private Key
-		    -   Signatures
-			    -   ECDSA
-			    -   Schnorr
-			    -   DER Encoding
-				    -   (OpenSSL History?)
-			    -   N-of-M Multisig Signatures
-	    -   [Memory Pool](/protocol/blockchain/memory-pool)
-	-   Forks
-	    -   [Bip-16](/protocol/forks/bip-0016)
-		-   [Bip-34](/protocol/forks/bip-0034)
-		-   [Bip-37](/protocol/forks/bip-0037)
-		-   [Bip-64](/protocol/forks/bip-0064)
-		-   [Bip-65](/protocol/forks/bip-0065)
-		-   [Bip-66](/protocol/forks/bip-0066)
-		-   [Bip-68](/protocol/forks/bip-0068)
-		-   [Bip-112](/protocol/forks/bip-0112)
-		-   [Bip-113](/protocol/forks/bip-0113)
-		-   [Bip-157](/protocol/forks/bip-0157)
-		-   [Bip-158](/protocol/forks/bip-0158)
-		-   [Bip-159](/protocol/forks/bip-0159)
-		-   BCH-UAHF (BUIP-55)
-		-   [HF-20171113](/protocol/forks/hf-20171113)
-		-   HF-20180515
-		-   HF-20181115
-		-   HF-20190515
-		-   HF-20191115
-	-   Peer-to-Peer Network
-        - [Messages](/protocol/network/messages)
-            - *Announcements*
-              - filteradd
-              - filterclear
-              - filterload
-              - inv
-	        - *Requests*
-              - feefilter
-              - getaddr
-              - getblocks
-              - getdata
-              - getheaders
-              - [Ping](/protocol/network/messages/ping)
-              - sendheaders
-              - [Handshake: Version](/protocol/network/messages/version)
-            - *Responses*
-              - addr
-              - block
-              - headers
-              - notfound
-              - merkleblock
-              - [Pong](/protocol/network/messages/pong)
-              - reject
-              - tx
-              - [Handshake: Acknowledge Version](/protocol/network/messages/verack)
-            - *Non-Standard*
-              - sendcmpct
-              - get_xthin
-              - xthinblock
-              - thinblock
-              - get_xblocktx
-              - xblocktx
-        - [Node Handshake](/protocol/network/node-handshake)
-    -   Simple Payment Verification (SPV)
-	    -   Bloom Filters
-    -   Simple Ledger Protocol
-    -   Cash Address
-    -   Miscellaneous
-	    - “Bitcoin Sign Message”
-	    - [Endian](/protocol/misc/endian)
-		    - [Little](/protocol/misc/endian/little)
-		    - [Big](/protocol/misc/endian/big)
-   -   History
-	   - Bips
-	   - Protocol Version
+**About**
+
+[Style Guide](/style-guide) — [Contributors](/contributors) — [Target Audience](/target-audience) — [Project History](/project-history)
+
+### Basics
+[Blockchain basics](/protocol/blockchain) — [Protocol hashing algorithms](/protocol/blockchain/hash) — Memory Pool
+
+### Transactions
+[Bitcoin Transaction](/protocol/blockchain/transaction) — [Unlocking Script](/protocol/blockchain/transaction/unlocking-script)— [Locking Script](/protocol/blockchain/transaction/locking-script)
+
+### Blocks
+[Bitcoin blocks](/protocol/blockchain/block) —
+[Block header](/protocol/blockchain/block/block-header) — [Merkle Tree](/protocol/blockchain/block/merkle-tree) — [Transaction Ordering](/protocol/blockchain/block/transaction-ordering)
+
+### Script (Bitcoin transaction language)
+[Script](/protocol/blockchain/script) — [Operation codes (opcodes)](/protocol/blockchain/script#operation-codes-opcodes)
+
+### Transaction validation
+[Transaction Validation](/protocol/blockchain/transaction-validation) —
+[Block-Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules) — [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
+
+### Proof of Work (PoW)
+[Proof of Work](/protocol/blockchain/proof-of-work) — [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) — [Mining](/protocol/blockchain/proof-of-work/mining) — Stratum Protocol — Mining Pools
+
+### Addresses
+Pay To Public Key (P2PK) — Pay To Public Key Hash (P2PKH) — Pay To Script Hash (P2SH) — Base 58 encoding (legacy) — Cashaddr encoding
+
+### Cryptography
+Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signatures — N-of-M multisig signatures
+
+### Network upgrades
+[Bip-16](/protocol/forks/bip-0016) — [Bip-34](/protocol/forks/bip-0034) — [Bip-37](/protocol/forks/bip-0037) — [Bip-64](/protocol/forks/bip-0064) — [Bip-65](/protocol/forks/bip-0065) — [Bip-66](/protocol/forks/bip-0066) — [Bip-68](/protocol/forks/bip-0068) — [Bip-112](/protocol/forks/bip-0112) — [Bip-113](/protocol/forks/bip-0113) — [Bip-157](/protocol/forks/bip-0157) — [Bip-158](/protocol/forks/bip-0158) — [Bip-159](/protocol/forks/bip-0159) — BCH-UAHF (BUIP-55) — [HF-20171113](/protocol/forks/hf-20171113) — HF-20180515 — HF-20181115 — HF-20190515 — HF-20191115
+
+### Network protocol
+
+[Network Messages](/protocol/network/messages) — [Handshake](/protocol/network/node-handshake)
+
+**Announcement messages**
+
+filteradd — filterclear — filterload — inv
+
+**Request messages**
+
+feefilter — getaddr — getblocks — getdata — getheaders — [ping](/protocol/network/messages/ping) —
+sendheaders — [version](/protocol/network/messages/version)
+
+**Response messages**
+
+addr — block — headers — notfound — merkleblock — [pong](/protocol/network/messages/pong) —
+reject — tx — [verack](/protocol/network/messages/verack)
+
+**Other messages (extensions)**
+
+sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx
+
+
+### Simple Payment Verification (SPV)
+[Bloom Filters](/objects/bloom__filter)
+### Simple Ledger Protocol
+### Miscellaneous
+[Endian](/protocol/misc/endian) — [Little endian](/protocol/misc/endian/little) — [Big endian](/protocol/misc/endian/big)
+
