@@ -4,8 +4,8 @@
 -   [Contributors](/contributors)
 -   [Target Audience](/target-audience)
 -   [Project History](/project-history)
--   Protocol
-    -   Blockchain
+-   [Protocol](/protocol)
+    -   [Blockchain](/protocol/blockchain)
 	    -   [Hash](/protocol/blockchain/hash)
 	    -   [Transaction](/protocol/blockchain/transaction)
 		    -   [Unlocking Script](/protocol/blockchain/transaction/unlocking-script)
@@ -15,13 +15,23 @@
 		    -   [Merkle Tree](/protocol/blockchain/block/merkle-tree)
 		    -   [Transaction Ordering](/protocol/blockchain/block/transaction-ordering)
 	    -   [Script](/protocol/blockchain/script)
-		    -   Opcodes
-			       ...
-	    -   Transaction Validation
-		    -   Block Level Validation Rules
-		    -   Network Level Validation Rules
-			    -   Standardness Rules
-				    -   Custom / Non Standard
+		    -   [Op Codes](/protocol/blockchain/script#op-codes)
+	    -   [Transaction Validation](/protocol/blockchain/transaction-validation)
+		    -   [Block-Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules)
+		    -   [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
+	    -   [Proof of Work](/protocol/blockchain/proof-of-work)
+		    -   [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm)
+			-   [Mining](/protocol/blockchain/proof-of-work/mining)
+				-   Stratum Protocol
+			    -   Mining Pools
+	    -   Addresses
+		    -   Pay To Public Key
+			-   Pay To Public Key Hash
+		    -   Pay To Script Hash
+		    -   Encodings
+			    -   Legacy (Base 58)
+			    -   Bech32
+			    -   Cash Address
 	    -   Cryptography
 		    -   Secp256k1
 			    -   Public Key
@@ -34,41 +44,26 @@
 			    -   DER Encoding
 				    -   (OpenSSL History?)
 			    -   N-of-M Multisig Signatures
-	    -   Bitcoin Address
-		    -   Pay To Public Key
-			-   Pay To Public Key Hash
-		    -   Pay To Script Hash
-		    -   Encodings
-			    -   Legacy (Base 58)
-			    -   Bech32
-			    -   Cash Address
-	    -   Proof of Work
-		    -   Difficulty Adjustment Algorithm
-			    -   Legacy DAA
-			    -   Emergency DAA
-			    -   BCH Adaptive DAA
-	-   Mining
-		-   Stratum Protocol
-	    -   Mining Pools
+	    -   [Memory Pool](/protocol/blockchain/memory-pool)
 	-   Forks
-	    -   Bip-16
+	    -   [Bip-16](/protocol/forks/bip-0016)
 		-   [Bip-34](/protocol/forks/bip-0034)
 		-   [Bip-37](/protocol/forks/bip-0037)
 		-   [Bip-64](/protocol/forks/bip-0064)
-		-   Bip-65
-		-   Bip-66
-		-   Bip-68
-		-   Bip-112
-		-   Bip-113
+		-   [Bip-65](/protocol/forks/bip-0065)
+		-   [Bip-66](/protocol/forks/bip-0066)
+		-   [Bip-68](/protocol/forks/bip-0068)
+		-   [Bip-112](/protocol/forks/bip-0112)
+		-   [Bip-113](/protocol/forks/bip-0113)
 		-   [Bip-157](/protocol/forks/bip-0157)
 		-   [Bip-158](/protocol/forks/bip-0158)
 		-   [Bip-159](/protocol/forks/bip-0159)
-		-   BCH UAHF (BUIP-55)
-		-   HF20171113
-		-   HF20180515
-		-   HF20181115
-		-   HF20190515
-		-   HF20191115
+		-   [BCH-UAHF](/protocol/forks/bch-uahf) (BUIP-55)
+		-   [HF-20171113](/protocol/forks/hf-20171113)
+		-   HF-20180515
+		-   HF-20181115
+		-   HF-20190515
+		-   HF-20191115
 	-   Peer-to-Peer Network
         - [Messages](/protocol/network/messages)
             - *Announcements*
