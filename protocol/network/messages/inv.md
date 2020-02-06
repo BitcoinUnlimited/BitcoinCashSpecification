@@ -1,16 +1,16 @@
 <div class="cwikmeta">{
 "title":"INV",
-"related":["/protocol","/protocol/p2p/getdata","/protocol/p2p/filterload","/protocol/p2p/filterclear"]
+"related":["/protocol","/protocol/network/messages/getdata.md","/protocol/network/messages/filterload.md","/protocol/network/messages/filterclear.md"]
 }</div>
 
 *Notifies peers about the existence of some information (block or transaction)*
-Based on selected services in the [VERSION]("/protocol/p2p/version") message, INV messages may not be sent.
+Based on selected services in the [VERSION](/protocol/network/messages/version.md) message, INV messages may not be sent.
 
-If a bloom filter has been sent to this node via [FILTERLOAD](/protocol/p2p/filterload), transaction INVs will only be sent if they match the bloom filter.
+If a bloom filter has been sent to this node via [FILTERLOAD](/protocol/network/messages/filterload.md), transaction INVs will only be sent if they match the bloom filter.
 
 | compact int | 4 bytes | 32 bytes |... | 4 bytes | 32 bytes |
 |----------|---------|----------|---|---------|----------| 
-|[vector](/protocol/p2p/vector) size N of|   type 1  |   hash 1  | | type N | hash N
+|[vector](/protocol/p2p/vector.md) size N of|   type 1  |   hash 1  | | type N | hash N
 
 NOTE: Since a block header is a relatively small data structure, and block propagation speed is an important network metric, a peer may send HEADER messages in place of INV messages when a block arrives.
 
@@ -29,4 +29,4 @@ The type of the object that is available.
 Implementations: [C++](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/eb264e627e231f7219e60eef41b4e37cc52d6d9d/src/protocol.h#L477)
 
 ##### Hash
-The [hash identifier](/glossary/hash__identifier) of the available object.
+The [hash identifier](/glossary/hash__identifier.md) of the available object.

@@ -39,26 +39,24 @@ Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signat
 
 **Announcement messages**
 
-filteradd — filterclear — filterload — inv
+[filteradd](/protocol/network/messages/filteradd.md) — [filterclear](/protocol/network/messages/filterclear.md) — [filterload](/protocol/network/messages/filterload.md) — [inv](/protocol/network/messages/inv.md)
 
 **Request messages**
 
-feefilter — getaddr — getblocks — getdata — getheaders — [ping](/protocol/network/messages/ping) —
-sendheaders — [version](/protocol/network/messages/version)
+feefilter — getaddr — [getblocks](/protocol/network/messages/getblocks.md) — [getdata](/protocol/network/messages/getdata.md) — [getheaders](/protocol/network/messages/getheaders.md) — [ping](/protocol/network/messages/ping.md) —
+sendheaders — [version](/protocol/network/messages/version.md)
 
 **Response messages**
 
-addr — block — headers — notfound — merkleblock — [pong](/protocol/network/messages/pong) —
-reject — tx — [verack](/protocol/network/messages/verack)
+[addr](/protocol/network/messages/addr.md) — block — headers — notfound — [merkleblock](/protocol/network/messages/merkleblock.md) — [pong](/protocol/network/messages/pong.md) —
+[reject](/protocol/network/messages/reject.md) — tx — [verack](/protocol/network/messages/verack.md)
 
 **Other messages (extensions)**
 
-sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx
-
+sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx —(xverack)[/protocol/network/messages/xverack.md) — (xversion)[/protocol/network/messages/xversion.md)
 
 ### Simple Payment Verification (SPV)
 [Bloom Filters](/objects/bloom__filter)
 ### Simple Ledger Protocol
 ### Miscellaneous
 [Endian](/protocol/misc/endian) — [Little endian](/protocol/misc/endian/little) — [Big endian](/protocol/misc/endian/big)
-
