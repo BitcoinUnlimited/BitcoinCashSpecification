@@ -53,7 +53,7 @@ sendheaders — [version](/protocol/network/messages/version.md)
 
 **Other messages (extensions)**
 
-sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx —[xverack](/protocol/p2p/xverack.md) — [xversion][/protocol/p2p/xversion.md)
+sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx —[xverack](/protocol/p2p/xverack.md) — [xversion](/protocol/p2p/xversion.md)
 
 ### Simple Payment Verification (SPV)
 [Bloom Filters](/objects/bloom__filter)
