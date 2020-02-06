@@ -77,7 +77,7 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 |OP_SPLIT   |127    |0x7f|x n           |x1 x2   |Splits byte sequence *x* at position *n*. Known as OP_SUBSTR before 2018-05-15. |
 |OP_NUM2BIN |128    |0x80|a b           |out     |Converts numeric value *a* into byte sequence of length *b*. Known as OP_LEFT before 2018-05-15.       |
 |OP_BIN2NUM |129    |0x81|x             |out     |Converts byte sequence *x* into a numeric value. Known as OP_RIGHT before 2018-05-15. |
-|OP_SIZE     |130    |0x82|x         |x size     |Pushes the string length of the top element of the stack (without popping it). |
+|OP_SIZE    |130    |0x82|x          |x size     |Pushes the string length of the top element of the stack (without popping it). |
 
 ### Bitwise logic
 
@@ -99,11 +99,15 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Cryptography
 
-|Word       |Value  |Hex |Input         |Output  | Description                                                      |
-|-----------|-------|----|--------------|--------|------------------------------------------------------------------|
-| OP_CHECKDATASIG | 186 | 0xba | sig msg pubkey | true / false | <!-- TODO --> |
-| OP_CHECKDATASIGVERIFY | 187 | 0xbb | sig msg pubkey | nothing / *fail* | Same as OP_CHECKDATASIG, but runs OP_VERIFY afterward. |
-
+|Word                   |Value |Hex   |Input           |Output  | Description                                                      |
+|-----------------------|------|------|----------------|--------|------------------------------------------------------------------|
+| OP_RIPEMD160          |      | 0xa6 | in             | hash   | Hashes input with RIPEMD-160.
+| OP_SHA1               |      | 0xa7 | in             | hash   | Hashes input with SHA-1.
+| OP_SHA256             |      | 0xa8 | in             | hash   | Hashes input with SHA-256.
+| OP_HASH160            |      | 0xa9 | in             | hash   | Hashes input with SHA-256 and then with RIPEMD-160.
+| OP_HASH256            |      | 0xaa | in             | hash   | Hashes input twice with SHA-256.
+| OP_CHECKDATASIG       | 186  | 0xba | sig msg pubkey | true / false | Check if signature is valid for message and a public key. [See spec](/protocol/forks/op_checkdatasig) |
+| OP_CHECKDATASIGVERIFY | 187  | 0xbb | sig msg pubkey | nothing / *fail* | Same as OP_CHECKDATASIG, but runs OP_VERIFY afterward. |
 
 ### Locktime
 
@@ -182,11 +186,6 @@ Please help improve this article by catigorizing and describing the following up
 | 0xA3 | OP_MIN |
 | 0xA4 | OP_MAX |
 | 0xA5 | OP_WITHIN |
-| 0xA6 | OP_RIPEMD160 |
-| 0xA7 | OP_SHA1 |
-| 0xA8 | OP_SHA256 |
-| 0xA9 | OP_HASH160 |
-| 0xAA | OP_HASH256 |
 | 0xAB | OP_CODESEPARATOR |
 | 0xAC | OP_CHECKSIG |
 | 0xAD | OP_CHECKSIGVERIFY |
