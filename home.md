@@ -1,6 +1,6 @@
 # Bitcoin Cash Protocol
 
-**About**
+### About
 
 [Style Guide](/style-guide) — [Contributors](/contributors) — [Target Audience](/target-audience) — [Project History](/project-history)
 
@@ -37,21 +37,21 @@ Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signat
 
 [Network Messages](/protocol/network/messages) — [Handshake](/protocol/network/node-handshake)
 
-**Announcement messages**
+#### Announcement messages
 
 [filteradd](/protocol/network/messages/filteradd.md) — [filterclear](/protocol/network/messages/filterclear.md) — [filterload](/protocol/network/messages/filterload.md) — [inv](/protocol/network/messages/inv.md)
 
-**Request messages**
+#### Request messages
 
 feefilter — getaddr — [getblocks](/protocol/network/messages/getblocks.md) — [getdata](/protocol/network/messages/getdata.md) — [getheaders](/protocol/network/messages/getheaders.md) — [ping](/protocol/network/messages/ping.md) —
 sendheaders — [version](/protocol/network/messages/version.md)
 
-**Response messages**
+#### Response messages
 
 [addr](/protocol/network/messages/addr.md) — block — headers — notfound — [merkleblock](/protocol/network/messages/merkleblock.md) — [pong](/protocol/network/messages/pong.md) —
 [reject](/protocol/network/messages/reject.md) — tx — [verack](/protocol/network/messages/verack.md)
 
-**Other messages (extensions)**
+#### Other messages (extensions)
 
 sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx —[xverack](/protocol/p2p/xverack.md) — [xversion](/protocol/p2p/xversion.md)
 
