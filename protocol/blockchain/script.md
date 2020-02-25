@@ -46,62 +46,125 @@ Additionally, in order for the combined script to be valid, the following must b
  - **Permitted Operations Only** - the locking script must not include operations that are disallowed and must not execute operations that are disabled..
  - **Push Only** - the unlocking script must contain only push operations (i.e. those with op codes 0x60 or less).  Added in [HF-20181115](/protocol/forks/hf-20181115).
 
-## Op Codes
+## Operation codes (opcodes)
 
 The table below lists the currently allocated op codes.  Op codes marked with **(ignored)** are permitted but will do nothing when executed.
 Op codes marked with **(disabled)** are permitted in scripts so long as they are not executed.
 Op codes marked with **(do not use)** are disallowed and will make a transaction invalid merely be being present.
 
-| Op Code Range | Name |
-|--|--|
-| 0x00 | [OP_0](/protocol/blockchain/script/op-codes/op-x), OP_FALSE |
-| 0x01 - 0x4B | [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) |
-| 0x4C | OP_PUSHDATA1 |
-| 0x4D | OP_PUSHDATA2 |
-| 0x4E | OP_PUSHDATA4 |
-| 0x4F | OP_1NEGATE |
+### Constants
+
+| Word            | Value | Hex       | Input | Output | Description                                                 |
+| --------------- | ----- | --------- | ----- | ------ | ----------------------------------------------------------- |
+| OP_0, OP_FALSE  | 0     | 0x00      |       | 0      | An empty array of bytes is pushed onto the stack. See also [OP_X](/protocol/blockchain/script/op-codes/op-x) |
+| N/A             | 1-75  | 0x01-0x4b |       |        | The next *value* bytes is data to be pushed onto the stack. See also [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) |
+| OP_PUSHDATA1    | 76    | 0x4c      |       |        | The next byte contains the number of bytes to be pushed onto the stack.  |
+| OP_PUSHDATA2    | 77    | 0x4d      |       |        | The next two bytes contain the number of bytes to be pushed onto the stack in little endian order. |
+| OP_PUSHDATA4    | 78    | 0x4e      |       |        | The next four bytes contain the number of bytes to be pushed onto the stack in little endian order. |
+| OP_1NEGATE      | 79    | 0x4f      |       | -1     | The number -1 is pushed onto the stack.                     |
+| OP_1, OP_TRUE   | 81    | 0x51      |       | 1      | The number 1 is pushed onto the stack.                      |
+| OP_2-OP_16      | 82-96 | 0x52-0x60 |       | 2-16   | The number (2-16) is pushed onto the stack.                 |
+
+### Flow control
+
+| Word      | Value | Hex  | Input                       | Output                       | Description                |
+| --------- | ----- | ---- | --------------------------- | ---------------------------- | -------------------------- |
+| OP_NOP    | 97    | 0x61 |                             |                              | Does nothing.              |
+| OP_IF     | 99    | 0x63 | <expression> IF [statements] [ELSE [statements]] ENDIF    || If the top stack value is not False, the statements are executed. The top stack value is removed. |
+| OP_NOTIF  | 100   | 0x64 | <expression> NOTIF [statements] [ELSE [statements]] ENDIF || If the top stack value is False, the statements are executed. The top stack value is removed. |
+| OP_ELSE   | 103   | 0x67 | <expression> IF [statements] [ELSE [statements]] ENDIF    || If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. |
+| OP_ENDIF  | 104   | 0x68 | <expression> IF [statements] [ELSE [statements]] ENDIF    || Ends an if/else block. All blocks must end, or the transaction is **marked as invalid**. An OP_ENDIF without OP_IF earlier is also **invalid**. |
+| OP_VERIFY | 105   | 0x69 | true / false                | Nothing / *fail*             | **Marks transaction as invalid** if top stack value is not true. The top stack value is removed. |
+| OP_RETURN | 106   | 0x6a |                             | *fail*                       | **Marks the output as unspendable**. Since [Bitcoin Core 0.9](https://bitcoin.org/en/release/v0.9.0#opreturn-and-data-in-the-block-chain), a standard way of attaching extra data to transactions is to add a zero-value output with a scriptPubKey consisting of OP_RETURN followed by data. Such outputs are provably unspendable and specially discarded from storage in the UTXO set, reducing their cost to the network. Current [standard relay rules](https://reference.cash/protocol/blockchain/transaction-validation/network-level-validation-rules/) on the Bitcoin Cash network allow a single output with OP_RETURN, that contains any sequence of push statements (or OP_RESERVED) after the OP_RETURN provided the total scriptPubKey length is at most 223 bytes. |
+
+### Stack
+
+| Word            | Value | Hex  | Input               | Output                 | Description                           |
+| --------------- | ----- | ---- | ------------------- | ---------------------- | ------------------------------------- |
+| OP_TOALTSTACK   | 107   | 0x6b | x1                  | (alt) x1               | Puts the input onto the top of the alt stack. Removes it from the main stack. |
+| OP_FROMALTSTACK | 108   | 0x6c | (alt) x1            | x1                     | Puts the input onto the top of the main stack. Removes it from the alt stack. |
+| OP_IFDUP        | 115   | 0x73 | x                   | x / x x                | If the top stack value is not 0, duplicate it. |
+| OP_DEPTH        | 116   | 0x74 | Nothing             | <stack size>           | Puts the number of stack items onto the stack. |
+| OP_DROP         | 117   | 0x75 | x                   | Nothing                | Removes the top stack item.           |
+| OP_DUP          | 118   | 0x76 | x                   | x x                    | Duplicates the top stack item.        |
+| OP_NIP          | 119   | 0x77 | x1 x2               | x2                     | Removes the second-to-top stack item. |
+| OP_OVER         | 120   | 0x78 | x1 x2               | x1 x2 x1               | Copies the second-to-top stack item to the top. |
+| OP_PICK         | 121   | 0x79 | xn ... x2 x1 x0 <n> | xn ... x2 x1 x0 xn     | The item *n* back in the stack is copied to the top. |
+| OP_ROLL         | 122   | 0x7a | xn ... x2 x1 x0 <n> | x(n-1) ... x2 x1 x0 xn | The item *n* back in the stack is moved to the top. |
+| OP_ROT          | 123   | 0x7b | x1 x2 x3	           | x2 x3 x1	              | The top three items on the stack are rotated to the left. |
+| OP_SWAP         | 124   | 0x7c | x1 x2	              | x2 x1                  | The top two items on the stack are swapped. |
+| OP_TUCK         | 125   | 0x7d | x1 x2	              | x2 x1 x2	              | The item at the top of the stack is copied and inserted below the second-to-top item. |
+| OP_2DROP        | 109   | 0x6d | x1 x2	              | Nothing                | Removes the top two stack items.      |
+| OP_2DUP         | 110   | 0x6e | x1 x2             	 | x1 x2 x1 x2	           | Duplicates the top two stack items.   |
+| OP_3DUP         | 111   | 0x6f | x1 x2 x3	           | x1 x2 x3	x1 x2 x3     	| Duplicates the top three stack items. |
+| OP_2OVER        | 112   | 0x70 | x1 x2 x3 x4	        |  x1 x2 x3 x4	x1 x2     | Copies the pair of items two spaces back in the stack to the front. |
+| OP_2ROT         | 113   | 0x71 | x1 x2 x3 x4 x5 x6	  | x3 x4 x5 x6 x1 x2	     | The fifth and sixth items back are moved to the top of the stack. |
+| OP_2SWAP        | 114   | 0x72 | x1 x2 x3 x4	        | x3 x4 x1 x2          	 | Swaps the top two pairs of items.     |
+
+### Splice
+
+|Word       |Value  |Hex |Input         |Output  | Description                                                      |
+|-----------|-------|----|--------------|--------|------------------------------------------------------------------|
+|OP_CAT     |126    |0x7e|x1 x2         |out     |Concatenates two byte sequences                                   |
+|OP_SPLIT   |127    |0x7f|x n           |x1 x2   |Splits byte sequence *x* at position *n*. Known as OP_SUBSTR before 2018-05-15. |
+|OP_NUM2BIN |128    |0x80|a b           |out     |Converts numeric value *a* into byte sequence of length *b*. Known as OP_LEFT before 2018-05-15.       |
+|OP_BIN2NUM |129    |0x81|x             |out     |Converts byte sequence *x* into a numeric value. Known as OP_RIGHT before 2018-05-15. |
+|OP_SIZE    |130    |0x82|x          |x size     |Pushes the string length of the top element of the stack (without popping it). |
+
+### Bitwise logic
+
+|Word       |Value  |Hex |Input         |Output  | Description                                                      |
+|-----------|-------|----|--------------|--------|------------------------------------------------------------------|
+|OP_INVERT      |131    |0x83|N/A           |N/A              | **DISABLED**                                           |
+|OP_AND         |132    |0x84|x1 x2         |out              |Boolean *AND* between each bit of the inputs            |
+|OP_OR          |133    |0x85|x1 x2         |out              |Boolean *OR* between each bit of the inputs.            |
+|OP_XOR         |134    |0x86|x1 x2         |out              |Boolean *EXCLUSIVE OR* between each bit of the inputs.  |
+|OP_EQUAL       |135    |0x87|x1 x2         |true / false     |Returns 1 if the inputs are exactly equal, 0 otherwise. |
+|OP_EQUALVERIFY |136    |0x88|x1 x2         |Nothing / *fail* |Same as OP_EQUAL, but runs OP_VERIFY afterward.         |
+
+### Arithmetic
+
+|Word       |Value  |Hex |Input         |Output  | Description                                                      |
+|-----------|-------|----|--------------|--------|------------------------------------------------------------------|
+|OP_DIV     |150    |0x96|a b           |out     |*a* is divided by *b*                                             |
+|OP_MOD     |151    |0x97|a b           |out     |return the remainder after *a* is divided by *b*                  |
+
+### Cryptography
+
+|Word                   |Value |Hex   |Input           |Output  | Description                                                      |
+|-----------------------|------|------|----------------|--------|------------------------------------------------------------------|
+| OP_RIPEMD160          |      | 0xa6 | in             | hash   | Hashes input with RIPEMD-160.
+| OP_SHA1               |      | 0xa7 | in             | hash   | Hashes input with SHA-1.
+| OP_SHA256             |      | 0xa8 | in             | hash   | Hashes input with SHA-256.
+| OP_HASH160            |      | 0xa9 | in             | hash   | Hashes input with SHA-256 and then with RIPEMD-160.
+| OP_HASH256            |      | 0xaa | in             | hash   | Hashes input twice with SHA-256.
+| OP_CHECKDATASIG       | 186  | 0xba | sig msg pubkey | true / false | Check if signature is valid for message and a public key. [See spec](/protocol/forks/op_checkdatasig) |
+| OP_CHECKDATASIGVERIFY | 187  | 0xbb | sig msg pubkey | nothing / *fail* | Same as OP_CHECKDATASIG, but runs OP_VERIFY afterward. |
+
+### Locktime
+
+| Word                   | Value   | Hex       | Input |Output     | Description                                     |
+| ---------------------- | ------- | --------- | ----- | --------- | ----------------------------------------------- |
+| OP_CHECKLOCKTIMEVERIFY | 177     | 0xb1      | x     |x / *fail* | Marks transaction as invalid if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the stack is empty; or 2. the top stack item is negative; or 3. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 4. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in BIP65. |
+| OP_CHECKSEQUENCEVERIFY | 178     | 0xb2      | x     |x / *fail* |  Marks transaction as invalid if the relative lock time of the input (enforced by BIP68 with nSequence) is not equal to or longer than the value of the top stack item. The precise semantics are described in BIP112. |
+
+### Reserved
+
+| Word             | Value   | Hex       | Description                                                              |
+| ---------------- | ------- | --------- | ------------------------------------------------------------------------ |
+| OP_NOP1          | 176     | 0xb0      | Previously reserved for OP_EVAL (BIP12).                                 |
+| OP_NOP4-OP_NOP10 | 179-185 | 0b3-0xb9  | Ignored. Does not mark transaction as invalid.                           |
+
+### Uncategorized
+
+Please help improve this article by catigorizing and describing the following up codes.
+
+| Hex  | Word |
+| ---- | ---- |
 | 0x50 | OP_RESERVED **(disabled)** |
-| 0x51 - 0x60 | [OP_1](/protocol/blockchain/script/op-codes/op-x) - OP_16, OP_TRUE |
-| 0x61 | OP_NOP |
 | 0x62 | OP_VER **(disabled)** |
-| 0x63 | OP_IF |
-| 0x64 | OP_NOTIF |
 | 0x65 | OP_VERIF **(do not use)** |
 | 0x66 | OP_VERNOTIF **(do not use)** |
-| 0x67 | OP_ELSE |
-| 0x68 | OP_ENDIF |
-| 0x69 | OP_VERIFY |
-| 0x6A | OP_RETURN |
-| 0x6B | OP_TOALTSTACK |
-| 0x6C | OP_FROMALTSTACK |
-| 0x6D | OP_2DROP |
-| 0x6E | OP_2DUP |
-| 0x6F | OP_3DUP |
-| 0x70 | OP_2OVER |
-| 0x71 | OP_2ROT |
-| 0x72 | OP_2SWAP |
-| 0x73 | OP_IFDUP |
-| 0x74 | OP_DEPTH |
-| 0x75 | OP_DROP |
-| 0x76 | OP_DUP |
-| 0x77 | OP_NIP |
-| 0x78 | OP_OVER |
-| 0x79 | OP_PICK |
-| 0x7A | OP_ROLL |
-| 0x7B | OP_ROT |
-| 0x7C | OP_SWAP |
-| 0x7D | OP_TUCK |
-| 0x7E | OP_CAT |
-| 0x7F | OP_SUBSTR |
-| 0x80 | OP_LEFT |
-| 0x81 | OP_RIGHT |
-| 0x82 | OP_SIZE |
-| 0x83 | OP_INVERT |
-| 0x84 | OP_AND |
-| 0x85 | OP_OR |
-| 0x86 | OP_XOR |
-| 0x87 | OP_EQUAL |
-| 0x88 | OP_EQUALVERIFY |
 | 0x89 | OP_RESERVED1 **(do not use)** |
 | 0x8A | OP_RESERVED2 **(do not use)** |
 | 0x8B | OP_1ADD |
@@ -115,8 +178,6 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 | 0x93 | OP_ADD |
 | 0x94 | OP_SUB |
 | 0x95 | OP_MUL |
-| 0x96 | OP_DIV |
-| 0x97 | OP_MOD |
 | 0x98 | OP_LSHIFT |
 | 0x99 | OP_RSHIFT |
 | 0x9A | OP_BOOLAND |
@@ -131,28 +192,11 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 | 0xA3 | OP_MIN |
 | 0xA4 | OP_MAX |
 | 0xA5 | OP_WITHIN |
-| 0xA6 | OP_RIPEMD160 |
-| 0xA7 | OP_SHA1 |
-| 0xA8 | OP_SHA256 |
-| 0xA9 | OP_HASH160 |
-| 0xAA | OP_HASH256 |
 | 0xAB | OP_CODESEPARATOR |
 | 0xAC | OP_CHECKSIG |
 | 0xAD | OP_CHECKSIGVERIFY |
 | 0xAE | OP_CHECKMULTISIG |
 | 0xAF | OP_CHECKMULTISIGVERIFY |
-| 0xB0 | OP_NOP1 **(ignored)** |
-| 0xB1 | OP_CHECKLOCKTIMEVERIFY |
-| 0xB2 | OP_CHECKSEQUENCEVERIFY |
-| 0xB3 | OP_NOP4 **(ignored)** |
-| 0xB4 | OP_NOP5 **(ignored)** |
-| 0xB5 | OP_NOP6 **(ignored)** |
-| 0xB6 | OP_NOP7 **(ignored)** |
-| 0xB7 | OP_NOP8 **(ignored)** |
-| 0xB8 | OP_NOP9 **(ignored)** |
-| 0xB9 | OP_NOP10 **(ignored)** |
-| 0xBA | OP_CHECKDATASIG |
-| 0xBB | OP_CHECKDATASIGVERIFY |
 | 0xBC - 0xFF | Unused **(disabled)** |
 
 ### Node-Specific Behavior

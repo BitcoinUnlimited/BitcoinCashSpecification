@@ -19,7 +19,7 @@ If the signature is valid for the specified public key in the locking script, th
 
 | Operation | Description |
 |--|--|
-| [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (public key) | Add the recipient's public key to the stack.  The data pushed must be either a compressed or uncompressed public key with appropriate length for the type for the script to be recognized as P2PK. |
+| [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (public key) | Add the recipient's public key to the stack.  The data pushed must be either a compressed or uncompressed public key with appropriate length (33 bytes if the key is compressed, 65 bytes if it is not) for the type for the script to be recognized as P2PK. |
 | [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Check the public key at the top of the stack against the signature below it on the stack. |
 
 <img src="/_static_/images/warning.png" /> **NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked, resulting in:

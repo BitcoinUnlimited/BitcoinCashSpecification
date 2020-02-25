@@ -7,9 +7,10 @@ For historic blocks, see [Topological Transaction Ordering](#legacy-transaction-
 
 ## Canonical Transaction Ordering
 
-With canonical transaction ordering (CTOR), the Transactions after the Coinbase Transaction are required to be sorted in lexicographical order by Transaction Hash.
-New Blocks will not be accepted by the network unless they follow this constraint.
-CTOR went into effect at 1542300000 unix time (November 15, 2018 4:40:00 PM GMT).
+With canonical transaction ordering (CTOR), the transactions after the coinbase transaction are required to be sorted in lexicographical order by transaction hash. The transaction hash is interpreted as little endian during sort. CTOR was scheduled to activate at median-time-past time 1542300000 and activated at block height 556766 (inclusive) on mainnet. 
+After activation, blocks that do not follow this constraint will be rejected by the network.
+
+CTOR is also sometimes referred to as LTOR (lexicographical transaction ordering). 
 
 See [HF20181115](/protocol/forks/HF20181115) for more information on this change.
 
@@ -17,3 +18,5 @@ See [HF20181115](/protocol/forks/HF20181115) for more information on this change
 
 With topological transaction ordering, Transactions after the Coinbase Transaction were required to abide by the following constraint: if a transaction B spends outputs created by transaction A, transaction B must appear after transaction A in the block.
 Otherwise, transactions could appear in any order.
+
+Before CTOR activated (block height < 556766) this was the required transaction order. 
