@@ -79,6 +79,28 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Stack
 
+| Word            | Value | Hex  | Input               | Output                 | Description                           |
+| --------------- | ----- | ---- | ------------------- | ---------------------- | ------------------------------------- |
+| OP_TOALTSTACK   | 107   | 0x6b | x1                  | (alt) x1               | Puts the input onto the top of the alt stack. Removes it from the main stack. |
+| OP_FROMALTSTACK | 108   | 0x6c | (alt) x1            | x1                     | Puts the input onto the top of the main stack. Removes it from the alt stack. |
+| OP_IFDUP        | 115   | 0x73 | x                   | x / x x                | If the top stack value is not 0, duplicate it. |
+| OP_DEPTH        | 116   | 0x74 | Nothing             | <stack size>           | Puts the number of stack items onto the stack. |
+| OP_DROP         | 117   | 0x75 | x                   | Nothing                | Removes the top stack item.           |
+| OP_DUP          | 118   | 0x76 | x                   | x x                    | Duplicates the top stack item.        |
+| OP_NIP          | 119   | 0x77 | x1 x2               | x2                     | Removes the second-to-top stack item. |
+| OP_OVER         | 120   | 0x78 | x1 x2               | x1 x2 x1               | Copies the second-to-top stack item to the top. |
+| OP_PICK         | 121   | 0x79 | xn ... x2 x1 x0 <n> | xn ... x2 x1 x0 xn     | The item *n* back in the stack is copied to the top. |
+| OP_ROLL         | 122   | 0x7a | xn ... x2 x1 x0 <n> | x(n-1) ... x2 x1 x0 xn | The item *n* back in the stack is moved to the top. |
+| OP_ROT          | 123   | 0x7b | x1 x2 x3	           | x2 x3 x1	              | The top three items on the stack are rotated to the left. |
+| OP_SWAP         | 124   | 0x7c | x1 x2	              | x2 x1                  | The top two items on the stack are swapped. |
+| OP_TUCK         | 125   | 0x7d | x1 x2	              | x2 x1 x2	              | The item at the top of the stack is copied and inserted below the second-to-top item. |
+| OP_2DROP        | 109   | 0x6d | x1 x2	              | Nothing                | Removes the top two stack items.      |
+| OP_2DUP         | 110   | 0x6e | x1 x2             	 | x1 x2 x1 x2	           | Duplicates the top two stack items.   |
+| OP_3DUP         | 111   | 0x6f | x1 x2 x3	           | x1 x2 x3	x1 x2 x3     	| Duplicates the top three stack items. |
+| OP_2OVER        | 112   | 0x70 | x1 x2 x3 x4	        |  x1 x2 x3 x4	x1 x2     | Copies the pair of items two spaces back in the stack to the front. |
+| OP_2ROT         | 113   | 0x71 | x1 x2 x3 x4 x5 x6	  | x3 x4 x5 x6 x1 x2	     | The fifth and sixth items back are moved to the top of the stack. |
+| OP_2SWAP        | 114   | 0x72 | x1 x2 x3 x4	        | x3 x4 x1 x2          	 | Swaps the top two pairs of items.     |
+
 ### Splice
 
 |Word       |Value  |Hex |Input         |Output  | Description                                                      |
@@ -143,25 +165,6 @@ Please help improve this article by catigorizing and describing the following up
 | 0x62 | OP_VER **(disabled)** |
 | 0x65 | OP_VERIF **(do not use)** |
 | 0x66 | OP_VERNOTIF **(do not use)** |
-| 0x6B | OP_TOALTSTACK |
-| 0x6C | OP_FROMALTSTACK |
-| 0x6D | OP_2DROP |
-| 0x6E | OP_2DUP |
-| 0x6F | OP_3DUP |
-| 0x70 | OP_2OVER |
-| 0x71 | OP_2ROT |
-| 0x72 | OP_2SWAP |
-| 0x73 | OP_IFDUP |
-| 0x74 | OP_DEPTH |
-| 0x75 | OP_DROP |
-| 0x76 | OP_DUP |
-| 0x77 | OP_NIP |
-| 0x78 | OP_OVER |
-| 0x79 | OP_PICK |
-| 0x7A | OP_ROLL |
-| 0x7B | OP_ROT |
-| 0x7C | OP_SWAP |
-| 0x7D | OP_TUCK |
 | 0x89 | OP_RESERVED1 **(do not use)** |
 | 0x8A | OP_RESERVED2 **(do not use)** |
 | 0x8B | OP_1ADD |
