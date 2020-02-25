@@ -67,6 +67,16 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Flow control
 
+| Word      | Value | Hex  | Input                       | Output                       | Description                |
+| --------- | ----- | ---- | --------------------------- | ---------------------------- | -------------------------- |
+| OP_NOP    | 97    | 0x61 |                             |                              | Does nothing.              |
+| OP_IF     | 99    | 0x63 | <expression> IF [statements] [ELSE [statements]] ENDIF    || If the top stack value is not False, the statements are executed. The top stack value is removed. |
+| OP_NOTIF  | 100   | 0x64 | <expression> NOTIF [statements] [ELSE [statements]] ENDIF || If the top stack value is False, the statements are executed. The top stack value is removed. |
+| OP_ELSE   | 103   | 0x67 | <expression> IF [statements] [ELSE [statements]] ENDIF    || If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. |
+| OP_ENDIF  | 104   | 0x68 | <expression> IF [statements] [ELSE [statements]] ENDIF    || Ends an if/else block. All blocks must end, or the transaction is **marked as invalid**. An OP_ENDIF without OP_IF earlier is also **invalid**. |
+| OP_VERIFY | 105   | 0x69 | true / false                | Nothing / *fail*             | **Marks transaction as invalid** if top stack value is not true. The top stack value is removed. |
+| OP_RETURN | 106   | 0x6a |                             | *fail*                       | **Marks the output as unspendable**. Since [Bitcoin Core 0.9](https://bitcoin.org/en/release/v0.9.0#opreturn-and-data-in-the-block-chain), a standard way of attaching extra data to transactions is to add a zero-value output with a scriptPubKey consisting of OP_RETURN followed by data. Such outputs are provably unspendable and specially discarded from storage in the UTXO set, reducing their cost to the network. Current [standard relay rules](https://reference.cash/protocol/blockchain/transaction-validation/network-level-validation-rules/) on the Bitcoin Cash network allow a single output with OP_RETURN, that contains any sequence of push statements (or OP_RESERVED) after the OP_RETURN provided the total scriptPubKey length is at most 223 bytes. |
+
 ### Stack
 
 | Word            | Value | Hex  | Input               | Output                 | Description                           |
@@ -152,16 +162,9 @@ Please help improve this article by catigorizing and describing the following up
 | Hex  | Word |
 | ---- | ---- |
 | 0x50 | OP_RESERVED **(disabled)** |
-| 0x61 | OP_NOP |
 | 0x62 | OP_VER **(disabled)** |
-| 0x63 | OP_IF |
-| 0x64 | OP_NOTIF |
 | 0x65 | OP_VERIF **(do not use)** |
 | 0x66 | OP_VERNOTIF **(do not use)** |
-| 0x67 | OP_ELSE |
-| 0x68 | OP_ENDIF |
-| 0x69 | OP_VERIFY |
-| 0x6A | OP_RETURN |
 | 0x89 | OP_RESERVED1 **(do not use)** |
 | 0x8A | OP_RESERVED2 **(do not use)** |
 | 0x8B | OP_1ADD |
