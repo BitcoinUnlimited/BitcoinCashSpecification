@@ -39,21 +39,21 @@ Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signat
 
 #### Announcement messages
 
-[filteradd](/protocol/network/messages/filteradd.md) — [filterclear](/protocol/network/messages/filterclear.md) — [filterload](/protocol/network/messages/filterload.md) — [inv](/protocol/network/messages/inv.md)
+[filteradd](/protocol/network/messages/filteradd) — [filterclear](/protocol/network/messages/filterclear) — [filterload](/protocol/network/messages/filterload) — [inv](/protocol/network/messages/inv)
 
 #### Request messages
 
-feefilter — getaddr — [getblocks](/protocol/network/messages/getblocks.md) — [getdata](/protocol/network/messages/getdata.md) — [getheaders](/protocol/network/messages/getheaders.md) — [ping](/protocol/network/messages/ping.md) —
-sendheaders — [version](/protocol/network/messages/version.md)
+feefilter — getaddr — [getblocks](/protocol/network/messages/getblocks) — [getdata](/protocol/network/messages/getdata) — [getheaders](/protocol/network/messages/getheaders) — [ping](/protocol/network/messages/ping) —
+sendheaders — [version](/protocol/network/messages/version)
 
 #### Response messages
 
-[addr](/protocol/network/messages/addr.md) — block — headers — notfound — [merkleblock](/protocol/network/messages/merkleblock.md) — [pong](/protocol/network/messages/pong.md) —
-[reject](/protocol/network/messages/reject.md) — tx — [verack](/protocol/network/messages/verack.md)
+[addr](/protocol/network/messages/addr) — block — headers — notfound — [merkleblock](/protocol/network/messages/merkleblock) — [pong](/protocol/network/messages/pong) —
+[reject](/protocol/network/messages/reject) — tx — [verack](/protocol/network/messages/verack)
 
 #### Other messages (extensions)
 
-sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx —[xverack](/protocol/p2p/xverack.md) — [xversion](/protocol/p2p/xversion.md)
+sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx —[xverack](/protocol/p2p/xverack) — [xversion](/protocol/p2p/xversion)
 
 ### Simple Payment Verification (SPV)
 [Bloom Filters](/objects/bloom__filter)
