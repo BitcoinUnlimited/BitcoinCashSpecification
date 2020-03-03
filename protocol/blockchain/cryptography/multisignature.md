@@ -8,7 +8,7 @@ Multisignature scripts set a condition where N public keys are recorded in the s
 
 Multisig schemes can be built with the opcodes `OP_CHECKMULTISIG` and `OP_CHECKMULTISIGVERIFY`, two opcodes of the Bitcoin Cash [scripting language](/protocol/blockchain/script). `OP_CHECKMULTISIGVERIFY` has the same implementation as `OP_CHECKMULTISIG`, except OP_VERIFY is executed afterward.
 
-The opcode `OP_CHECKMULTISIG` can be included in all sorts of scripts. The minimal [locking script](https://reference.cash/protocol/blockchain/transaction/locking-script) using `OP_CHECKMULTISIG` is:
+The opcode `OP_CHECKMULTISIG` can be included in all sorts of scripts. The minimal [locking script](/protocol/blockchain/transaction/locking-script.md) using `OP_CHECKMULTISIG` is:
 
 ```
 M <pubkey1> ... <pubkeyN> N CHECKMULTISIG
@@ -52,7 +52,7 @@ Because public keys are not checked again if they fail any signature comparison 
 
 Note that the `checkbits` element is encoded as a byte array of length `floor((N + 7)/8)` (the shortest byte array that can hold N bits) and must have exactly M bits set to ensure that all signatures are checked against public keys.
 
-To know more about the Schnorr mode, see the [official specification](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/2019-11-15-schnorrmultisig.md).
+To know more about the Schnorr mode, see the [specification](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/2019-11-15-schnorrmultisig.md).
 
 ### Example
 
