@@ -1,11 +1,12 @@
 # P2P Network Message
 
-The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted via TCP.
-The P2P network is similar to a gossip network, where nodes listen for messages and then relays that message to its other peers if it believes that message's content is valid.
+The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted over TCP/IP.
+Individual nodes on the Bitcoin Cash network connect and create a mesh network where each node is indirectly connected to many others via just a couple of hops.
+In the original Satoshi implementation of the P2P protocol the design of INV and getdata have been used for propagating transaction data using the rules of the gossip protocol values: forwarding validated transactions to a few peer-nodes who send it to others until the entire network has the transaction. This emergent behavior of the P2P layer allows fast propagation without undue strain on any individual node.
 
-P2P network messages do not necessarily have a reply and there is no way to unambiguously connect a sent message to a reply, although many communications are often request/response pairs.
-Nodes may handle incoming messages in parallel, so a message reply order cannot be assumed.
-Messages that cannot be fulfilled are sometimes dropped with no reply, and sometimes replied to via a `reject` message.  
+The P2P protocol is designed around messages. Each message is separate and self-contained. Nodes should be tolerant of message-types they do not understand. It is best to simply ignore those.
+Detailed descriptions of the messages follows below. Generally speaking, each message is an event that the node can choose to respond to. Events range from notifications of new data (transactions/blocks/etc) and
+actual requests for such data to be send and last the actual data being sent. Or, in some specific cases a `reject` message.
 
 These design decisions were made with consideration to communication with untrusted/uncooperative partners.
 
@@ -29,11 +30,11 @@ All P2P messages follow a binary format with the following structure:
 
 The network identifier is used to separate blockchains and test networks.
 This reduces unnecessary load on peers, allowing them to rapidly ban nodes rather then forcing the peer to do a blockchain analysis before banning or disconnecting.
-For Bitcoin Cash main net, the `net magic` field is always `E3E1F3E8`.
+For Bitcoin Cash main net, the `net magic` field is always `0xE3E1F3E8`.
 Any message received that does not begin with the `net magic` is invalid.
 
 The `net magic` is designed to be unlikely to occur in normal data--the characters are rarely used upper ASCII, are not valid as UTF-8, and produce a large 32-bit integer with any alignment.
-`E3E1F3E8` is the ASCII string, "cash", with each byte's highest bit set.
+`0xE3E1F3E8` is the ASCII string, "cash", with each byte's highest bit set.
 
 ### Command String
 
@@ -43,7 +44,9 @@ Commands that are shorter than 12-bytes are right-padded with null bytes (`0x00`
 The command string is used to determine the type of message being transmitted.
 Messages with an unrecognized `command string` are ignored.
 
-The following messages are considered standard by all node implementations.
+The following messages are considered standard by all node implementations.  
+(TODO: the protocol is versioned, commands are introduced at certain versions, the previous line is ignoring this  
+TODO: saying something is "standard" doesn't mean much in terms of spec. Is there an obligation to implement them?)
 
 #### Announcements
 | Command String | Name |
@@ -107,10 +110,12 @@ The checksum is transmitted as a byte array, and is encoded as [big-endian](/pro
 
 The message payload is defined by the message type.
 
+# Example message
+
 # Node Specific Behavior
 
 ## Bitcoin Unlimited
 
 ### Payload Checksum
 
-Bitcoin Unlimited does not validate the message checksum since messages are sent via TCP which has its own checksum paradigm.
+Bitcoin Unlimited does not validate the message checksum
