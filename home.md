@@ -25,7 +25,7 @@
 [Proof of Work](/protocol/blockchain/proof-of-work) — [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) — [Mining](/protocol/blockchain/proof-of-work/mining) — Stratum Protocol — Mining Pools
 
 ### Addresses
-Pay To Public Key (P2PK) — Pay To Public Key Hash (P2PKH) — Pay To Script Hash (P2SH) — Base 58 encoding (legacy) — Cashaddr encoding
+Pay To Public Key (P2PK) — Pay To Public Key Hash (P2PKH) — Pay To Script Hash (P2SH) — [Base58Check encoding (legacy)](/protocol/blockchain/encoding/base58check) — Cashaddr encoding
 
 ### Cryptography
 Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signatures — [Multisignature (M-of-N multisig)](/protocol/blockchain/cryptography/multisignature.md)
