@@ -61,15 +61,15 @@ The testnet version bytes are:
 
 ## Encoding
 
-Base58Check is used to encode a `payload` and a `version` byte. It is done by following the steps described below.
+Base58Check is used to encode a **payload** and a **version** byte. It is done by following the steps described below.
 
-1. Take the `version` byte and the `payload` bytes, and concatenate them together (bytewise):
+1. Take the version byte and the payload bytes, and concatenate them together (bytewise):
 
     ```
     version || payload
     ```
 
-2. Compute the `checksum` by taking the first four bytes of the double SHA256 hash function of this concatenation.
+2. Compute the checksum by taking the first four bytes of the double SHA256 hash function of this concatenation.
 
     ```
     checksum = SHA256( SHA256( version || payload ) )[:4]
@@ -99,7 +99,7 @@ Steps to encode a private key:
     1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd
     ```
     
-2. Take the `version` byte corresponding to it (`0x80` for mainnet, `0xef` for testnet), and concatenate them together:
+2. Take the version byte corresponding to it (`0x80` for mainnet, `0xef` for testnet), and concatenate them together:
 
     ```
     801e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd
@@ -108,7 +108,7 @@ Steps to encode a private key:
 3. Compute the checksum by performing the double SHA256 on it, and by taking the first four bytes of this hash:
 
     ```
-    SHA256( SHA256( 801e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd ) ) = **c47e83ff**afda3ba4396e1bc6a648515e5fc9aa95910af6a4429537b87fb7b474
+    SHA256( SHA256( 801e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd ) ) = c47e83ffafda3ba4396e1bc6a648515e5fc9aa95910af6a4429537b87fb7b474
     ```
     
 4. Concatenate the result from step 2 and the checksum together:
@@ -158,7 +158,7 @@ Steps to encode a legacy address:
 3. Compute the checksum by performing the double SHA256 on it, and by taking the first four bytes of this hash:
 
     ```
-    SHA256( SHA256( 00211b74ca4686f81efda5641767fc84ef16dafe0b ) ) = **388c8d1d**3f70ec351abf400fadf7756418e6b3835c01fe78206b39ec1ab8a37a
+    SHA256( SHA256( 00211b74ca4686f81efda5641767fc84ef16dafe0b ) ) = 388c8d1d3f70ec351abf400fadf7756418e6b3835c01fe78206b39ec1ab8a37a
     ```
     
 4. Concatenate the result from step 2 and the checksum together:
