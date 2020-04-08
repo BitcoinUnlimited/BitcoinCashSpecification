@@ -13,7 +13,9 @@ This format reuses the work done for Bech32 (see [BIP173](https://github.com/bit
 
 ## Prefix
 
-The prefix is a human-readable part of the address which indicates the network on which the addess is valid. It can only contain ASCII characters. The 3 prefixes used in Bitcoin Cash are:
+The prefix is a human-readable part of the address which indicates the network on which the addess is valid, or the metaprotocol used. It can only contain ASCII characters.
+
+There are 3 prefixes used in Bitcoin Cash to indicate the network:
 
 | Network | Prefix        |
 | ------- | ------------- |
@@ -21,13 +23,15 @@ The prefix is a human-readable part of the address which indicates the network o
 | Testnet | `bchtest`     |
 | Regtest | `bchreg`      |
 
+The prefix can also indicate for which metaprotocol the addres must be used. For instance, Simple Ledger Protocol (SLP) addresses are required to begin with `simpleledger` in order to avoid sending SLP tokens to a non-SLP wallet.
+
 The prefix is always followed by the separator `:`.
 
 When presented to users, the prefix and the separator may be omitted as it is part of the checksum computation. 
 
 ## Base32
 
-CashAddr uses Base32 to encode information. The symbols used in CashAddr Base32 are the lowercase alphanumeric characters excluding `1`, `b`, `i`, and `o`. 
+CashAddr uses Base32 to encode information. The symbols used in CashAddr Base32 are the lowercase alphanumeric characters excluding `1`, `b`, `i`, and `o`. Uppercase characters are also valid to enable efficient QR code encoding ([see spec](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md#uppercaselowercase)). However, any mixture of lowercase and uppercase characters must be rejected.
 
 Base32 alphabet:
 
@@ -194,7 +198,7 @@ The steps to encode a P2PKH address which is valid on the Bitcoin Cash main netw
     [ 28, 10, 17, 3, 2, 3, 3, 28 ]
     ```
     
-4. Encoded with Base32, the payload and the checksum are, respectively, `qqs3kax2g6r0s8ha54jpwelusnh3dkh7pv` and `u23rzrru`. The resulting addres is:
+4. Encoded with Base32, the payload and the checksum are, respectively, `qqs3kax2g6r0s8ha54jpwelusnh3dkh7pv` and `u23rzrru`. The resulting address is:
 
     ```
     bitcoincash:qqs3kax2g6r0s8ha54jpwelusnh3dkh7pvu23rzrru
