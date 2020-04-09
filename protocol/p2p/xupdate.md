@@ -1,6 +1,6 @@
 <div class="cwikmeta">{
 "title":"XUPDATE",
-"related":["/protocol","/protocol/p2p/xversion"]
+"related":["/protocol","/protocol/p2p/xversion" ,"/protocol/p2p/xversionkeys"]
 }</div>
 
 *Notifies peers about an XVERSION configuration value update*
@@ -10,7 +10,7 @@ This message notifies a peer about changes to protocol parameters.  It follows t
 See the [XVERSION](/protocol/p2p/xversion.md) message for detailed information about each parameter.
 
 | compact int | compact int | variable bytes |... | compact int | 32 bytes |
-|----------|---------|----------|---|---------|----------| 
+|----------|---------|----------|---|---------|----------|
 |[vector](/protocol/p2p/vector) size N of|   key 1  | [vector](/protocol/p2p/vector) of bytes  | | key N | [vector](/protocol/p2p/vector) of bytes
 
 
