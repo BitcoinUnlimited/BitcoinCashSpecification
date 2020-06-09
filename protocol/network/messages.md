@@ -46,42 +46,44 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 The following messages are considered standard by all node implementations.
 
 #### Announcements
-| Command String | Name |
-| -- | -- |
-| filteradd |  |
-| filterclear |  |
-| filterload |  |
-| inv |  |
+| Command String | Synopsis | Supported Implementations
+| -- | -- | -- |
+| [filteradd](/protocol/p2p/filteradd) | *Adds a single item into an installed filter* | all
+| [filterclear](/protocol/p2p/filterclear) | *Removes an installed filter* | all
+| [filterload](/protocol/p2p/filterload) | *Inserts a transaction and merkle block filter into the peer* | all
+| [inv](/protocol/p2p/inv) | *Notifies peers about the existence of some information (generally a block or transaction)* | all
+  | [xupdate](/protocol/p2p/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
 
 #### Requests
-| Command String | Name |
-| -- | -- |
+| Command String | Synopsis | Supported Implementations
+| -- | -- | -- |
 | feefilter |  |
 | getaddr |  |
-| getblocks |  |
-| getdata |  |
-| getheaders |  |
-| ping | [Ping](/protocol/network/messages/ping) |
+| [getblocks](/protocol/p2p/getblocks) | *Requests block hash identifiers* | all |
+| [getdata](/protocol/p2p/getdata) | *Requests information from a peer* | all |
+| [getheaders](/protocol/p2p/getheaders) | *Requests block headers from a peer*  | all |
+| ping | [Ping](/protocol/network/messages/ping) | all |
 | sendheaders |  |
-| version | [Handshake: Version](/protocol/network/messages/version) |
+| [version](/protocol/network/messages/version) | *Describes peer capabilities* | all
+| [xversion](/protocol/p2p/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
 
 
 #### Responses
-| Command String | Name |
-| -- | -- |
-| addr |  |
+| Command String | Synopsis | Supported Implementations
+| -- | -- | -- |
+| [addr](/protocol/p2p/addr) | *Provides a peer with the addresses of other peers* | all
 | block |  |
-| headers |  |
+| [headers](/protocol/p2p/headers) | *Provides a set of block headers (unsolicited or GETHEADERS response)* | all |
 | notfound |  |
-| merkleblock |  |
-| pong | [Pong](/protocol/network/messages/pong) |
-| reject |  |
-| tx |  |
-| verack | [Handshake: Acknowledge Version](/protocol/network/messages/verack) |
+|  [merkleblock](protocol/p2p/merkleblock) | *Provides a provable subset of a block's transactions, as filtered by FILTERADD*  | all |
+| [Pong](/protocol/network/messages/pong) | *Reply to a ping message* | all |
+| [reject](/protocol/p2p/reject) | *Response by well-behaved clients if a message cannot be handled*  | all
+| [TX](/protocol/p2p/tx) | *Provide a transaction* | all
+| [verack](/protocol/network/messages/verack) | *Respond to an [xversion](/protocol/p2p/xversion) message* | all
 
 The following messages are well known, but not implemented by all node implementations.
 
-| Command String | Name | Supported Implementations |
+| Command String | Synopsis | Supported Implementations
 | -- | -- | -- |
 | get_xblocktx |  |  |
 | get_xthin |  |  |
