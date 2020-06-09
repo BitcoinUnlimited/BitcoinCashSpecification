@@ -9,3 +9,19 @@ Transaction validation can be broken down into three major categories:
  - [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules) which determine whether transactions are relayed from node to node
 
 The three of these are closely intertwined but often result in different behavior when they are violated.  For details, see the linked pages for definitions of each.
+
+## Miscellaneous Validation Rules
+
+Bitcoin also has some miscellaneous rules for validation, which include exceptions or oddities.
+The following are miscellaneous rules.
+
+### Genesis Block Coinbase
+
+The genesis block's coinbase may not be spent.
+Furthermore, this coinbase's output is not considered an unspent transaction output.
+
+### Extra Coinbase Validation Rules
+
+Coinbases may only have one transaction input.
+
+All coinbase unlocking script must be less than or equal to 100 bytes in size.
