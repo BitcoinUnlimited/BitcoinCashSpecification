@@ -39,9 +39,9 @@ The `net magic` is designed to be unlikely to occur in normal data--the characte
 
 The `command string` is a fixed-length 12 byte ASCII string.
 Commands may not be longer than 12 bytes.
-Commands that are shorter than 12-bytes are right-padded with null bytes (`0x00`).
+Commands that are shorter than 12 bytes are right-padded with null bytes (`0x00`).
 The command string is used to determine the type of message being transmitted.
-Messages with an unrecognized `command string` are ignored.
+Messages with an unrecognized `command string` are ignored by most implementations but may result in a ban by implementations that diverge from the Satoshi-client defacto standard.
 
 The following messages are considered standard by all node implementations.
 
