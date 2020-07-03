@@ -40,3 +40,4 @@ This requirement was added with version 2 blocks as a part of [BIP-34](/protocol
 Each coinbase transaction may only have one transaction input.
 
 Each coinbase transaction's unlocking script must be less than or equal to 100 bytes.
+

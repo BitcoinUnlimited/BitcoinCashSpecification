@@ -124,21 +124,51 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Arithmetic
 
-|Word       |Value  |Hex |Input         |Output  | Description                                                      |
-|-----------|-------|----|--------------|--------|------------------------------------------------------------------|
-|OP_DIV     |150    |0x96|a b           |out     |*a* is divided by *b*                                             |
-|OP_MOD     |151    |0x97|a b           |out     |return the remainder after *a* is divided by *b*                  |
+|Word                 |Value  |Hex |Input         |Output           | Description                                          |
+|---------------------|-------|----|--------------|-----------------|------------------------------------------------------|
+|OP_1ADD              | 139   |0x8b|in            |out              | 	1 is added to the input.                            |
+|OP_1SUB              | 140   |0x8c|in            |out              |  1 is subtracted from the input.                     |
+|OP_2MUL              | 141   |0x8d|in            |out              | The input is multiplied by 2. **DISABLED**           |
+|OP_2DIV              | 142   |0x8e|in            |out              | The input is divided by 2. **DISABLED**              |
+|OP_NEGATE            | 143   |0x8f|in            |out              | The sign of the input is flipped.                    |
+|OP_ABS               | 144   |0x90|in            |out              | The input is made positive.                          |
+|OP_NOT               | 145   |0x91|in            |true / false     | If the input is 0 or 1, it is flipped. Otherwise the output will be 0. |
+|OP_0NOTEQUAL         | 146   |0x92|in            |true / false    	| Returns 0 if the input is 0. 1 otherwise.            |
+|OP_ADD               | 147   |0x93|a b           |out              | *a* is added to *b*.                                 |
+|OP_SUB               | 148   |0x94|a b           |out              | *b* is subtracted from *a*.                          |
+|OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*.  **DISABLED**              |
+|OP_DIV               | 150   |0x96|a b           |out              | *a* is divided by *b*.                               |
+|OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is divided by *b*.   |
+|OP_LSHIFT            | 152   |0x98|a b           |out              | Shifts *a* left *b* bits, preserving sign. **DISABLED** |
+|OP_RSHIFT            | 153   |0x99|a b           |out              | Shifts *a* right *b* bits, preserving sign. **DISABLED** |
+|OP_BOOLAND           | 154   |0x9a|a b           |true / false     | If both *a* and *b* are not 0, the output is 1. Otherwise 0. |
+|OP_BOOLOR            | 155   |0x9b|a b           |true / false     | If *a* or *b* is not 0, the output is 1. Otherwise 0.|
+|OP_NUMEQUAL          | 156   |0x9c|a b           |true / false     | Returns 1 if the numbers are equal, 0 otherwise.     |
+|OP_NUMEQUALVERIFY    | 157   |0x9d|a b           |Nothing / *fail* | Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.   |
+|OP_NUMNOTEQUAL       | 158   |0x9e|a b           |true / false     | Returns 1 if the numbers are not equal, 0 otherwise. |
+|OP_LESSTHAN          | 159   |0x9f|a b           |true / false     | Returns 1 if *a* is less than *b*, 0 otherwise.      |
+|OP_GREATERTHAN       | 160   |0xa0|a b           |true / false     | Returns 1 if *a* is greater than *b*, 0 otherwise.   |
+|OP_LESSTHANOREQUAL   | 161   |0xa1|a b           |true / false     | Returns 1 if *a* is less than or equal to *b*, 0 otherwise. |
+|OP_GREATERTHANOREQUAL| 162   |0xa2|a b           |true / false     | Returns 1 if *a* is greater than or equal to *b*, 0 otherwise. |
+|OP_MIN               | 163   |0xa3|a b           |out              | Returns the smaller of a and b.                      |
+|OP_MAX               | 164   |0xa4|a b           |out              | Returns the larger of a and b.                       |
+|OP_WITHIN            | 165   |0xa5|x min max     |true / false     | Returns 1 if *x* is within the specified range (left-inclusive), 0 otherwise. |
 
 ### Cryptography
 
-|Word                   |Value |Hex   |Input           |Output  | Description                                                      |
-|-----------------------|------|------|----------------|--------|------------------------------------------------------------------|
-| OP_RIPEMD160          |      | 0xa6 | in             | hash   | Hashes input with RIPEMD-160.
-| OP_SHA1               |      | 0xa7 | in             | hash   | Hashes input with SHA-1.
-| OP_SHA256             |      | 0xa8 | in             | hash   | Hashes input with SHA-256.
-| OP_HASH160            |      | 0xa9 | in             | hash   | Hashes input with SHA-256 and then with RIPEMD-160.
-| OP_HASH256            |      | 0xaa | in             | hash   | Hashes input twice with SHA-256.
-| OP_CHECKDATASIG       | 186  | 0xba | sig msg pubkey | true / false | Check if signature is valid for message and a public key. [See spec](/protocol/forks/op_checkdatasig) |
+|Word                    |Value | Hex  |Input           |Output   | Description                                   |
+|------------------------|------|------|----------------|---------|--------------------------------------------------------|
+| OP_RIPEMD160           | 166  | 0xa6 | in             | hash    | Hashes input with RIPEMD-160. |
+| OP_SHA1                | 167  | 0xa7 | in             | hash    | Hashes input with SHA-1. |
+| OP_SHA256              | 168  | 0xa8 | in             | hash    | Hashes input with SHA-256. |
+| OP_HASH160             | 169  | 0xa9 | in             | hash    | Hashes input with SHA-256 and then with RIPEMD-160. |
+| OP_HASH256             | 170  | 0xaa | in             | hash    | Hashes input twice with SHA-256. |
+| OP_CODESEPARATOR	      | 171  | 0xab | Nothing        | Nothing | Makes `OP_CHECK(MULTI)SIG(VERIFY)` use the subset of the script of everything after the most recently-executed OP_CODESEPARATOR when computing the sighash. | 
+| OP_CHECKSIG	           | 172  | 0xac | sig pubkey	    | true / false     | The last byte (=sighash type) of the signature is removed. The sighash for this input is calculated based on the sighash type. The truncated signature used by OP_CHECKSIG must be a valid ECDSA or Schnorr signature for this hash and public key. If it is valid, 1 is returned, if it is empty, 0 is returned, otherwise the operation fails. |
+| OP_CHECKSIGVERIFY      | 173  | 0xad | sig pubkey	    | Nothing / *fail* | Same as OP_CHECKSIG, but OP_VERIFY is executed afterward. |
+| OP_CHECKMULTISIG	      | 174  | 0xae | dummy sig1 sig2 ... <# of sigs> pub1 pub2 ... <# of pubkeys> | true / false | Signatures are checked against public keys. Signatures must be placed in the unlocking script using the same order as their corresponding public keys were placed in the locking script or redeem script. If all signatures are valid, 1 is returned, 0 otherwise. All elements are removed from the stack. For more information on the execution of this opcode, see [Multisignature](/protocol/blockchain/cryptography/multisignature). |
+| OP_CHECKMULTISIGVERIFY | 175  | 0xaf | dummy sig1 sig2 ... <# of sigs> pub1 pub2 ... <# of pubkeys> | Nothing / *fail*  | Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward. |
+| OP_CHECKDATASIG        | 186  | 0xba | sig msg pubkey | true / false | Check if signature is valid for message and a public key. [See spec](/protocol/forks/op_checkdatasig) |
 | OP_CHECKDATASIGVERIFY | 187  | 0xbb | sig msg pubkey | nothing / *fail* | Same as OP_CHECKDATASIG, but runs OP_VERIFY afterward. |
 
 ### Locktime
@@ -167,37 +197,8 @@ Please help improve this article by catigorizing and describing the following up
 | 0x66 | OP_VERNOTIF **(do not use)** |
 | 0x89 | OP_RESERVED1 **(do not use)** |
 | 0x8A | OP_RESERVED2 **(do not use)** |
-| 0x8B | OP_1ADD |
-| 0x8C | OP_1SUB |
-| 0x8D | OP_2MUL |
-| 0x8E | OP_2DIV |
-| 0x8F | OP_NEGATE |
-| 0x90 | OP_ABS |
-| 0x91 | OP_NOT |
-| 0x92 | OP_0NOTEQUAL |
-| 0x93 | OP_ADD |
-| 0x94 | OP_SUB |
-| 0x95 | OP_MUL |
-| 0x98 | OP_LSHIFT |
-| 0x99 | OP_RSHIFT |
-| 0x9A | OP_BOOLAND |
-| 0x9B | OP_BOOLOR |
-| 0x9C | OP_NUMEQUAL |
-| 0x9D | OP_NUMEQUALVERIFY |
-| 0x9E | OP_NUMNOTEQUAL |
-| 0x9F | OP_LESSTHAN |
-| 0xA0 | OP_GREATERTHAN |
-| 0xA1 | OP_LESSTHANOREQUAL |
-| 0xA2 | OP_GREATERTHANOREQUAL |
-| 0xA3 | OP_MIN |
-| 0xA4 | OP_MAX |
-| 0xA5 | OP_WITHIN |
-| 0xAB | OP_CODESEPARATOR |
-| 0xAC | OP_CHECKSIG |
-| 0xAD | OP_CHECKSIGVERIFY |
-| 0xAE | OP_CHECKMULTISIG |
-| 0xAF | OP_CHECKMULTISIGVERIFY |
-| 0xBC - 0xFF | Unused **(disabled)** |
+| 0xBC | OP_REVERSEBYTES **(disabled)** |
+| 0xBD - 0xFF | Unused **(disabled)** |
 
 ### Node-Specific Behavior
 
