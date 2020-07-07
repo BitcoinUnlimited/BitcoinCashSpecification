@@ -5,6 +5,7 @@ This specification does not explain what hashes are, nor the details of the spec
 Instead, this page will focus on which hashing algorithms are used, where they are used, and why they are used there.
 
 ## SHA-256
+
 [SHA-256](https://en.wikipedia.org/wiki/SHA-2) is widely used throughout the Bitcoin Cash protocol to identify blocks and transactions along with a variety of purposes in transaction scripts.
 The most notable uses of SHA-256 are:
 
@@ -32,7 +33,8 @@ And ultimately permits a block hash stored in memory to be interpreted without s
 Since its brevity is also a potential liability for the anonymity it provides (since shorter hashes generally provide less collision-resistance), it is used in conjunction with SHA-256 when generating an address from a public key.
 That is, `(public key) -> SHA-256 -> RIPEMD-160 -> (address)`.
 This SHA-256 then RIPEMD-160 process has its own operation for ease-of-use, [OP_HASH160](/protocol/blockchain/script/op-codes/op-hash160).
- ## Murmur
+ 
+## Murmur
 
 [MurmurHash](https://en.wikipedia.org/wiki/MurmurHash) is used in Bitcoin to support [Bloom filters](https://en.wikipedia.org/wiki/Bloom_filter).
 The specific version used is the MurmurHash version 3 (32-bit), with the first hash initialized to `(numberOfHashesRequired * 0xFBA4C795L + nonce)` where `nonce` is a randomly chosen 32-bit unsigned integer.

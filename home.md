@@ -28,7 +28,7 @@
 Pay To Public Key (P2PK) — Pay To Public Key Hash (P2PKH) — Pay To Script Hash (P2SH) — [Base58Check encoding (legacy)](/protocol/blockchain/encoding/base58check) — [Cashaddr encoding](/protocol/blockchain/encoding/cashaddr)
 
 ### Cryptography
-Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signatures — [Multisignature (M-of-N multisig)](/protocol/blockchain/cryptography/multisignature.md)
+Secp256k1 — Public Key — Private Key — ECDSA signatures — Schnorr signatures — [Multisignature (M-of-N multisig)](/protocol/blockchain/cryptography/multisignature)
 
 ### Network upgrades
 [Bip-16](/protocol/forks/bip-0016) — [Bip-34](/protocol/forks/bip-0034) — [Bip-37](/protocol/forks/bip-0037) — [Bip-64](/protocol/forks/bip-0064) — [Bip-65](/protocol/forks/bip-0065) — [Bip-66](/protocol/forks/bip-0066) — [Bip-68](/protocol/forks/bip-0068) — [Bip-112](/protocol/forks/bip-0112) — [Bip-113](/protocol/forks/bip-0113) — [Bip-157](/protocol/forks/bip-0157) — [Bip-158](/protocol/forks/bip-0158) — [Bip-159](/protocol/forks/bip-0159) — BCH-UAHF (BUIP-55) — [HF-20171113](/protocol/forks/hf-20171113) — HF-20180515 — HF-20181115 — HF-20190515 — HF-20191115

@@ -1,0 +1,1 @@
+see [outpoint](/glossary/outpoint)
