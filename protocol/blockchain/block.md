@@ -43,6 +43,6 @@ Each coinbase transaction's unlocking script must be less than or equal to 100 b
 
 ## Block Size
 
-The maximum block size for blocks is 32MB.
+The maximum block size for blocks is 32MB (32 * 1000 * 1000 bytes).
 The maximum number of transactions within a block is a function of this limit divided by the minimum transaction size, of 100 bytes.
 Other rules limit the number of transactions that may be within a block, including the number of signature operations ("sigops") within a block.
