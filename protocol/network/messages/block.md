@@ -13,5 +13,5 @@ Provides the contents of a block.
 | hash target | 4 bytes | [compressed target](/protocol/blockchain/block/block-header#compressed-target-format) | The target that the hash of this block is expected to satisfy.  See [Target](/protocol/blockchain/proof-of-work#target). |
 | nonce | 4 bytes | bytes | Nonce used to update the block hash during mining.  See [Proof of Work](/protocol/blockchain/proof-of-work). |
 | transaction count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of transactions in the block (and therefore following in this message). |
-| transactions | variable | &lt;transaction_count&gt; [transactions](/protocol/network/messages/tx#message-format) | The transactions contained within this block, formatted the same way they are in a [tx](/protocol/network/messages/tx) message. |
+| transactions | variable | `transaction_count` [transactions](/protocol/network/messages/tx#message-format) | The transactions contained within this block, formatted the same way they are in a [tx](/protocol/network/messages/tx) message. |
 

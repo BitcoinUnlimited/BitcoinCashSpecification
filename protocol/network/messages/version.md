@@ -1,7 +1,7 @@
 
 # Handshake: Version (“version”)
 
-The version message is a part of the node connection [handshake](/protocol/network/node-handshake) and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitmask [below](#services-bitmask)).
+The version message is a part of the node connection [handshake](/protocol/network/node-handshake) and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitfield [below](#services-bitfield)).
 
 The node connection is not considered established until both nodes have sent and received both a `version` and [verack](/protocol/network/messages/verack) message.
 
@@ -10,7 +10,7 @@ The node connection is not considered established until both nodes have sent and
 | Field | Length | Format | Description |
 |--|--|--|--|
 | version number | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version number supported by the sending node. |
-| services | 8 bytes | bitmask<sup>[(LE)](/protocol/misc/endian/little)</sup> | An indication of the services supported by the sending node.  See Services Bitmask section below. |
+| services | 8 bytes | bitfield<sup>[(LE)](/protocol/misc/endian/little)</sup> | An indication of the services supported by the sending node.  See Services Bitfield section below. |
 | timestamp | 8 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | The time the message was generated on the sending node. |
 | remote address | 26 bytes | [network address](/protocol/formats/network-address) | The network address of the remote node.  <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
 | local address | 26 bytes | [network address](/protocol/formats/network-address) | The network address of the sending node. <p>_NOTE: this does not contain the timestamp normally included with network addresses._</p> |
@@ -30,11 +30,11 @@ Modern Nodes ignore extra data after the `relay flag`.
 
 The most recent version of the network protocol is `70015`.
 The `version` value often correlates to new behavior, parsing formats, and available services; for more details review the network protocol's [version history](/history/protocol-version).
-Nodes should use `version` and the `services` bitmask to determine if the node should accept the incoming connection.
+Nodes should use `version` and the `services` bitfield to determine if the node should accept the incoming connection.
 
 Related: [node connection handshake](/protocol/network/node-handshake).
 
-## Services Bitmask
+## Services Bitfield
 The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.
 The following capabilities are defined, by bit position:
 

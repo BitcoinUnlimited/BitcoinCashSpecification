@@ -18,13 +18,13 @@ The P2P network has a variety of message types.
 All P2P messages follow a binary format with the following structure:
 
 
-| Field | Length | Format |
-|--|--|--|
-| net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> |
-| command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/big)</sup> |
-| payload byte count | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
-| payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> |
-| payload | variable |  |
+| Field | Length | Format | Description |
+|--|--|--|--|
+| net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | See [net magic](#net-magic). |
+| command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/big)</sup> | See [command string](#command-string).
+| payload byte count | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The size of the payload.  The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes, while the min value is zero (indicating no additional payload). |
+| payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | The message checksum is the first 4 bytes of a double-sha256 hash of the payload. |
+| payload | variable | message-specific | See [message types](#message-types) for links to message-specific page, which describe the payload for each message. |
 
 ### Net Magic
 
@@ -44,51 +44,49 @@ Commands that are shorter than 12 bytes are right-padded with null bytes (`0x00`
 The command string is used to determine the type of message being transmitted.
 Messages with an unrecognized `command string` are ignored by most implementations but may result in a ban by implementations that diverge from the Satoshi-client defacto standard.
 
-The following messages are considered standard by all node implementations.
-(TODO: the protocol is versioned, commands are introduced at certain versions, the previous line is ignoring this.
-TODO: saying something is "standard" doesn't mean much in terms of spec. Is there an obligation to implement them?)
+### Message Types
 
 #### Announcements
-| Command String | Synopsis | Supported Implementations
-| -- | -- | -- |
-| [filteradd](/protocol/network/messages/filteradd) | *Adds a single item into an installed filter* | all
-| [filterclear](/protocol/network/messages/filterclear) | *Removes an installed filter* | all
-| [filterload](/protocol/network/messages/filterload) | *Inserts a transaction and merkle block filter into the peer* | all
-| [inv](/protocol/network/messages/inv) | *Notifies peers about the existence of some information (generally a block or transaction)* | all
-| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
+| Command String | Synopsis |
+| -- | -- |
+| [filteradd](/protocol/network/messages/filteradd) | *Adds a single item into an installed filter* |
+| [filterclear](/protocol/network/messages/filterclear) | *Removes an installed filter* |
+| [filterload](/protocol/network/messages/filterload) | *Inserts a transaction and merkle block filter into the peer* |
+| [inv](/protocol/network/messages/inv) | *Notifies peers about the existence of some information (generally a block or transaction)* |
 
 #### Requests
-| Command String | Synopsis | Supported Implementations
-| -- | -- | -- |
-| [feefilter](/protocol/network/messages/feefilter) | *Requests that transactions without sufficient fees are not relayed* | all
-| [getaddr](/protocol/network/messages/getaddr) | *Requests a list of active peers* | all
-| [getblocks](/protocol/network/messages/getblocks) | *Requests block hash identifiers* | all |
-| [getdata](/protocol/network/messages/getdata) | *Requests information from a peer* | all |
-| [getheaders](/protocol/network/messages/getheaders) | *Requests block headers from a peer*  | all |
-| [ping](/protocol/network/messages/ping) | *Requests a confirmation (pong) that the peer is still active* | all |
-| [sendheaders](/protocol/network/messages/sendheaders) | *Requests that new blocks are sent as headers instead of hashes* | all
-| [version](/protocol/network/messages/version) | *Describes peer capabilities* | all
-| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
+| Command String | Synopsis |
+| -- | -- |
+| [feefilter](/protocol/network/messages/feefilter) | *Requests that transactions without sufficient fees are not relayed* |
+| [getaddr](/protocol/network/messages/getaddr) | *Requests a list of active peers* |
+| [getblocks](/protocol/network/messages/getblocks) | *Requests block hash identifiers* |
+| [getdata](/protocol/network/messages/getdata) | *Requests information from a peer* |
+| [getheaders](/protocol/network/messages/getheaders) | *Requests block headers from a peer*  |
+| [ping](/protocol/network/messages/ping) | *Requests a confirmation (pong) that the peer is still active* |
+| [sendheaders](/protocol/network/messages/sendheaders) | *Requests that new blocks are sent as headers instead of hashes* |
+| [version](/protocol/network/messages/version) | *Describes peer capabilities* |
 
 
 #### Responses
+| Command String | Synopsis |
+| -- | -- |
+| [addr](/protocol/network/messages/addr) | *Provides a peer with the addresses of other peers* |
+| [block](/protocol/network/messages/block) | *Provides the contents of a block* |
+| [headers](/protocol/network/messages/headers) | *Provides a set of block headers (unsolicited or GETHEADERS response)* |
+| [notfound](/protocol/network/messages/notfound) | *Indicates that a requested resource could not be relayed* |
+| [merkleblock](/protocol/network/messages/merkleblock) | *Provides a provable subset of a block's transactions, as filtered by FILTERADD* |
+| [pong](/protocol/network/messages/pong) | *Reply to a ping message* |
+| [reject](/protocol/network/messages/reject) | *Response by well-behaved clients if a message cannot be handled* |
+| [tx](/protocol/network/messages/tx) | *Provides a transaction* |
+| [verack](/protocol/network/messages/verack) | *Response to a [version](/protocol/network/messages/version) message* |
+
+#### Other Message Types (Extensions)
+
 | Command String | Synopsis | Supported Implementations
 | -- | -- | -- |
-| [addr](/protocol/network/messages/addr) | *Provides a peer with the addresses of other peers* | all
-| [block](/protocol/network/messages/block) | *Provides the contents of a block* | all
-| [headers](/protocol/network/messages/headers) | *Provides a set of block headers (unsolicited or GETHEADERS response)* | all |
-| [notfound](/protocol/network/messages/notfound) | *Indicates that a requested resource could not be relayed* | all
-| [merkleblock](/protocol/network/messages/merkleblock) | *Provides a provable subset of a block's transactions, as filtered by FILTERADD*  | all |
-| [pong](/protocol/network/messages/pong) | *Reply to a ping message* | all |
-| [reject](/protocol/network/messages/reject) | *Response by well-behaved clients if a message cannot be handled*  | all
-| [tx](/protocol/network/messages/tx) | *Provides a transaction* | all
-| [verack](/protocol/network/messages/verack) | *Response to a [version](/protocol/network/messages/version) message* | all
+| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
 | [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message* | BCHUnlimited
-
-The following messages are well known, but not implemented by all node implementations.
-
-| Command String | Synopsis | Supported Implementations
-| -- | -- | -- |
+| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
 | get_xblocktx |  |  |
 | get_xthin |  |  |
 | mempool |  |
@@ -96,22 +94,6 @@ The following messages are well known, but not implemented by all node implement
 | thinblock |  |  |
 | xblocktx |  |  |
 | xthinblock |  |  |
-
-### Payload Byte Count
-
-The payload byte count is the size of the payload, encoded as a [little-endian](/protocol/misc/endian/little) 4-byte integer.
-The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes.
-The payload byte count may be zero, but must not be negative.
-
-### Payload Checksum
-
-The message checksum is the first 4 bytes of a double-sha256 hash of the payload.
-The checksum is transmitted as a byte array, and is encoded as [big-endian](/protocol/misc/endian/big).
-
-
-### Payload
-
-The message payload is defined by the message type.
 
 # Example message
 

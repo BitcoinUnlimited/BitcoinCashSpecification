@@ -24,8 +24,8 @@ NOTE: Since a block header is a relatively small data structure, and block propa
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| type | 4 bytes | [inventory type](#inventory-types) | Indicates what the following hash represents. |
-| item hash | 32 bytes | bytes | The [hash](/protocol/blockchain/hash) that identifies the item. |
+| type | 4 bytes | [inventory type](#inventory-types)<sup>[(LE)](/protocol/misc/endian/little)</sup> | Indicates what the following hash represents. |
+| item hash | 32 bytes | bytes<sup>[(LE)](/protocol/misc/endian/little)</sup> | The [hash](/protocol/blockchain/hash) that identifies the item. |
 
 #### Inventory Types
 The type of the object that is available.
