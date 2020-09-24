@@ -84,9 +84,6 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 
 | Command String | Synopsis | Supported Implementations
 | -- | -- | -- |
-| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
-| [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message* | BCHUnlimited
-| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
 | get_xblocktx |  |  |
 | get_xthin |  |  |
 | mempool |  |
@@ -94,6 +91,9 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | thinblock |  |  |
 | xblocktx |  |  |
 | xthinblock |  |  |
+| [xupdate](/protocol/p2p/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
+| [xversion](/protocol/p2p/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
+| xverack | *Response to an [xversion](/protocol/p2p/xversion) message* | BCHUnlimited
 
 # Example message
 
