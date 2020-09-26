@@ -8,7 +8,7 @@
 [Blockchain basics](/protocol/blockchain) — [Protocol hashing algorithms](/protocol/blockchain/hash) — Memory Pool
 
 ### Transactions
-[Bitcoin Transaction](/protocol/blockchain/transaction) — [Unlocking Script](/protocol/blockchain/transaction/unlocking-script)— [Locking Script](/protocol/blockchain/transaction/locking-script)
+[Bitcoin Transaction](/protocol/blockchain/transaction) — [Unlocking Script](/protocol/blockchain/transaction/unlocking-script) — [Locking Script](/protocol/blockchain/transaction/locking-script) — [Transaction Signature](/protocol/blockchain/transaction/transaction-signature)
 
 ### Blocks
 [Bitcoin blocks](/protocol/blockchain/block) —
