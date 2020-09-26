@@ -1,4 +1,4 @@
-# Transaction signature
+# Transaction Signature
 
 Generally, every input of a [transaction](/protocol/blockchain/transaction) must contain one or more signatures so that the transaction is valid. This applies to any input whose previous output [locking script](/protocol/blockchain/transaction/locking-script) includes one of the following [operation codes](/protocol/blockchain/script#operation-codes-opcodes): `OP_CHECKSIG`, `OP_CHECKSIGVERIFY`, `OP_CHECKMULTISIG`, `OP_CHECKMULTISIGVERIFY`.
 
@@ -12,7 +12,7 @@ The `OP_CHECKSIG` and `OP_CHECKSIGVERIFY` opcodes require a sigle signature whic
 
 For `OP_CHECKMULTISIG` and `OP_CHECKMULTISIGVERIFY` behavior, see [Multisignature spec](/protocol/blockchain/cryptography/multisignature).
 
-## Transaction digest algorithm (preimage format) 
+## Transaction Digest Algorithm (Preimage Format) 
 
 In Bitcoin Cash, transaction signature uses the transaction digest algorithm described in [BIP143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
 
@@ -37,7 +37,7 @@ The preimage consists of the following elements:
 
 The signing algorithm (whether it is ECDSA or Schnorr algorithm) is applied to **the double SHA256 hash of this preimage**.
 
-## Signature hash type
+## Signature Hash Type
 
 A signature (ECDSA or Schnorr) is ALWAYS followed by the signature hash type used to sign the input. Signature hash type indicates which part of the transaction is hashed to be signed.
 
