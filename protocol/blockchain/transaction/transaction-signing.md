@@ -1,4 +1,4 @@
-# Transaction Signature
+# Transaction Signing
 
 Generally, every input of a [transaction](/protocol/blockchain/transaction) must contain one or more signatures so that the transaction is valid. This applies to any input whose previous output [locking script](/protocol/blockchain/transaction/locking-script) includes one of the following [operation codes](/protocol/blockchain/script#operation-codes-opcodes): `OP_CHECKSIG`, `OP_CHECKSIGVERIFY`, `OP_CHECKMULTISIG`, `OP_CHECKMULTISIGVERIFY`.
 
