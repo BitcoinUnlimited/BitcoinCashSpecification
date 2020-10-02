@@ -1,8 +1,10 @@
 # Transaction Signing
 
-Generally, every input of a [transaction](/protocol/blockchain/transaction) must contain one or more signatures so that the transaction is valid. This applies to any input whose previous output [locking script](/protocol/blockchain/transaction/locking-script) includes one of the following [operation codes](/protocol/blockchain/script#operation-codes-opcodes): `OP_CHECKSIG`, `OP_CHECKSIGVERIFY`, `OP_CHECKMULTISIG`, `OP_CHECKMULTISIGVERIFY`.
+Generally, every input of a  must contain one or more signatures so that the transaction is valid. This applies to any input whose previous output [locking script](/protocol/blockchain/transaction/locking-script) includes one of the following [operation codes](/protocol/blockchain/script#operation-codes-opcodes): `OP_CHECKSIG`, `OP_CHECKSIGVERIFY`, `OP_CHECKMULTISIG`, `OP_CHECKMULTISIGVERIFY`.
 
-In scripts using these opcodes, *signatures* are checked against *public keys*.
+Generally, every input of a [transaction](/protocol/blockchain/transaction) require one or more signature. The signatures enforce (sign) what the transaction looks like and make it impossible for a third party to temper with without invalidating the transaction. 
+
+This applies to any input whose previous output [locking script](/protocol/blockchain/transaction/locking-script) includes one of the following [operation codes](/protocol/blockchain/script#operation-codes-opcodes): `OP_CHECKSIG`, `OP_CHECKSIGVERIFY`, `OP_CHECKMULTISIG`, `OP_CHECKMULTISIGVERIFY`. In scripts using these opcodes, *signatures* are checked against *public keys* and the transaction signature (as described below).
 
 The `OP_CHECKSIG` and `OP_CHECKSIGVERIFY` opcodes require a sigle signature which is checked against a single public key:
 
@@ -22,7 +24,7 @@ The preimage consists of the following elements:
 
 | Field                               | Length   | Format                                                               | Description                                                 |
 | ----------------------------------- | -------- | -------------------------------------------------------------------- | ----------------------------------------------------------- |
-| version                             | 4 bytes  | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup>      | The version of the transaction format. Must be `1` or `2`.  |
+| version                             | 4 bytes  | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup>      | The version of the transaction format. Currently `1` or `2`. |
 | previous outputs hash               | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup>                     | The double SHA256 of the serialization of **all** input outpoints (txids + indexes) of the transaction. If the `SIGHASH_ANYONECANPAY` flag is set, it is `0x00...00`. |
 | sequences hash                      | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup>                     | The double SHA256 of the serialization of **all** input sequences of the transaction. If `SIGHASH_ANYONECANPAY`, `SIGHASH_SINGLE` or `SIGHASH_NONE` is used, this field is `0x00...00`. |
 | previous output transaction id      | 32 bytes | hash<sup>[(LE)](/protocol/misc/endian/big)</sup>                     | The identifier of the transaction containing the previous output, i.e., the output spent by this input. |
