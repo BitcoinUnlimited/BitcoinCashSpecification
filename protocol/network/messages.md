@@ -105,9 +105,10 @@ The below segments, when concatenated in order, create a sample [verack](/protoc
 | Net Magic<sup>[(BE)](/protocol/misc/endian/little)</sup> | `E3E1F3E8` |
 | Command String ("verack")<sup>[(BE)](/protocol/misc/endian/big)</sup> | `76657261636B000000000000` |
 | Payload Byte Count<sup>[(LE)](/protocol/misc/endian/little)</sup> | `00000000` |
-| Payload Checksum<sup>[(LE)](/protocol/network/messages/message-checksum)</sup> |  `5DF6E0E2` |
+| Payload Checksum<sup>[(LE)](/protocol/misc/endian/little)</sup> |  `5DF6E0E2` |
 
-### Full Sample Message (Hexadecimal)
+Below is the full, concatenated sample message (in hexadecimal):
+
 `E3E1F3E876657261636B000000000000000000005DF6E0E2`
 
 # Node Specific Behavior
