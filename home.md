@@ -53,7 +53,7 @@ Secp256k1 — Public Key — Private Key — ECDSA Signatures — Schnorr Signat
 
 #### Other messages (extensions)
 
-sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx — [xupdate](/protocol/p2p/xupdate) — [xversion](/protocol/p2p/xversion) —xverack
+sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
 
 ### Simple Payment Verification (SPV)
 [Bloom Filters](/objects/bloom__filter)

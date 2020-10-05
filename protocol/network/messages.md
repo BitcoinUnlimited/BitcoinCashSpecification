@@ -17,7 +17,6 @@ These design decisions were made with consideration to communication with untrus
 The P2P network has a variety of message types.
 All P2P messages follow a binary format with the following structure:
 
-
 | Field | Length | Format | Description |
 |--|--|--|--|
 | net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | See [net magic](#net-magic). |
@@ -25,6 +24,8 @@ All P2P messages follow a binary format with the following structure:
 | payload byte count | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The size of the payload.  The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes, while the min value is zero (indicating no additional payload). |
 | payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | The message checksum is the first 4 bytes of a double-sha256 hash of the payload. |
 | payload | variable | message-specific | See [message types](#message-types) for links to message-specific page, which describe the payload for each message. |
+
+See [Example Message](#example-message) for a concrete example of this with a message that does not contain an extended payload.
 
 ### Net Magic
 
@@ -91,11 +92,23 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | thinblock |  |  |
 | xblocktx |  |  |
 | xthinblock |  |  |
-| [xupdate](/protocol/p2p/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
-| [xversion](/protocol/p2p/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
-| xverack | *Response to an [xversion](/protocol/p2p/xversion) message* | BCHUnlimited
+| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
+| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
+| [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message* | BCHUnlimited
 
-# Example message
+## Example message
+
+The below segments, when concatenated in order, create a sample [verack](/protocol/network/message/verack) message.
+
+| Label | Sample Value (Hexadecimal Representation) |
+|-------|------|
+| Net Magic<sup>[(BE)](/protocol/misc/endian/little)</sup> | `E3E1F3E8` |
+| Command String ("verack")<sup>[(BE)](/protocol/misc/endian/big)</sup> | `76657261636B000000000000` |
+| Payload Byte Count<sup>[(LE)](/protocol/misc/endian/little)</sup> | `00000000` |
+| Payload Checksum<sup>[(LE)](/protocol/network/messages/message-checksum)</sup> |  `5DF6E0E2` |
+
+### Full Sample Message (Hexadecimal)
+`E3E1F3E876657261636B000000000000000000005DF6E0E2`
 
 # Node Specific Behavior
 
