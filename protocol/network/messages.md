@@ -2,11 +2,17 @@
 
 The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted over TCP/IP.
 Individual nodes on the Bitcoin Cash network connect and create a mesh network where each node is indirectly connected to many others via just a couple of hops.
-In the original Satoshi implementation of the P2P protocol the design of INV and getdata have been used for propagating transaction data using the rules of the gossip protocol values: forwarding validated transactions to a few peer-nodes who send it to others until the entire network has the transaction. This emergent behavior of the P2P layer allows fast propagation without undue strain on any individual node.
+In the original Satoshi implementation of the P2P protocol the design of INV and getdata have been used for propagating transaction data using the rules of the gossip protocol values: forwarding validated transactions to a few peer-nodes who send it to others until the entire network has the transaction.
+This emergent behavior of the P2P layer allows fast propagation without undue strain on any individual node.
 
-The P2P protocol is designed around messages. Each message is separate and self-contained. Nodes should be tolerant of message-types they do not understand. It is best to simply ignore those.
-Detailed descriptions of the messages follows below. Generally speaking, each message is an event that the node can choose to respond to. Events range from notifications of new data (transactions/blocks/etc) and
-actual requests for such data to be send and last the actual data being sent. Or, in some specific cases a `reject` message.
+The P2P protocol is designed around messages.
+Each message is separate and self-contained.
+Nodes should be tolerant of message-types they do not understand.
+It is best to simply ignore those.
+Detailed descriptions of the messages follows below.
+Generally speaking, each message is an event that the node can choose to respond to.
+Events range from notifications of new data (transactions/blocks/etc) and actual requests for such data to be send and last the actual data being sent.
+Or, in some specific cases a `reject` message.
 
 These design decisions were made with consideration to communication with untrusted/uncooperative partners.
 
@@ -98,7 +104,7 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 
 ## Example message
 
-The below segments, when concatenated in order, create a sample [verack](/protocol/network/message/verack) message.
+The below segments, when concatenated in order, create a sample [verack](/protocol/network/messages/verack) message.
 
 | Label | Sample Value (Hexadecimal Representation) |
 |-------|------|
