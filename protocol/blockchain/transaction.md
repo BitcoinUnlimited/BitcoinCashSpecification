@@ -74,7 +74,7 @@ A Transaction Output that is being spent by a Transaction Input is often referre
 | Field | Length | Format | Description |
 |--|--|--|--|
 | value | 8 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The number of satoshis to be transferred. |
-| locking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the unlocking script in bytes. |
+| locking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the locking script in bytes. |
 | locking script | variable | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The contents of the locking script. |
 
 ## Transaction Fee

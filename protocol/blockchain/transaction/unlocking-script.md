@@ -5,4 +5,4 @@ This is accomplished by first executing the unlocking script and then executing 
 If this execution triggers no failures and leaves a single non-zero (TRUE) value on the stack, the UTXO has been successfully unlocked.
 One way to look at this is that the unlocking script provides an initial state that acts as an inverse to the previously published locking script.
 
-For more information about how script execution works, see [Script](/protocol/blockchain/script).
+For more information about how script execution works, see [Script](/protocol/blockchain/script).  For information on how signatures (which typically go in the unlocking script) are generated, see [Transaction Signatures](/protocol/blockchain/transaction/signatures).
