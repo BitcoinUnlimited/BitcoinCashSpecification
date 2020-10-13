@@ -9,10 +9,10 @@ The P2P protocol is designed around messages.
 Each message is separate and self-contained.
 Nodes should be tolerant of message-types they do not understand.
 It is best to simply ignore those.
-Detailed descriptions of the messages follows below.
+
 Generally speaking, each message is an event that the node can choose to respond to.
-Events range from notifications of new data (transactions/blocks/etc) and actual requests for such data to be send and last the actual data being sent.
-Or, in some specific cases a `reject` message.
+Events can be notifications of new data (transactions/blocks/etc), requests for such data to be sent, or the sending of the data itself.
+In some specific cases a message can indicate the rejection of another message, though this is optional and should not be relied upon.
 
 These design decisions were made with consideration to communication with untrusted/uncooperative partners.
 
@@ -37,11 +37,10 @@ See [Example Message](#example-message) for a concrete example of this with a me
 
 The network identifier is used to separate blockchains and test networks.
 This reduces unnecessary load on peers, allowing them to rapidly ban nodes rather then forcing the peer to do a blockchain analysis before banning or disconnecting.
-For Bitcoin Cash main net, the `net magic` field is always `0xE3E1F3E8`.
+For Bitcoin Cash main net, the `net magic` field is always `0xE3E1F3E8` (the ASCII string, "cash", with each byte's highest bit set).
 Any message received that does not begin with the `net magic` is invalid.
 
 The `net magic` is designed to be unlikely to occur in normal data--the characters are rarely used upper ASCII, are not valid as UTF-8, and produce a large 32-bit integer with any alignment.
-`0xE3E1F3E8` is the ASCII string, "cash", with each byte's highest bit set.
 
 ### Command String
 
