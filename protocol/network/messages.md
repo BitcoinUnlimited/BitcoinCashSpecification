@@ -123,4 +123,4 @@ Below is the full, concatenated sample message (in hexadecimal):
 
 ### Payload Checksum
 
-Bitcoin Unlimited does not validate the message checksum
+Bitcoin Unlimited does not validate the message checksum since messages are sent via TCP which has its own checksum paradigm.
