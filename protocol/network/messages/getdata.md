@@ -5,28 +5,15 @@
 
 # Request: Get Data (“getdata”)
 
-Requests information (generally previously announced via an INV) from a peer.
-
-A GETDATA request is a [vector](/protocol/p2p/vector.md) of INV-formatted data.
+Requests information (generally previously announced via an [inv](/protocol/network/messages/inv) message) from a peer.
+As such, a getdata request carries the same general format as an inventory message and is used to request any items that the node was previously unaware.
 
 ## Message Format
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| vector length N | variable | compact int | number of items |
-| item 0 type | 4 bytes | unsigned int<sup>[(LE)](/protocol/misc/endian/little)</sup> | type of the requested object |
-| item 0 hash | 32 bytes | bytes | hash of the requested object |
-| ... | | | |
-| item N-1 type |
-| item N-1 hash 
-
-
-### Type
-
-The type of the desired object. See [INV](/protocol/network/messages/inv.md) for specific values
-
-### Hash
-The [hash identifier](glossary/hash__identifier) of the desired object.
+| inventory count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of inventory items being requested in this message. |
+| inventory items | `inventory_count` * 36 bytes | `inventory_count` [inventory items](/protocol/network/messages/inv#inventory-item-format) | The set of inventory items being requested. |
 
 ## Server Implementations 
 

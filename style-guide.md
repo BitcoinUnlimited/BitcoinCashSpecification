@@ -64,7 +64,7 @@ When creating pages, consider which part of the protocol the content you wish to
 
 As a convention, URL components (i.e. directories and pages) should contain only lower-case letters, numbers, and hyphens.
 Full words, separated by hyphens, are preferred over abbreviations, acronyms, or the use of punctuation or spaces.
-For example, the page for the <code>version</code> message exists at <code>[/protocol/network/messages/version](/protocol/network/messages/version)</code>.
+For example, the page for the <code>version</code> message exists at [<code>/protocol/network/messages/version</code>](/protocol/network/messages/version).
 A page relating to SLP (Simple Ledger Protocol) may exist at a path like <code>/protocol/simple-ledger-protocol/[page-name]</code>.
 
 Once you have created the page, consider which existing pages should link to the new page and add links as appropriate.

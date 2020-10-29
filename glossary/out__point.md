@@ -1,1 +1,0 @@
-see [outpoint](/glossary/outpoint)
