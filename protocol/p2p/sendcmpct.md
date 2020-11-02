@@ -7,4 +7,5 @@ This message notifies the peer that this node support Compact Block Relay. Node 
 | Field | Length | Format | Description |
 |--|--|--|--|
 | Mode | 1 byte | Integer | 1: High Bandwidth Relaying mode;</br> 0: Low Bandwidth Relaying mode;</br> Other: Invalid |
-| Version | 8 bytes | Integer<sup>[LE](..\misc\endian\little)</sup> | Must set to 1, otherwise invalid. 
+| Version | 8 bytes | Integer <sup>[LE](..\misc\endian\little)</sup> | Must set to 1, otherwise invalid.  
+
