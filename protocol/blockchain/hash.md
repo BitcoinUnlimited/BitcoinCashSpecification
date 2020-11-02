@@ -24,9 +24,10 @@ Since [BIP-34](/protocol/forks/bip-0034), the block height is now required to be
 		 - `D5D27987D2A3DFC724E359870C6644B40E497BDC0589A033220FE15429D88599`
 		 - `E3BF3D07D4B0375638D5F1DB5255FE07BA2C4CB067CD81B84EE974B6585FB468`
 
-In contrast to many hashing algorithm implementations, Bitcoin Cash block and transaction hashes use a little-endian representation.
-This means they are displayed and sent over the network with the least-significant byte first.
-And ultimately permits a block hash stored in memory to be interpreted without swapping endianness for integer operations such as the comparison with the block difficulty during block validation or mining.
+In contrast to many other protocols, Bitcoin Cash sometimes treats block and transaction hashes as a number, for example when comparing with block difficulty during block validation or mining.
+In these situations, the output byte array of the hashing algorithm is interpreted as a 256 bit number in little-endian format, particularly when transmitted over the network.
+This is the opposite of standard protocol design, so it may be simpler to think of hashes as byte arrays that occasionally are turned into little-endian numbers, than as numbers with a lot of display/encoding caveats.
+
 ## RIPEMD-160
 [RIPEMD-160](https://en.wikipedia.org/wiki/RIPEMD) is used in Bitcoin Cash scripts to create short, quasi-anonymous representations of payees for transactions.
 Since its brevity is also a potential liability for the anonymity it provides (since shorter hashes generally provide less collision-resistance), it is used in conjunction with SHA-256 when generating an address from a public key.

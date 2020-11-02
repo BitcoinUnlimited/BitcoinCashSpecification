@@ -2,11 +2,17 @@
 
 The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted over TCP/IP.
 Individual nodes on the Bitcoin Cash network connect and create a mesh network where each node is indirectly connected to many others via just a couple of hops.
-In the original Satoshi implementation of the P2P protocol the design of INV and getdata have been used for propagating transaction data using the rules of the gossip protocol values: forwarding validated transactions to a few peer-nodes who send it to others until the entire network has the transaction. This emergent behavior of the P2P layer allows fast propagation without undue strain on any individual node.
+In the original Satoshi implementation of the P2P protocol the design of INV and getdata have been used for propagating transaction data using the rules of the gossip protocol values: forwarding validated transactions to a few peer-nodes who send it to others until the entire network has the transaction.
+This emergent behavior of the P2P layer allows fast propagation without undue strain on any individual node.
 
-The P2P protocol is designed around messages. Each message is separate and self-contained. Nodes should be tolerant of message-types they do not understand. It is best to simply ignore those.
-Detailed descriptions of the messages follows below. Generally speaking, each message is an event that the node can choose to respond to. Events range from notifications of new data (transactions/blocks/etc) and
-actual requests for such data to be send and last the actual data being sent. Or, in some specific cases a `reject` message.
+The P2P protocol is designed around messages.
+Each message is separate and self-contained.
+Nodes should be tolerant of message-types they do not understand.
+It is best to simply ignore those.
+
+Generally speaking, each message is an event that the node can choose to respond to.
+Events can be notifications of new data (transactions/blocks/etc), requests for such data to be sent, or the sending of the data itself.
+In some specific cases a message can indicate the rejection of another message, though this is optional and should not be relied upon.
 
 These design decisions were made with consideration to communication with untrusted/uncooperative partners.
 
@@ -17,7 +23,6 @@ These design decisions were made with consideration to communication with untrus
 The P2P network has a variety of message types.
 All P2P messages follow a binary format with the following structure:
 
-
 | Field | Length | Format | Description |
 |--|--|--|--|
 | net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | See [net magic](#net-magic). |
@@ -26,15 +31,16 @@ All P2P messages follow a binary format with the following structure:
 | payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | The message checksum is the first 4 bytes of a double-sha256 hash of the payload. |
 | payload | variable | message-specific | See [message types](#message-types) for links to message-specific page, which describe the payload for each message. |
 
+See [Example Message](#example-message) for a concrete example of this with a message that does not contain an extended payload.
+
 ### Net Magic
 
 The network identifier is used to separate blockchains and test networks.
 This reduces unnecessary load on peers, allowing them to rapidly ban nodes rather then forcing the peer to do a blockchain analysis before banning or disconnecting.
-For Bitcoin Cash main net, the `net magic` field is always `0xE3E1F3E8`.
+For Bitcoin Cash main net, the `net magic` field is always `0xE3E1F3E8` (the ASCII string, "cash", with each byte's highest bit set).
 Any message received that does not begin with the `net magic` is invalid.
 
 The `net magic` is designed to be unlikely to occur in normal data--the characters are rarely used upper ASCII, are not valid as UTF-8, and produce a large 32-bit integer with any alignment.
-`0xE3E1F3E8` is the ASCII string, "cash", with each byte's highest bit set.
 
 ### Command String
 
@@ -91,11 +97,24 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | thinblock |  |  |
 | xblocktx |  |  |
 | xthinblock |  |  |
-| [xupdate](/protocol/p2p/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
-| [xversion](/protocol/p2p/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
-| xverack | *Response to an [xversion](/protocol/p2p/xversion) message* | BCHUnlimited
+| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
+| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
+| [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message* | BCHUnlimited
 
-# Example message
+## Example message
+
+The below segments, when concatenated in order, create a sample [verack](/protocol/network/messages/verack) message.
+
+| Label | Sample Value (Hexadecimal Representation) |
+|-------|------|
+| Net Magic<sup>[(BE)](/protocol/misc/endian/little)</sup> | `E3E1F3E8` |
+| Command String ("verack")<sup>[(BE)](/protocol/misc/endian/big)</sup> | `76657261636B000000000000` |
+| Payload Byte Count<sup>[(LE)](/protocol/misc/endian/little)</sup> | `00000000` |
+| Payload Checksum<sup>[(LE)](/protocol/misc/endian/little)</sup> |  `5DF6E0E2` |
+
+Below is the full, concatenated sample message (in hexadecimal):
+
+`E3E1F3E876657261636B000000000000000000005DF6E0E2`
 
 # Node Specific Behavior
 
@@ -103,4 +122,4 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 
 ### Payload Checksum
 
-Bitcoin Unlimited does not validate the message checksum
+Bitcoin Unlimited does not validate the message checksum since messages are sent via TCP which has its own checksum paradigm.
