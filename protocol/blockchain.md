@@ -22,7 +22,7 @@ Sibling blocks can happen if a block is created with sufficient work before the 
 Sibling blocks are incompatible with one another, and eventually one will become orphaned.
 The [genesis block](/protocol/blockchain#genesis-block) is the first block in a chain, and has a block height of `0` (as its distance to the genesis block is zero).
 
-As of [BIP-34](/protocol/forks/bip-0034), the `block height` is included within the [coinbase transaction](/protocol/blockchain/block#coinbase-transaction).
+As of [BIP-0034](/blockchain/forks/bip-34), the `block height` is included within the [coinbase transaction](/protocol/blockchain/block#coinbase-transaction).
 
 ## Work
 

@@ -84,13 +84,13 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 | OP_TOALTSTACK   | 107   | 0x6b | x1                  | (alt) x1               | Puts the input onto the top of the alt stack. Removes it from the main stack. |
 | OP_FROMALTSTACK | 108   | 0x6c | (alt) x1            | x1                     | Puts the input onto the top of the main stack. Removes it from the alt stack. |
 | OP_IFDUP        | 115   | 0x73 | x                   | x / x x                | If the top stack value is not 0, duplicate it. |
-| OP_DEPTH        | 116   | 0x74 | Nothing             | &lt;stack size&gt;           | Puts the number of stack items onto the stack. |
+| OP_DEPTH        | 116   | 0x74 | Nothing             | <stack size>           | Puts the number of stack items onto the stack. |
 | OP_DROP         | 117   | 0x75 | x                   | Nothing                | Removes the top stack item.           |
 | OP_DUP          | 118   | 0x76 | x                   | x x                    | Duplicates the top stack item.        |
 | OP_NIP          | 119   | 0x77 | x1 x2               | x2                     | Removes the second-to-top stack item. |
 | OP_OVER         | 120   | 0x78 | x1 x2               | x1 x2 x1               | Copies the second-to-top stack item to the top. |
-| OP_PICK         | 121   | 0x79 | xn ... x2 x1 x0 n | xn ... x2 x1 x0 xn     | The item *n* back in the stack is copied to the top. |
-| OP_ROLL         | 122   | 0x7a | xn ... x2 x1 x0 n | x(n-1) ... x2 x1 x0 xn | The item *n* back in the stack is moved to the top. |
+| OP_PICK         | 121   | 0x79 | xn ... x2 x1 x0 <n> | xn ... x2 x1 x0 xn     | The item *n* back in the stack is copied to the top. |
+| OP_ROLL         | 122   | 0x7a | xn ... x2 x1 x0 <n> | x(n-1) ... x2 x1 x0 xn | The item *n* back in the stack is moved to the top. |
 | OP_ROT          | 123   | 0x7b | x1 x2 x3	           | x2 x3 x1	              | The top three items on the stack are rotated to the left. |
 | OP_SWAP         | 124   | 0x7c | x1 x2	              | x2 x1                  | The top two items on the stack are swapped. |
 | OP_TUCK         | 125   | 0x7d | x1 x2	              | x2 x1 x2	              | The item at the top of the stack is copied and inserted below the second-to-top item. |
@@ -110,7 +110,6 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 |OP_NUM2BIN |128    |0x80|a b           |out     |Converts numeric value *a* into byte sequence of length *b*. Known as OP_LEFT before 2018-05-15.       |
 |OP_BIN2NUM |129    |0x81|x             |out     |Converts byte sequence *x* into a numeric value. Known as OP_RIGHT before 2018-05-15. |
 |OP_SIZE    |130    |0x82|x          |x size     |Pushes the string length of the top element of the stack (without popping it). |
-|OP_REVERSEBYTES |188 |0xbc |x |out     |Reverses the order of the bytes in byte sequence *x* so that the first byte is now its last byte, the second is now its second-to-last, and so forth. Enabled in [HF-20200515](/protocol/forks/hf-20200515). |
 
 ### Bitwise logic
 
@@ -167,17 +166,17 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 | OP_CODESEPARATOR	      | 171  | 0xab | Nothing        | Nothing | Makes `OP_CHECK(MULTI)SIG(VERIFY)` use the subset of the script of everything after the most recently-executed OP_CODESEPARATOR when computing the sighash. | 
 | OP_CHECKSIG	           | 172  | 0xac | sig pubkey	    | true / false     | The last byte (=sighash type) of the signature is removed. The sighash for this input is calculated based on the sighash type. The truncated signature used by OP_CHECKSIG must be a valid ECDSA or Schnorr signature for this hash and public key. If it is valid, 1 is returned, if it is empty, 0 is returned, otherwise the operation fails. |
 | OP_CHECKSIGVERIFY      | 173  | 0xad | sig pubkey	    | Nothing / *fail* | Same as OP_CHECKSIG, but OP_VERIFY is executed afterward. |
-| OP_CHECKMULTISIG	      | 174  | 0xae | dummy sig1 sig2 ... &lt;#-of-sigs&gt; pub1 pub2 ... &lt;#-of-pubkeys&gt; | true / false | Signatures are checked against public keys. Signatures must be placed in the unlocking script using the same order as their corresponding public keys were placed in the locking script or redeem script. If all signatures are valid, 1 is returned, 0 otherwise. All elements are removed from the stack. For more information on the execution of this opcode, see [Multisignature](/protocol/blockchain/cryptography/multisignature). |
-| OP_CHECKMULTISIGVERIFY | 175  | 0xaf | dummy sig1 sig2 ... &lt;#-of-sigs&gt; pub1 pub2 ... &lt;#-of-pubkeys&gt; | Nothing / *fail*  | Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward. |
+| OP_CHECKMULTISIG	      | 174  | 0xae | dummy sig1 sig2 ... <# of sigs> pub1 pub2 ... <# of pubkeys> | true / false | Signatures are checked against public keys. Signatures must be placed in the unlocking script using the same order as their corresponding public keys were placed in the locking script or redeem script. If all signatures are valid, 1 is returned, 0 otherwise. All elements are removed from the stack. For more information on the execution of this opcode, see [Multisignature](/protocol/blockchain/cryptography/multisignature). |
+| OP_CHECKMULTISIGVERIFY | 175  | 0xaf | dummy sig1 sig2 ... <# of sigs> pub1 pub2 ... <# of pubkeys> | Nothing / *fail*  | Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward. |
 | OP_CHECKDATASIG        | 186  | 0xba | sig msg pubkey | true / false | Check if signature is valid for message and a public key. [See spec](/protocol/forks/op_checkdatasig) |
-| OP_CHECKDATASIGVERIFY | 187  | 0xbb | sig msg pubkey | nothing / *fail* | Same as OP_CHECKDATASIG, but runs OP_VERIFY afterward. |
+| OP_CHECKDATASIGVERIFY | 187  | 0xbb | sig msg pubkey | nothing / *fail* | Same as OP_CHECKDATASIG, but runs OP_VERIFY afterward. |
 
 ### Locktime
 
 | Word                   | Value   | Hex       | Input |Output     | Description                                     |
 | ---------------------- | ------- | --------- | ----- | --------- | ----------------------------------------------- |
-| OP_CHECKLOCKTIMEVERIFY | 177     | 0xb1      | x     |x / *fail* | Marks transaction as invalid if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the stack is empty; or 2. the top stack item is negative; or 3. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 4. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in [BIP65](/protocol/forks/bip-0065). |
-| OP_CHECKSEQUENCEVERIFY | 178     | 0xb2      | x     |x / *fail* |  Marks transaction as invalid if the relative lock time of the input (enforced by BIP68 with nSequence) is not equal to or longer than the value of the top stack item. The precise semantics are described in [BIP112](/protocol/forks/bip-0112). |
+| OP_CHECKLOCKTIMEVERIFY | 177     | 0xb1      | x     |x / *fail* | Marks transaction as invalid if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the stack is empty; or 2. the top stack item is negative; or 3. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 4. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in BIP65. |
+| OP_CHECKSEQUENCEVERIFY | 178     | 0xb2      | x     |x / *fail* |  Marks transaction as invalid if the relative lock time of the input (enforced by BIP68 with nSequence) is not equal to or longer than the value of the top stack item. The precise semantics are described in BIP112. |
 
 ### Reserved
 
@@ -188,7 +187,7 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Uncategorized
 
-Please help improve this article by categorizing and describing the following op codes.
+Please help improve this article by catigorizing and describing the following up codes.
 
 | Hex  | Word |
 | ---- | ---- |
@@ -198,6 +197,7 @@ Please help improve this article by categorizing and describing the following op
 | 0x66 | OP_VERNOTIF **(do not use)** |
 | 0x89 | OP_RESERVED1 **(do not use)** |
 | 0x8A | OP_RESERVED2 **(do not use)** |
+| 0xBC | OP_REVERSEBYTES **(disabled)** |
 | 0xBD - 0xFF | Unused **(disabled)** |
 
 ### Node-Specific Behavior

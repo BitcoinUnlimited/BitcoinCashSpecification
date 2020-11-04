@@ -25,4 +25,3 @@ Furthermore, this coinbase's output is not considered an unspent transaction out
 Coinbases may only have one transaction input.
 
 All coinbase unlocking script must be less than or equal to 100 bytes in size.
-

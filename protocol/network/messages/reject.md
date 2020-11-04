@@ -3,29 +3,29 @@
 "related":["/protocol"]
 }</div>
 
-# Response: Reject ("reject")
+*Notifies peer that a message is invalid*
 
-Notifies peer that a received message is invalid.
 
-## Message Format
+| [compact int](/protocol/p2p/compact__int.md) N (max 12) | N bytes | 1 byte | [compact int](/protocol/p2p/compact__int.md) M (max 111) | M bytes | 
+|----------------|---------|-------------|---------------|---------| 
+| command length | command | error code  | reason length | reason string |
 
-| Field | Length | Format | Description |
-|--|--|--|--|
-| rejected message type | variable | [variable length string](/protocol/formats/variable-length-string) | The [command string](/protocol/network/messages#command-string) of the message that is being rejected (e.g. "tx"). |
-| rejection code | 1 byte | [rejection code](#rejection-codes) | A code indicating why the message was rejected. |
-| rejection reason* | variable | [variable length string](/protocol/formats/variable-length-string) | A description of why the message was rejected. |
+*command length* and *command* form a [vector](/protocol/p2p/vector.md) of bytes that identify the type of the problem message.  These bytes (less padded nulls) match the *command* field in the protocol [message envelope](/protocol.md).
 
- \* *rejection reason* is a string providing a human language explanation of the reason the message was rejected.  This string is subject to change so client software **SHOULD NOT** use it programmatically.
+*reason length* and *reason string* form a [vector](/protocol/p2p/vector.md) of bytes that is a string providing a human language explanation of the reason the message was rejected.  This string is subject to change so client software **SHOULD NOT** use it programatically.
 
-#### Rejection Codes
+*error code* provides a succinct machine-interpretable reason why the message was rejected.
 
-|    Name    | Value | Response To |  Description |
+### Reject Error Codes
+
+|    Name    | Value | Response To |  Description
 |-------------|-------|---------------|-----------|
-| REJECT_MALFORMED | 0x01 | any | Message cannot be deserialized. |
-| REJECT_INVALID | 0x10 | BLOCK, TX, FILTERSIZEXTHIN | Block or transaction is invalid, or xthin filter size is too small | 
+| REJECT_MALFORMED | 0x01 | any | message cannot be deserialized |
+| REJECT_INVALID | 0x10 | BLOCK, TX, FILTERSIZEXTHIN | block or transaction is invalid, or xthin filter size is too small | 
 | REJECT_OBSOLETE | 0x11 | VERSION | This node no longer supports your client protocol version |
 | REJECT_DUPLICATE | 0x12 | unused | |
-| REJECT_NONSTANDARD | 0x40 | TX | Transaction is [non-standard](/protocol/blockchain/transaction-validation/network-level-validation-rules#standard-transactions), or not final as per [BIP68](/protocol/forks/bip-0068). |
-| REJECT_DUST  | 0x41 | TX | Transaction has an output that is too small. |
-| REJECT_INSUFFICIENTFEE | 0x42 | TX | Transaction does not pay enough in fees to be relayed. |
+| REJECT_NONSTANDARD | 0x40 | TX | Transaction is [non-standard](/standard__transactions.md), or [not final](/final__transactions.md) as per BIP68 |
+| REJECT_DUST  | 0x41 | TX | Transaction has an output that is too small |
+| REJECT_INSUFFICIENTFEE | 0x42 | TX | Transaction does not pay enough to be relayed |
 | REJECT_CHECKPOINT | 0x43 | unused | |
+| REJECT_WAITING | 0x44 | TX | This transaction is [not final](/final__transactions.md) |

@@ -2,7 +2,7 @@
 
 The idea of chainwork is intrinsic to blockchains.  Nodes switch to the chain tip with the most cumulative "work" to help preserve the blockchain assumption that the majority of the miners on a chain are honest.  Chainwork is calculated by summing the "work" done in each block in the chain.  
 
-Is summing work a valid operation?
+Is summing work a valid operation?  
 
 More formally, *is the expected number of hashes to solve one block candidate with work W is equal to the expected number of hashes to solve N block candidates with work W/N?*
 

@@ -9,7 +9,7 @@ Inserts a transaction and merkle block filter into the peer, overwriting any exi
 
 ### Effect on Transactions
 
-This message installs a bloom filter into the peer.  Subsequent [inv](/protocol/network/messages/inv) and [merkleblock](/protocol/network/messages/merkleblock) messages only provide transactions that in match this bloom filter in some manner.  The following items in a transaction are checked against the bloom filter:
+This message installs a bloom filter into the peer.  Subsequent INV notifications and MERKLEBLOCK messages only provide transactions that in match this bloom filter in some manner.  The following items in a transaction are checked against the bloom filter:
 
  - The transaction hash
  - Each data field in every [output script](/glossary/output__script.md) in the transaction
@@ -22,17 +22,16 @@ See [CBloomFilter::MatchAndInsertOutputs](https://github.com/BitcoinUnlimited/Bi
 
 ### Effect on Merkle Blocks
 
-If a [filtered block](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/bucash1.7.0.0/src/protocol.h#L483) is requested via an inventory message, the installed bloom filter is used to choose which transactions are included in the response using the same matching algorithm as described above for transaction inventories.
+If a [filtered block](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/bucash1.7.0.0/src/protocol.h#L483) is requested via in [INV](/protocol/network/messages/inv.md) message, the installed bloom filter is used to choose which transactions are included in the response using the same matching algorithm as described above for transaction INVs.
 
 ## Message Format
 
 | Field | Length | Format | Description |  
 |--|--|--|--|
-| bloom filter size | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the bloom filter to be used. |
-| bloom filter data | variable | `bloom_filter_size` bytes | Raw bloom filter data (up to 36,000 bytes). |
-| number of hash functions | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The number of hash functions used when generating this filter (max 50). |
-| tweak | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | Arbitrary number that helps randomize this bloom filter. |
-| flags | 1 byte | bit field | See [bloom filter flags](#bloom-filter-flags). |
+| [vector](/protocol/p2p/vector.md) of bytes | up to 36000 bytes | bit vector | bloom filter data |
+| num hash funcs | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | number of hash functions used when generating this filter (max 50) |
+| tweak | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | arbitrary number that uniquifies this bloom filter |
+flags | 1 byte | bit field | bloom filter flags
 
 ### Bloom Filter Flags
 
