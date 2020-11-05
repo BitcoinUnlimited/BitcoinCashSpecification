@@ -8,7 +8,7 @@ In contrast, nodes that store the full blockchain are often referred to as full 
 
 The validity of transactions can not only be verified through checking the transactions against the public ledger, but can also be demonstrated through the facts that they have been accepted by the Bitcoin Cash network and admitted into the blockchain.
 SPV relies on the latter method mentioned and verifies transactions by querying other network nodes for de facto proof that the blocks containing the transactions are valid.
-The clients can keep their own copy of the [block header](/blockchain/block/block-header) chain and verify that the blocks referred are included in the blockchain.
+The clients can keep their own copy of the [block header](/protocol/blockchain/block/block-header) chain and verify that the blocks referred are included in the blockchain.
 The clients can further increase their confidence for the validity of the said transactions, as the confirmations go up due to the increased difficulty to forge the additional blocks and the decreased likelihood of a [blockchain reorganization](blockchain#blockchain-reorganization).
 
 ## Design

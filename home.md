@@ -53,10 +53,10 @@ Secp256k1 — Public Key — Private Key — ECDSA Signatures — Schnorr Signat
 
 #### Other messages (extensions)
 
-[sendcmpct](/protocol/network/messages/sendcmpct) — [get_xthin](/protocol/network/message/get_xthin) — [xthinblock](/protocol/network/messages/xthinblock) — [thinblock](/protocol/network/messages/thinblock) — [get_xblocktx](/protocol/network/messages/get_xblocktx) — [xblocktx](/protocol/network/messages/xblocktx) — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
+[sendcmpct](/protocol/network/messages/sendcmpct) — [get_xthin](/protocol/network/messages/get_xthin) — [xthinblock](/protocol/network/messages/xthinblock) — [thinblock](/protocol/network/messages/thinblock) — [get_xblocktx](/protocol/network/messages/get_xblocktx) — [xblocktx](/protocol/network/messages/xblocktx) — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
 
 ### Simple Payment Verification (SPV)
-[Bloom Filters](/objects/bloom__filter)
+[SPV](/protocol/spv) - [Bloom Filters](/objects/bloom__filter)
 ### Simple Ledger Protocol
 ### Miscellaneous
 [Endian](/protocol/misc/endian)
