@@ -5,7 +5,7 @@
 [Style Guide](/style-guide) — [Contributors](/contributors) — [Target Audience](/target-audience) — [Project History](/project-history)
 
 ### Basics
-[Overview](protocol\Overview.md) — [Blockchain Basics](/protocol/blockchain) — [Protocol Hashing Algorithms](/protocol/blockchain/hash) — Memory Pool
+[Overview](/protocol/overview) — [Blockchain Basics](/protocol/blockchain) — [Protocol Hashing Algorithms](/protocol/blockchain/hash) — [Memory Pool](/protocol/blockchain/memory-pool)
 
 ### Transactions
 [Bitcoin Transaction](/protocol/blockchain/transaction) — [Unlocking Script](/protocol/blockchain/transaction/unlocking-script) — [Locking Script](/protocol/blockchain/transaction/locking-script) — [Transaction Signing](/protocol/blockchain/transaction/transaction-signing)
@@ -53,7 +53,7 @@ Secp256k1 — Public Key — Private Key — ECDSA Signatures — Schnorr Signat
 
 #### Other messages (extensions)
 
-sendcmpct — get_xthin — xthinblock — thinblock — get_xblocktx — xblocktx — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
+[sendcmpct](/protocol/network/messages/sendcmpct) — [get_xthin](/protocol/network/message/get_xthin) — [xthinblock](/protocol/network/messages/xthinblock) — [thinblock](/protocol/network/messages/thinblock) — [get_xblocktx](/protocol/network/messages/get_xblocktx) — [xblocktx](/protocol/network/messages/xblocktx) — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
 
 ### Simple Payment Verification (SPV)
 [Bloom Filters](/objects/bloom__filter)
