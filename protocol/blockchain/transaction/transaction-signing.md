@@ -1,6 +1,6 @@
 # Transaction Signing
 
-Generally, every input of a [transaction](/protocol/blockchain/transaction) require one or more signature. The signatures enforce (sign) what the transaction looks like and make it impossible for a third party to temper with without invalidating the transaction. 
+Generally, every input of a [transaction](/protocol/blockchain/transaction) require one or more signature. The signatures enforce (sign) what the transaction looks like and make it impossible for a third party to tamper with without invalidating the transaction. 
 
 This applies to any input whose previous output [locking script](/protocol/blockchain/transaction/locking-script) includes one of the following [operation codes](/protocol/blockchain/script#operation-codes-opcodes): `OP_CHECKSIG`, `OP_CHECKSIGVERIFY`, `OP_CHECKMULTISIG`, `OP_CHECKMULTISIGVERIFY`. In scripts using these opcodes, *signatures* are checked against *public keys* and the transaction signature (as described below).
 
