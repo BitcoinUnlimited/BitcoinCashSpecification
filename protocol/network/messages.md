@@ -59,6 +59,7 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | [filterclear](/protocol/network/messages/filterclear) | *Removes an installed filter* |
 | [filterload](/protocol/network/messages/filterload) | *Inserts a transaction and merkle block filter into the peer* |
 | [inv](/protocol/network/messages/inv) | *Notifies peers about the existence of some information (generally a block or transaction)* |
+| [dsproof-beta](/protocol/network/messages/dsproof-beta) | *Informs participants of an attempt to double spend* |
 
 #### Requests
 | Command String | Synopsis |
