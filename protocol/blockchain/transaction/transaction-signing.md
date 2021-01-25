@@ -13,7 +13,7 @@ Points (1) and (2) mean that if the signature is changed, the transaction's hash
 
 As a consequence of these factors, signatures have more parameters than may be immediately obvious, and the details of how signatures are generated can be, and have been, changed in a number of ways.  These parameters are encoded in the [Hash Type](#hash-type).
 
-In addition, as a part of [BCH-UAHF](/protocol/forks/bch-uahf) (activated in block 478,559), the transaction signed format changed from the legacy [Bitcoin (BTC) method](#btc-signatures) to the [Bitcoin Cash (BCH) Signatures](#bch-signatures).  In both cases, there is a signature preimage format (input) and a signature format (output).
+In addition, as a part of [BCH-UAHF](/protocol/forks/bch-uahf) (activated in block 478,559), the transaction signed format changed from the legacy [Bitcoin Core (BTC) method](#bitcoin-core-signatures) to the [Bitcoin Cash (BCH) Signatures](#bitcoin-cash-signatures).  In both cases, there is a signature preimage format (input) and a signature format (output).
 
 ### Hash Type
 
@@ -45,9 +45,9 @@ Combining these, there are 6 valid signature hash types in Bitcoin Cash.  Only t
 | SIGHASH_NONE \| SIGHASH_ANYONECANPAY \| SIGHASH_FORKID   | 0x000000C2  | 0b11000010  | Signature applies to its own input and none of the outputs.           |
 | SIGHASH_SINGLE \| SIGHASH_ANYONECANPAY \| SIGHASH_FORKID | 0x000000C3  | 0b11000011  | Signature applies to its own input and the output with the same index.|
 
-## BCH Signatures
+## Bitcoin Cash Signatures
 
-In Bitcoin Cash, transaction signature uses the transaction digest algorithm described in [BIP143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
+In Bitcoin Cash, transaction signatures use the transaction digest algorithm described in [BIP143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
 
 ### Preimage Format
 
@@ -118,13 +118,54 @@ For each transaction output to be signed (per the hash mode), append the followi
 
 ### Signature Format
 
+Depending on the signature algorithm used, the representation of the signature itself can vary.  BCH has always supported DER-encoded ECDSA signatures. Since HF-20190515 it also supports Schnorr signatures for the [CHECKSIG/CHECKDATASIG\[VERIFY\] operations](/protocol/blockchain/script#cryptography), and since HF-20191115, Schnorr signatures are also supported for the [CHECKMULTISIG\[VERIFY\] operations](/protocol/blockchain/script#cryptography).
 
+The specific format of the signature depends on the operation to be executed and the algorithm being used to generate the signature.
 
-## BTC Signatures
+#### ECDSA Signature Format
 
+ECDSA signatures follow a strict DER encoding format, followed by the above [hash type](#hash-type).  They are distinguished from Schnorr signatures by length, despite having a variable-length format (see [Schorr signature format](#schnorr-signature-format)).
+
+| Field | Length | Format | Description |
+|--|--|--|--|
+| magic number | 1 byte | byte | The magic number value: `0x30`. |
+| signature length | 1 byte | unsigned integer | The number of bytes to follow in the signature. |
+| r | variable | [DER-encoded integer](#der-encoded-integer) | The ECDSA "r" value. |
+| s | variable | [DER-encoded integer](#der-encoded-integer) | The ECDSA "s" value. |
+| hash type | 1 byte | LSB of [hash type](#hash-type) | Indicates the parameters used to generate the pre-image for this signature. |
+
+##### DER-Encoded Integer
+
+| Field | Length | Format | Description |
+|--|--|--|--|
+| integer header-byte | 1 byte | byte | The integer value indicator: `0x02`. |
+| value length | 1 byte | unsigned integer | The number of bytes used to encode the integer value. |
+| value | `value_length` bytes | unsigned integer<sup>[(BE)](/protocol/misc/endian/big)</sup> | The integer value being encoded.<br><br>This must be the smallest viable representation of the value being encoded.  That is, the highest order byte may only be `0x00` if it is necessary to ensure the rest of the value is not interpreted as negative, in which case it is required.<br><br>For example, the value may start with `0x0080` or `0x7F` but not `0x80` or `0x007F`. |
+
+#### Schnorr Signature Format
+
+Schnorr signatures have a less variable format, though the hash type field is removed for [OP_CHECKDATASIG](/protocol/blockchain/script#cryptography).  This allows them to be easily distinguished from ECDSA signatures on length alone.  In fact, ECDSA signatures that happen to be the length of a Schnorr signature in the same context (though they should be extremely rare, with probability 2<sup>-49</sup>) should be re-generated to avoid being errantly treated as an invalid Schnorr signature.
+
+| Field | Length | Format | Description |
+|--|--|--|--|
+| r | 32 bytes | unsigned integer<sup>[(BE)](/protocol/misc/endian/big)</sup> | The Schorr "r" value. |
+| s | 32 bytes | unsigned integer<sup>[(BE)](/protocol/misc/endian/big)</sup> | The Schorr "s" value. |
+| hash type | 0-1 bytes | LSB of [hash type](#hash-type) | Indicates the parameters used to generate the pre-image for this signature.  Not included for [OP_CHECKDATASIG](/protocol/blockchain/script#cryptography) signatures. |
+
+## Bitcoin Core Signatures
+
+Bitcoin Core signatures work very similarly to modern Bitcoin Cash signatures.  The primary difference is its different preimage format, as described in the following section.
 
 ### Preimage Format
 
+Bitcoin Core preimages are generated using the following steps:
+
+1. If [`SIGHASH_SINGLE`](#hash-type) is used without a corresponding output, due to a bug, the entire preimage used for that signature becomes `0x0100000000000000000000000000000000000000000000000000000000000000`, and none of the following steps need performed.
+2. Take the [Modified Locking Script](#modified-locking-script)
+3. Replace the current input's scripts with this modified script
+4. Set all other input scripts to empty byte arrays
+5. Handle the [Hash Type](#hash-type) logic as in Bitcoin Cash, but `SIGHASH_FORKID` should NOT be set.
 
 ### Signature Format
 
+Bitcoin Core signatures follow the [ECDSA signature format](#ecdsa-signature-format) described above.
