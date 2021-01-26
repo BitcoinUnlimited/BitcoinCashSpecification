@@ -1,7 +1,10 @@
 
 # Transaction Signatures
 
-Transaction signatures are central to how [Bitcoin Cash transactions](/protocol/blockchain/transaction) are generally secured, preventing people other than the intended recipient of funds from spending them.  Bitcoin Cash signatures are created using [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) and involve generating a [hash](/protocol/blockchain/hash) of the transaction and performing a signature operation using the sender's private key.  Anyone with the corresponding public key can then verify the validity of the signature.  As described in [Standard Scripts](/protocol/blockchain/transaction/locking-script#standard-scripts), the [OP_CHECKSIG and related operations](/protocol/blockchain/script#cryptography) are used to validate signatures included in the unlocking script of a future transaction input.
+Transaction signatures are central to how [Bitcoin Cash transactions](/protocol/blockchain/transaction) are generally secured, preventing people other than the intended recipient of funds from spending them.
+Bitcoin Cash signatures are created using [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) and involve generating a [hash](/protocol/blockchain/hash) of the transaction and performing a signature operation using the sender's private key.
+Anyone with the corresponding public key can then verify the validity of the signature.
+As described in [Standard Scripts](/protocol/blockchain/transaction/locking-script#standard-scripts), the [OP_CHECKSIG and related operations](/protocol/blockchain/script#cryptography) are used to validate signatures included in the unlocking script of a future transaction input.
 
 However, there are a number of issues with signing a transaction that must be addressed:
 
@@ -9,9 +12,12 @@ However, there are a number of issues with signing a transaction that must be ad
   2. The signatures are a part of the transaction data
   3. The signatures are created from a hash of the transaction's data
 
-Points (1) and (2) mean that if the signature is changed, the transaction's hash will change.  Points (2) and (3) mean that the data that the signature hash preimage (i.e. the data that is hashed and signed) must not be the full transaction data. In addition, because signatures relate only to a single input to a transaction (i.e. spending an unspent transaction output or UTXO) the may be multiple signatures in a transaction potentially created by different private keys, or even different people.
+Points (1) and (2) mean that if the signature is changed, the transaction's hash will change.
+Points (2) and (3) mean that the data that the signature hash preimage (i.e. the data that is hashed and signed) must not be the full transaction data.
+In addition, because signatures relate only to a single input to a transaction (i.e. spending an unspent transaction output or UTXO) the may be multiple signatures in a transaction potentially created by different private keys, or even different people.
 
-As a consequence of these factors, signatures have more parameters than may be immediately obvious, and the details of how signatures are generated can be, and have been, changed in a number of ways.  These parameters are encoded in the [Hash Type](#hash-type).
+As a consequence of these factors, signatures have more parameters than may be immediately obvious, and the details of how signatures are generated can be, and have been, changed in a number of ways.
+These parameters are encoded in the [Hash Type](#hash-type).
 
 In addition, as a part of [BCH-UAHF](/protocol/forks/bch-uahf) (activated in block 478,559), the transaction signed format changed from the legacy [Bitcoin Core (BTC) method](#bitcoin-core-signatures) to the [Bitcoin Cash (BCH) Signatures](#bitcoin-cash-signatures).  In both cases, there is a signature preimage format (input) and a signature format (output).
 
@@ -89,7 +95,9 @@ For each transaction input in the transaction, append the following information:
 
 #### Modified Locking Script
 
-The locking script included in the signature preimage is, first, dependent on the type of locking script included in the previous output.  For non-[P2SH](/protocol/blockchain/transaction/locking-script#pay-to-script-hash-p2sh) outputs, the locking script itself is used.  However, for P2SH outputs, the redeem script is used instead.
+The locking script included in the signature preimage is, first, dependent on the type of locking script included in the previous output.
+For non-[P2SH](/protocol/blockchain/transaction/locking-script#pay-to-script-hash-p2sh) outputs, the locking script itself is used.
+However, for P2SH outputs, the redeem script is used instead.
 
 Second, the selected script (locking script or redeem script) is modified as follows.
 
@@ -118,13 +126,16 @@ For each transaction output to be signed (per the hash mode), append the followi
 
 ### Signature Format
 
-Depending on the signature algorithm used, the representation of the signature itself can vary.  BCH has always supported DER-encoded ECDSA signatures. Since HF-20190515 it also supports Schnorr signatures for the [CHECKSIG/CHECKDATASIG\[VERIFY\] operations](/protocol/blockchain/script#cryptography), and since HF-20191115, Schnorr signatures are also supported for the [CHECKMULTISIG\[VERIFY\] operations](/protocol/blockchain/script#cryptography).
+Depending on the signature algorithm used, the representation of the signature itself can vary.
+BCH has always supported DER-encoded ECDSA signatures.
+Since HF-20190515 it also supports Schnorr signatures for the [CHECKSIG/CHECKDATASIG\[VERIFY\] operations](/protocol/blockchain/script#cryptography), and since HF-20191115, Schnorr signatures are also supported for the [CHECKMULTISIG\[VERIFY\] operations](/protocol/blockchain/script#cryptography).
 
 The specific format of the signature depends on the operation to be executed and the algorithm being used to generate the signature.
 
 #### ECDSA Signature Format
 
-ECDSA signatures follow a strict DER encoding format, followed by the above [hash type](#hash-type).  They are distinguished from Schnorr signatures by length, despite having a variable-length format (see [Schorr signature format](#schnorr-signature-format)).
+ECDSA signatures follow a strict DER encoding format, followed by the above [hash type](#hash-type).
+They are distinguished from Schnorr signatures by length, despite having a variable-length format (see [Schorr signature format](#schnorr-signature-format)).
 
 | Field | Length | Format | Description |
 |--|--|--|--|
@@ -144,7 +155,9 @@ ECDSA signatures follow a strict DER encoding format, followed by the above [has
 
 #### Schnorr Signature Format
 
-Schnorr signatures have a less variable format, though the hash type field is removed for [OP_CHECKDATASIG](/protocol/blockchain/script#cryptography).  This allows them to be easily distinguished from ECDSA signatures on length alone.  In fact, ECDSA signatures that happen to be the length of a Schnorr signature in the same context (though they should be extremely rare, with probability 2<sup>-49</sup>) should be re-generated to avoid being errantly treated as an invalid Schnorr signature.
+Schnorr signatures have a less variable format, though the hash type field is removed for [OP_CHECKDATASIG](/protocol/blockchain/script#cryptography).
+This allows them to be easily distinguished from ECDSA signatures on length alone.
+In fact, ECDSA signatures that happen to be the length of a Schnorr signature in the same context (though they should be extremely rare, with probability 2<sup>-49</sup>) should be re-generated to avoid being errantly treated as an invalid Schnorr signature.
 
 | Field | Length | Format | Description |
 |--|--|--|--|
@@ -154,7 +167,8 @@ Schnorr signatures have a less variable format, though the hash type field is re
 
 ## Bitcoin Core Signatures
 
-Bitcoin Core signatures work very similarly to modern Bitcoin Cash signatures.  The primary difference is its different preimage format, as described in the following section.
+Bitcoin Core signatures work very similarly to modern Bitcoin Cash signatures.
+The primary difference is its different preimage format, as described in the following section.
 
 ### Preimage Format
 
