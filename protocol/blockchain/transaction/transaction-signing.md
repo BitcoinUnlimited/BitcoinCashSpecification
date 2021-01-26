@@ -103,7 +103,8 @@ Second, the selected script (locking script or redeem script) is modified as fol
 
 * Find the [`OP_CODESEPARATOR`](/protocol/blockchain/script#cryptography) operation in the script preceding the expected [signature-verification operation](/protocol/blockchain/script#cryptography) (e.g. `OP_CHECKSIG`).
 * Remove all operations before this point.
-* Remove any remaining `OP_CODESEPARATOR` operations.
+* For Bitcoin Core signatures, remove any remaining `OP_CODESEPARATOR` operations.  This requirement was dropped with [BCH-UAHF](/protocol/forks/bch-uahf) (activated in block 478,559).
+* If creating this modified script for signature verification purposes, also remove any signatures that appeared in the unlocking script
 
 The resulting script is what is included in the signature preimage.
 
