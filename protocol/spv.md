@@ -13,10 +13,10 @@ The clients can further increase their confidence for the validity of the said t
 
 ## Design
 
-The support for SPV was proposed in [BIP-0037](/protocol/forks/bip-0037).
+The support for SPV was proposed in [BIP-37](/protocol/forks/bip-0037).
 Clients that wish to operate in SPV mode should utilize the [`filterload`](/protocol/network/messages/filterload) and [`filteradd`](/protocol/network/messages/filteradd) messages to request the remote peers to install and add content to the bloom filter on its connection with the client.
 A Bloom filter is a probabilistic data structure which allows for testing set membership - they can have false positives but not false negatives.
-Upon receipt of these messages, the remote peers are expected to only announce transactions selected by the filter, with the matching algorithm proposed in [BIP-0037](/protocol/forks/bip-0037).
+Upon receipt of these messages, the remote peers are expected to only announce transactions selected by the filter, with the matching algorithm proposed in [BIP-37](/protocol/forks/bip-0037).
 Nodes that accept a filterload message are expected to only send [inventory messages](/protocol/network/messages/inv) containing transactions that match the client's bloomfilter, or blocks that contain transactions that match the client's Bloom filter.
 When blocks are requested by the client, they are sent not as [`block`](/protocol/network/messages/block) messages, but as [`merkle block`](/protocol/network/messages/merkleblock) messages, which contain the partial [merkle trees](/protocol/blockchain/block/merkle-tree) of the blocks as the proof of the inclusion for the transactions announced.
 The transactions can be transmitted to the clients normally, via [`tx`](/protocol/network/messages/tx) messages.
