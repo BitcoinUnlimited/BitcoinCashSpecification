@@ -6,7 +6,7 @@ Note that this could be done by someone other than the [GENESIS](/protocol/slp/g
 As with GENESIS, the MINT allows to end the baton, or further pass on the baton to future mint operations: if `mint_baton_vout` is empty or refers to a nonexistent vout, the transaction is valid but the baton is lost.
 This makes it possible to prove end-of-minting capabilities for a token even after several minting events (it is impossible to duplicate this baton as that would require double-spending the transaction output associated with the baton).
 
-**Transaction inputs**: Any number of inputs or content of inputs, in any order, but with required presence of a 'baton' input (see [Consensus Rules](/protocol/slp/slp#consensus-rules)).
+**Transaction inputs**: Any number of inputs or content of inputs, in any order, but with required presence of a 'baton' input (see [Consensus Rules](/protocol/slp#consensus-rules)).
 
 **Transaction outputs**:
 

@@ -6,7 +6,7 @@ Tokens will be assigned to the outputs with indexes 1 to 19 as indicated within 
 Any number of additional BCH-only outputs will be allowed.
 A BCH-only output can come before token outputs, but a token quantity of 0 must be specified for this output.
 
-**Transaction inputs**: Any number of inputs or content of inputs, in any order, but must include sufficient tokens coming from valid token transactions of matching `token_id`, `token_type` (see [Consensus Rules](/protocol/slp/slp#Consensus-Rules)).
+**Transaction inputs**: Any number of inputs or content of inputs, in any order, but must include sufficient tokens coming from valid token transactions of matching `token_id`, `token_type` (see [Consensus Rules](/protocol/slp#Consensus-Rules)).
 
 **Transaction outputs**:
 

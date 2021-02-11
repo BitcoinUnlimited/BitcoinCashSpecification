@@ -58,5 +58,6 @@ Secp256k1 — Public Key — Private Key — ECDSA Signatures — Schnorr Signat
 ### Simple Payment Verification (SPV)
 [SPV](/protocol/spv) - [Bloom Filters](/protocol/spv/bloom-filter)
 ### Simple Ledger Protocol
+[SLP](/protocol/slp)
 ### Miscellaneous
 [Endian](/protocol/misc/endian)
