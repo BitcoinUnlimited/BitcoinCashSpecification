@@ -1,5 +1,4 @@
-
-# Transaction Signatures
+# Transaction Signing
 
 Transaction signatures are central to how [Bitcoin Cash transactions](/protocol/blockchain/transaction) are generally secured, preventing people other than the intended recipient of funds from spending them.
 Bitcoin Cash signatures are created using [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) and involve generating a [hash](/protocol/blockchain/hash) of the transaction and performing a signature operation using the sender's private key.

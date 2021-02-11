@@ -168,4 +168,4 @@ The serialized genesis block has the hex encoded value of:
     7962E0EA 1F61DEB6 49F6BC3F 4CEF38C4
     F35504E5 1EC112DE 5C384DF7 BA0B8D57
     8A4C702B 6BF11D5F AC000000 00
-    
+
