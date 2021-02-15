@@ -22,7 +22,7 @@ Sibling blocks can happen if a block is created with sufficient work before the 
 Sibling blocks are incompatible with one another, and eventually one will become orphaned.
 The [genesis block](/protocol/blockchain#genesis-block) is the first block in a chain, and has a block height of `0` (as its distance to the genesis block is zero).
 
-As of [BIP-0034](/blockchain/forks/bip-34), the `block height` is included within the [coinbase transaction](/protocol/blockchain/block#coinbase-transaction).
+As of [BIP-34](/protocol/forks/bip-0034), the `block height` is included within the [coinbase transaction](/protocol/blockchain/block#coinbase-transaction).
 
 ## Work
 
@@ -168,4 +168,4 @@ The serialized genesis block has the hex encoded value of:
     7962E0EA 1F61DEB6 49F6BC3F 4CEF38C4
     F35504E5 1EC112DE 5C384DF7 BA0B8D57
     8A4C702B 6BF11D5F AC000000 00
-    
+

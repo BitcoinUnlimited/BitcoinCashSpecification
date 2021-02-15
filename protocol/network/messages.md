@@ -1,11 +1,18 @@
 # P2P Network Message
 
-The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted via TCP.
-The P2P network is similar to a gossip network, where nodes listen for messages and then relays that message to its other peers if it believes that message's content is valid.
+The Bitcoin Cash Peer-to-Peer (P2P) Network protocol is a binary protocol used by Full Nodes and [SPV](/protocol/simple-payment-verification) Nodes, transmitted over TCP/IP.
+Individual nodes on the Bitcoin Cash network connect and create a mesh network where each node is indirectly connected to many others via just a couple of hops.
+In the original Satoshi implementation of the P2P protocol the design of INV and getdata have been used for propagating transaction data using the rules of the gossip protocol values: forwarding validated transactions to a few peer-nodes who send it to others until the entire network has the transaction.
+This emergent behavior of the P2P layer allows fast propagation without undue strain on any individual node.
 
-P2P network messages do not necessarily have a reply and there is no way to unambiguously connect a sent message to a reply, although many communications are often request/response pairs.
-Nodes may handle incoming messages in parallel, so a message reply order cannot be assumed.
-Messages that cannot be fulfilled are sometimes dropped with no reply, and sometimes replied to via a `reject` message.  
+The P2P protocol is designed around messages.
+Each message is separate and self-contained.
+Nodes should be tolerant of message-types they do not understand.
+It is best to simply ignore those.
+
+Generally speaking, each message is an event that the node can choose to respond to.
+Events can be notifications of new data (transactions/blocks/etc), requests for such data to be sent, or the sending of the data itself.
+In some specific cases a message can indicate the rejection of another message, though this is optional and should not be relied upon.
 
 These design decisions were made with consideration to communication with untrusted/uncooperative partners.
 
@@ -16,24 +23,24 @@ These design decisions were made with consideration to communication with untrus
 The P2P network has a variety of message types.
 All P2P messages follow a binary format with the following structure:
 
+| Field | Length | Format | Description |
+|--|--|--|--|
+| net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | See [net magic](#net-magic). |
+| command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/big)</sup> | See [command string](#command-string).
+| payload byte count | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The size of the payload.  The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes, while the min value is zero (indicating no additional payload). |
+| payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> | The message checksum is the first 4 bytes of a double-sha256 hash of the payload. |
+| payload | variable | message-specific | See [message types](#message-types) for links to message-specific page, which describe the payload for each message. |
 
-| Field | Length | Format |
-|--|--|--|
-| net magic | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> |
-| command string | 12 bytes | string<sup>[(BE)](/protocol/misc/endian/big)</sup> |
-| payload byte count | 4 bytes | integer<sup>[(LE)](/protocol/misc/endian/little)</sup> |
-| payload checksum | 4 bytes | byte array<sup>[(BE)](/protocol/misc/endian/big)</sup> |
-| payload | variable |  |
+See [Example Message](#example-message) for a concrete example of this with a message that does not contain an extended payload.
 
 ### Net Magic
 
 The network identifier is used to separate blockchains and test networks.
 This reduces unnecessary load on peers, allowing them to rapidly ban nodes rather then forcing the peer to do a blockchain analysis before banning or disconnecting.
-For Bitcoin Cash main net, the `net magic` field is always `E3E1F3E8`.
+For Bitcoin Cash main net, the `net magic` field is always `0xE3E1F3E8` (the ASCII string, "cash", with each byte's highest bit set).
 Any message received that does not begin with the `net magic` is invalid.
 
 The `net magic` is designed to be unlikely to occur in normal data--the characters are rarely used upper ASCII, are not valid as UTF-8, and produce a large 32-bit integer with any alignment.
-`E3E1F3E8` is the ASCII string, "cash", with each byte's highest bit set.
 
 ### Command String
 
@@ -43,45 +50,44 @@ Commands that are shorter than 12 bytes are right-padded with null bytes (`0x00`
 The command string is used to determine the type of message being transmitted.
 Messages with an unrecognized `command string` are ignored by most implementations but may result in a ban by implementations that diverge from the Satoshi-client defacto standard.
 
-The following messages are considered standard by all node implementations.
+### Message Types
 
 #### Announcements
-| Command String | Synopsis | Supported Implementations
-| -- | -- | -- |
-| [filteradd](/protocol/p2p/filteradd) | *Adds a single item into an installed filter* | all
-| [filterclear](/protocol/p2p/filterclear) | *Removes an installed filter* | all
-| [filterload](/protocol/p2p/filterload) | *Inserts a transaction and merkle block filter into the peer* | all
-| [inv](/protocol/p2p/inv) | *Notifies peers about the existence of some information (generally a block or transaction)* | all
-  | [xupdate](/protocol/p2p/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
+| Command String | Synopsis |
+| -- | -- |
+| [filteradd](/protocol/network/messages/filteradd) | *Adds a single item into an installed filter* |
+| [filterclear](/protocol/network/messages/filterclear) | *Removes an installed filter* |
+| [filterload](/protocol/network/messages/filterload) | *Inserts a transaction and merkle block filter into the peer* |
+| [inv](/protocol/network/messages/inv) | *Notifies peers about the existence of some information (generally a block or transaction)* |
+| [dsproof-beta](/protocol/network/messages/dsproof-beta) | *Informs participants of an attempt to double spend* |
 
 #### Requests
-| Command String | Synopsis | Supported Implementations
-| -- | -- | -- |
-| feefilter |  |
-| getaddr |  |
-| [getblocks](/protocol/p2p/getblocks) | *Requests block hash identifiers* | all |
-| [getdata](/protocol/p2p/getdata) | *Requests information from a peer* | all |
-| [getheaders](/protocol/p2p/getheaders) | *Requests block headers from a peer*  | all |
-| ping | [Ping](/protocol/network/messages/ping) | all |
-| sendheaders |  |
-| [version](/protocol/network/messages/version) | *Describes peer capabilities* | all
-| [xversion](/protocol/p2p/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
+| Command String | Synopsis |
+| -- | -- |
+| [feefilter](/protocol/network/messages/feefilter) | *Requests that transactions without sufficient fees are not relayed* |
+| [getaddr](/protocol/network/messages/getaddr) | *Requests a list of active peers* |
+| [getblocks](/protocol/network/messages/getblocks) | *Requests block hash identifiers* |
+| [getdata](/protocol/network/messages/getdata) | *Requests information from a peer* |
+| [getheaders](/protocol/network/messages/getheaders) | *Requests block headers from a peer*  |
+| [ping](/protocol/network/messages/ping) | *Requests a confirmation (pong) that the peer is still active* |
+| [sendheaders](/protocol/network/messages/sendheaders) | *Requests that new blocks are sent as headers instead of hashes* |
+| [version](/protocol/network/messages/version) | *Describes peer capabilities* |
 
 
 #### Responses
-| Command String | Synopsis | Supported Implementations
-| -- | -- | -- |
-| [addr](/protocol/p2p/addr) | *Provides a peer with the addresses of other peers* | all
-| block |  |
-| [headers](/protocol/p2p/headers) | *Provides a set of block headers (unsolicited or GETHEADERS response)* | all |
-| notfound |  |
-|  [merkleblock](protocol/p2p/merkleblock) | *Provides a provable subset of a block's transactions, as filtered by FILTERADD*  | all |
-| [Pong](/protocol/network/messages/pong) | *Reply to a ping message* | all |
-| [reject](/protocol/p2p/reject) | *Response by well-behaved clients if a message cannot be handled*  | all
-| [TX](/protocol/p2p/tx) | *Provide a transaction* | all
-| [verack](/protocol/network/messages/verack) | *Respond to an [xversion](/protocol/p2p/xversion) message* | all
+| Command String | Synopsis |
+| -- | -- |
+| [addr](/protocol/network/messages/addr) | *Provides a peer with the addresses of other peers* |
+| [block](/protocol/network/messages/block) | *Provides the contents of a block* |
+| [headers](/protocol/network/messages/headers) | *Provides a set of block headers (unsolicited or GETHEADERS response)* |
+| [notfound](/protocol/network/messages/notfound) | *Indicates that a requested resource could not be relayed* |
+| [merkleblock](/protocol/network/messages/merkleblock) | *Provides a provable subset of a block's transactions, as filtered by FILTERADD* |
+| [pong](/protocol/network/messages/pong) | *Reply to a ping message* |
+| [reject](/protocol/network/messages/reject) | *Response by well-behaved clients if a message cannot be handled* |
+| [tx](/protocol/network/messages/tx) | *Provides a transaction* |
+| [verack](/protocol/network/messages/verack) | *Response to a [version](/protocol/network/messages/version) message* |
 
-The following messages are well known, but not implemented by all node implementations.
+#### Other Message Types (Extensions)
 
 | Command String | Synopsis | Supported Implementations
 | -- | -- | -- |
@@ -92,22 +98,24 @@ The following messages are well known, but not implemented by all node implement
 | thinblock |  |  |
 | xblocktx |  |  |
 | xthinblock |  |  |
+| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
+| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
+| [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message* | BCHUnlimited
 
-### Payload Byte Count
+## Example message
 
-The payload byte count is the size of the payload, encoded as a [little-endian](/protocol/misc/endian/little) 4-byte integer.
-The total max size of any message is `268,435,456` bytes (256 MiB), and the header for a message is always 24 bytes, therefore the max value of the payload byte count is `268,435,432` bytes.
-The payload byte count may be zero, but must not be negative.
+The below segments, when concatenated in order, create a sample [verack](/protocol/network/messages/verack) message.
 
-### Payload Checksum
+| Label | Sample Value (Hexadecimal Representation) |
+|-------|------|
+| Net Magic<sup>[(BE)](/protocol/misc/endian/little)</sup> | `E3E1F3E8` |
+| Command String ("verack")<sup>[(BE)](/protocol/misc/endian/big)</sup> | `76657261636B000000000000` |
+| Payload Byte Count<sup>[(LE)](/protocol/misc/endian/little)</sup> | `00000000` |
+| Payload Checksum<sup>[(LE)](/protocol/misc/endian/little)</sup> |  `5DF6E0E2` |
 
-The message checksum is the first 4 bytes of a double-sha256 hash of the payload.
-The checksum is transmitted as a byte array, and is encoded as [big-endian](/protocol/misc/endian/big).
+Below is the full, concatenated sample message (in hexadecimal):
 
-
-### Payload
-
-The message payload is defined by the message type.
+`E3E1F3E876657261636B000000000000000000005DF6E0E2`
 
 # Node Specific Behavior
 
