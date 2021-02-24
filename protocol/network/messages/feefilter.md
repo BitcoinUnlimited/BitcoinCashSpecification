@@ -6,6 +6,6 @@ The recipient node may, but is not required to, begin to perform this filtering 
 
 ## Message Format
 
-| Field | Length | Format | Description |  
+| Field | Length | Format | Description |
 |--|--|--|--|
 |  minimum fee per byte  | 8 bytes | unsigned 64 bit integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The minimum number of satoshis per byte in fees desired by the sender.

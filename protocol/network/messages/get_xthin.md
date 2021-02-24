@@ -5,7 +5,7 @@ The message should start with an inventory message that indicates the `XTHINBLOC
 Upon receipt of this request, the peer should loads the attached Bloom filter, creates and responds with `XTHINBLOCK`.
 If the `XTHINBLOCK` cannot be created without hash collisions, the peer may repond with `THINBLOCK` or full blocks.
 
-## Format  
+## Format
 
 | Field | Length | Format | Description |
 |--|--|--|--|

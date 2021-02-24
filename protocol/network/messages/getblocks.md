@@ -11,7 +11,7 @@ Request the sequence of blocks that occur after a specific block.  If the specif
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| locator | variable | [vector](/protocol/p2p/vector.md) of 32 byte block [hash identifiers](/glossary/hash__identifier.md) | identifies the desired blocks location in the blockchain|                                                          
+| locator | variable | [vector](/protocol/p2p/vector.md) of 32 byte block [hash identifiers](/glossary/hash__identifier.md) | identifies the desired blocks location in the blockchain|
 | stop at hash | 32 bytes | bytes | send no more INVs if this hash is encountered
 
 
@@ -20,7 +20,7 @@ Request the sequence of blocks that occur after a specific block.  If the specif
 
 See [GETHEADERS](/protocol/network/messages/getheaders.md) for a detailed description of the Locator object.
 
-The response will begin at **the child of** the first hash in the locator list that matches a block hash identifier held by the responder.  If no hashes match, there will be no INV messages sent. 
+The response will begin at **the child of** the first hash in the locator list that matches a block hash identifier held by the responder.  If no hashes match, there will be no INV messages sent.
 
 *Use an empty locator to get an INV for block 1, and GETHEADERS that block to discover the genesis block hash in the prevBlock field*
 
