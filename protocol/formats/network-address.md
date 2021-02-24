@@ -6,7 +6,7 @@ Specifies the basic information necessary to connect to a peer node.
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| timestamp* | 4 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | Last known time (in seconds) that the peer was known to be "live." |
+| timestamp\* | 4 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | Last known time (in seconds) that the peer was known to be "live." |
 | services | 8 bytes | bitfield<sup>[(LE)](/protocol/misc/endian/little)</sup> | The services this node supports.  See [Services Bitfield](/protocol/network/messages/version#services-bitfield). |
 | IP address | 16 bytes | [ip address](#ip-address-format) | The IP (v4 or v6) address used to connect to the peer. |
 | port | 2 bytes | unsigned integer<sup>[(BE)](/protocol/misc/endian/little)</sup> | The port used to the connect to the peer. |
