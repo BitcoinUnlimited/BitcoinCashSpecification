@@ -16,7 +16,7 @@ spending the same output. In the case of pay-to-public-key-hash (P2PKH)
 this means two signatures signing the same public key.
 
 Cryptographic signatures in Bitcoin Cash follow the 'fork-id' algorithm described
-[here](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/replay-protected-sighash.md),
+[here](/protocol/forks/replay-protected-sighash),
 which explains a change made to the Satoshi designed algorithm, a change after which the containing transaction itself is not signed, but a unique hash of that
 transaction is being signed. This gives us the opportunity to send only
 the intermediate hashes instead of the whole transaction while allowing
@@ -95,7 +95,7 @@ To validate a spender of the proof, a node requires to have;
 * The double-spend-proof.
 
 As the forkid
-[specification](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/replay-protected-sighash.md)
+[specification](/protocol/forks/replay-protected-sighash)
 details, the digest algorithm hashes 10 items in order to receive a sha256
 hash, which is then signed.
 
