@@ -54,6 +54,11 @@ It is currently set by all full nodes, and is unset by SPV clients or other peer
 	The node supports the BCH chain.
 This is intended to be just a temporary service bit until the BTC/BCH fork actually happens.
 
+* 10: NODE_NETWORK_LIMITED
+	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.
+See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
+
+
 * 24-31: Reserved for experimental changes
 	These bits are reserved for temporary experiments.
 Just pick a bit that isn't getting used, or one not being used much, and notify the community.
@@ -103,12 +108,6 @@ Node Features
 
 ### Node Specific Messages
 
-#### Bitcoin ABC
-
-* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png" />
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.
-See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
-
 #### Bitcoin Unlimited
 
 * 4: NODE_XTHIN  <img src="/_static_/images/warning.png" />
@@ -117,10 +116,6 @@ See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 * 6: NODE_GRAPHENE <img src="/_static_/images/warning.png" />
 	The node supports Graphene blocks.
 If this is turned off then the node will not service graphene requests nor make graphene requests.
-
-* 10: NODE_NETWORK_LIMITED <img src="/_static_/images/warning.png" />
-	This means the same as NODE_NETWORK with the limitation of only serving a small subset of the blockchain.
-See [BIP159](/protocol/forks/bip-0159) for details on how this is implemented.
 
 #### Bitcoin Verde
 
@@ -137,22 +132,5 @@ The node is capable of responding to the getutxo protocol request.
 See [BIP 64](/protocol/forks/bip-0064) for details on how this is implemented.
 _Was previously supported by Bitcoin XT only._
 
-* 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png" />
-	The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
-
 * 8: NODE_CF <img src="/_static_/images/warning.png" />
 	Indicates the node is capable of serving compact block filters to SPV clients, AKA the "Neutrino" protocol ([BIP157](/protocol/forks/bip-0157), and [BIP158](/protocol/forks/bip-0158)).
-
-## Node-Specific Behavior
-
-Generally, though node implementations may be aware of services they do not provide, they generally ignore those they don't supported.
-Any notable deviations from that behavior are documented below.
-
-### Bitcoin ABC
-
-Bitcoin ABC nodes may, once they have reached their maximum number of peers, selectively disconnect from nodes that do not supported "desired services", though it appears currently this just `NODE_NETWORK` and/or `NODE_NETWORK_LIMITED`.
-That is, it may prefer nodes that store and serve blocks.
-
-### Bitcoin Verde
-
-Bitcoin Verde nodes ignore any data after the `relay flag` field.
