@@ -38,5 +38,6 @@ The type of the object that is available.
 |   4  |  Compact block
 |   5  |  Xthin block (Bitcoin Unlimited)
 |   6  |  Graphene Block (Bitcoin Unlimited)
+| 0x94a0 | [DSProof](/protocol/network/messages/dsproof-beta) |
 
 Implementations: [C++](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/eb264e627e231f7219e60eef41b4e37cc52d6d9d/src/protocol.h#L477)
