@@ -13,7 +13,7 @@ Notifies peer that a received message is invalid.
 |--|--|--|--|
 | rejected message type | variable | [variable length string](/protocol/formats/variable-length-string) | The [command string](/protocol/network/messages#command-string) of the message that is being rejected (e.g. "tx"). |
 | rejection code | 1 byte | [rejection code](#rejection-codes) | A code indicating why the message was rejected. |
-| rejection reason* | variable | [variable length string](/protocol/formats/variable-length-string) | A description of why the message was rejected. |
+| rejection reason\* | variable | [variable length string](/protocol/formats/variable-length-string) | A description of why the message was rejected. |
 
  \* *rejection reason* is a string providing a human language explanation of the reason the message was rejected.  This string is subject to change so client software **SHOULD NOT** use it programmatically.
 

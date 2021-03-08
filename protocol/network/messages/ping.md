@@ -13,6 +13,6 @@ If a node receives a PING message, it replies as quickly as possible with a [PON
 
 ## Message Format
 
-| Field | Length | Format | Description |  
+| Field | Length | Format | Description |
 |--|--|--|--|
 |  nonce  | 8 bytes | unsigned 64 bit integer<sup>[(LE)](/protocol/misc/endian/little.md)</sup> | An arbitrary value provided to connect the ping message with the pong reply
