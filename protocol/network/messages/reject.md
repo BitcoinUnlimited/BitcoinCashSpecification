@@ -13,7 +13,7 @@ Notifies peer that a received message is invalid.
 |--|--|--|--|
 | rejected message type | variable | [variable length string](/protocol/formats/variable-length-string) | The [command string](/protocol/network/messages#command-string) of the message that is being rejected (e.g. "tx"). |
 | rejection code | 1 byte | [rejection code](#rejection-codes) | A code indicating why the message was rejected. |
-| rejection reason* | variable | [variable length string](/protocol/formats/variable-length-string) | A description of why the message was rejected. |
+| rejection reason\* | variable | [variable length string](/protocol/formats/variable-length-string) | A description of why the message was rejected. |
 | rejection data | variable | rejection code specific| Optional extra data provided by rejection codes. For example, those that reject specific objects.  Currently, all rejection codes that use this field fill it with the hash of the object being rejected, such as the transaction ID or block header hash, in which case the field is 32 bytes.
 
  \* *rejection reason* is a string providing a human language explanation of the reason the message was rejected.

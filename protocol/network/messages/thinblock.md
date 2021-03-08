@@ -9,6 +9,6 @@ All the transactions that are in the block, but not matched by the Bloom filter 
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| Block header | 80 bytes | [block header](..\blockchain\block\block-header) | The header of the block transmitted.|  
-| Transaction hashes | # of tx * 32 bytes | vector | The truncated hashes of all the transactions included in the block.|  
+| Block header | 80 bytes | [block header](..\blockchain\block\block-header) | The header of the block transmitted.|
+| Transaction hashes | # of tx * 32 bytes | vector | The truncated hashes of all the transactions included in the block.|
 | Missing transactions | variable | vector | Transactions that are included in the blocks but are not matched by the Bloom filter.|

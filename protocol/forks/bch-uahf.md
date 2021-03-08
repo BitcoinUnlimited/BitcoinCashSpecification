@@ -186,6 +186,6 @@ NOTE 2: This bit is currently referred to as NODE_BITCOIN_CASH and displayed as 
 
 [2] https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki#Motivation
 
-[3] [Digest for replay protected signature verification accross hard forks](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/replay-protected-sighash.md)
+[3] [Digest for replay protected signature verification accross hard forks](/protocol/network/messages/dsproof-beta)
 
 [4] https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/uahf-test-plan.md
