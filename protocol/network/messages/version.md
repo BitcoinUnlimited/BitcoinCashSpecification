@@ -35,7 +35,11 @@ Nodes should use `version` and the `services` bitfield to determine if the node 
 Related: [node connection handshake](/protocol/network/node-handshake).
 
 ## Services Bitfield
-The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities.
+
+The services field is an 8 byte little-endian-serialized bitfield that described peer capabilities. The benefit of this bitfield is that during the handshake a node learns about the services his peer offers. Nodes may selectively disconnect from nodes that do not supported "desired services".
+
+When a service is advertised, a separate handshake may follow with service-specific messages to learn details about the support a peer has for that specific service.
+
 The following capabilities are defined, by bit position:
 
 ### Standard Services
