@@ -137,7 +137,7 @@ If this is turned off then the node will not service graphene requests nor make 
 
 * 1: NODE_GETUTXO <img src="/_static_/images/warning.png" />
 The node is capable of responding to the getutxo protocol request.
-See [BIP 64](/protocol/forks/bip-0064) for details on how this is implemented.
+See [BIP 64](/protocol/forks/unimplemented/bip-0064) for details on how this is implemented.
 _Was previously supported by Bitcoin XT only._
 
 * 8: NODE_CF <img src="/_static_/images/warning.png" />
