@@ -118,8 +118,12 @@ Node Features
 	The node supports Xtreme Thinblocks
 
 * 6: NODE_GRAPHENE <img src="/_static_/images/warning.png" />
-	The node supports Graphene blocks.
+  The node supports Graphene blocks.
 If this is turned off then the node will not service graphene requests nor make graphene requests.
+
+* 7: NODE_WEAKBLOCKS <img src="/_static_/images/warning.png" />
+  The node supports Storm weak block (currently no node supports these in production, so this is a placeholder).
+
 
 #### Bitcoin Verde
 
