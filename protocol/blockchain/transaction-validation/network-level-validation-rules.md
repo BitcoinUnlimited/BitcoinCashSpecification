@@ -14,9 +14,11 @@ Standard transactions are those that:
  - Have a version 1 or [version 2](/protocol/forks/bip-0068/)
  - Have input scripts that only contain push operations
  - Have input scripts with unlocking scripts less or equal to 1650 bytes in length (see scriptSig limit below)
- - Have at most one [data output](/protocol/blockchain/transaction/locking-script#data-output)
+ - Have at most one [data output](/protocol/blockchain/transaction/locking-script#data-output), with a script no longer than 223 bytes (see [data output size limit](#data-output-size-limit) below)
  - For [multisig](/protocol/blockchain/transaction/locking-script#multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
  - Have non-data outputs with amount above the [dust](#dust) threshold
+
+\* 223 bytes was chosen to allow for the `OP_RETURN` operation (1 byte), a push operations (2 bytes), and 220 bytes of pushed data.
 
 Be aware, however, that these rules may vary from node-to-node as they are often configurable.
 Some nodes may also accept and relay non-standard transactions.
@@ -36,16 +38,24 @@ CHECKMULTISIG scriptPubKey, though such a scriptPubKey is not
 considered standard)
 ```
 
-### Dust
+### Data Output Size Limit
+
+The data output size limit is calculated as follows:
+
+* 1 byte for the `OP_RETURN` [op code](/protocol/blockchain/script#operation-codes-opcodes)
+* 2 bytes for a push operation
+* Up to 220 bytes of data to be "pushed"
+
+## Dust
 
 In order to limit the propagation of transactions with limited utility, outputs that would be cost-prohibitive to spend are rejected as "dust."
 Dust is defined differently for different node implementations but in the simplest cases a threshold of 546 satoshis is used.
 Outputs with fewer satoshis than the dust threshold are rejected, along with the transaction they are a part of.
 The exception to this is provably unspendable outputs (e.g. data outputs), which always have a dust threshold of zero satoshis.
 
-## Node-Specific Behavior
+### Node-Specific Behavior
 
-### bchd
+#### bchd
 
 bchd provides the following comment regarding its dust calculation:
 
@@ -59,7 +69,7 @@ bchd provides the following comment regarding its dust calculation:
     fee of 1000, this equates to values less than 546 satoshi being
     considered dust.
 
-### Bitcoin ABC
+#### Bitcoin Cash Node
 
 Bitcoin ABC provides the following description of its dust threshold calculation:
 
@@ -69,11 +79,11 @@ Bitcoin ABC provides the following description of its dust threshold calculation
     bytes big, and will need a CTxIn of at least 148 bytes to spend: so dust
     is a spendable txout less than 546*dustRelayFee/1000 (in satoshis).
 
-### Bitcoin Unlimited
+#### Bitcoin Unlimited
 
 Bitcoin Unlimited uses a static threshold of 546 satoshis (except provably non-spendable outputs which are zero).
 
-### Bitcoin Verde
+#### Bitcoin Verde
 
 Bitcoin Verde performs a similar calculation to Bitcoin ABC but with two differences:
 
