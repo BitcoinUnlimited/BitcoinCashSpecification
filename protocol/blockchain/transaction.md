@@ -13,7 +13,7 @@ Verification of a transaction ensures that:
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version of the transaction format.  Currently `0x02000000`. |
+| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The version of the transaction format.  Currently `0x02000000`.<br>For more details refer to the [transaction version history](/history/transaction-version). |
 | input count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of inputs in the transaction. |
 | transaction inputs | variable | `input_count` [transaction inputs](#transaction-input) | Each of the transaction's inputs serialized in order. |
 | output count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of output in the transaction. |
