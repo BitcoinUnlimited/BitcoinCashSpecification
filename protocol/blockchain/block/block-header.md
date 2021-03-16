@@ -16,7 +16,7 @@ Since validation of all the transactions in the block can be expensive, the abil
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The block format version. |
+| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The block format version. Currently 0x04000000. <br>For more details refer to the [block version history](/history/block-version).  |
 | previous block hash | 32 bytes | [block hash](/protocol/blockchain/hash)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The hash of the block immediately preceding this block in the blockchain. |
 | merkle root | 32 bytes | [merkle root](/protocol/blockchain/merkle-tree)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The merkle tree root of the transactions in the block. |
 | timestamp | 4 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | The epoch timestamp of the block in seconds. |
