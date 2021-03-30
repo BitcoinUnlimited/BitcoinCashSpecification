@@ -22,7 +22,7 @@
 [Block-Level Validation Rules](/protocol/blockchain/transaction-validation/block-level-validation-rules) — [Network-Level Validation Rules](/protocol/blockchain/transaction-validation/network-level-validation-rules)
 
 ### Proof of Work (PoW)
-[Proof of Work](/protocol/blockchain/proof-of-work) — [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) — [Mining](/protocol/blockchain/proof-of-work/mining) — Stratum Protocol — Mining Pools
+[Proof of Work](/protocol/blockchain/proof-of-work) — [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) — [Mining](/protocol/blockchain/proof-of-work/mining) — [Stratum Protocol](/mining/stratum-protocol) — [Mining Pools](/mining/mining-pools)
 
 ### Addresses
 Pay To Public Key (P2PK) — Pay To Public Key Hash (P2PKH) — Pay To Script Hash (P2SH) — [Base58Check encoding (legacy)](/protocol/blockchain/encoding/base58check) — [Cashaddr Encoding](/protocol/blockchain/encoding/cashaddr)
