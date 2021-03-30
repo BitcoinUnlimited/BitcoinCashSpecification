@@ -52,9 +52,24 @@ Combining these, there are 6 valid signature hash types in Bitcoin Cash.  Only t
 
 ## Bitcoin Cash Signatures
 
-In Bitcoin Cash, transaction signatures use the transaction digest algorithm described in [BIP143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
+In Bitcoin Cash, transaction signatures use the transaction digest algorithm described in a modification of [BIP143](/protocol/forks/replay-protected-sighash), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
 
 ### Preimage Format
+
+At a high level, the preimage format for a signature within a single input is a serialization of the following transaction components, **many of which are hashed, modified, or substituted** depending on the context:
+
+1. Transaction version
+2. Previous transaction outputs identifiers
+3. Transaction input sequence numbers
+4. The identifier of the output being spent
+5. The locking script of the output being spent
+6. The value of the output being spent
+7. The sequence number of the transaction input
+8. The created transaction outputs
+9. Transaction locktime
+10. The signature hash type
+
+The following table specifies, in detail, the preimage format for a signature within a single input:
 
 | Field | Length | Format | Description |
 |--|--|--|--|

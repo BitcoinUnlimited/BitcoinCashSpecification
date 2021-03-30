@@ -12,7 +12,7 @@
 This document describes proposed requirements and design for a reusable signing mechanism ensuring replay protection in the event of a chain split.
 It provides a way for users to create transactions which are invalid on forks lacking support for the mechanism and a fork-specific ID.
 
-The proposed digest algorithm is adapted from BIP143[1][1] as it minimizes redundant data hashing in verification, covers the input value by the signature and is already implemented in a wide variety of applications[2][2].
+The proposed digest algorithm is adapted from BIP143<sup>[1][1]</sup> as it minimizes redundant data hashing in verification, covers the input value by the signature and is already implemented in a wide variety of applications<sup>[2][2]</sup>.
 
 The proposed digest algorithm is used when the `SIGHASH_FORKID` bit is set in the signature's sighash type.
 The verification of signatures which do not set this bit is not affected.
@@ -53,7 +53,7 @@ The proposed digest algorithm computes the double SHA256 of the serialization of
 9. nLocktime of the transaction (4-byte little endian)
 10. sighash type of the signature (4-byte little endian)
 
-Items 1, 4, 7 and 9 have the same meaning as in the original algorithm[3][3].
+Items 1, 4, 7 and 9 have the same meaning as in the original algorithm<sup>[3][3]</sup>.
 
 #### hashPrevouts
 
@@ -93,7 +93,7 @@ The 8-byte value of the amount of Bitcoin this input contains.
 
 Notes:
 
-1. In the original algorithm[3][OP_CHECKSIG], a `uint256` of `0x0000......0001` is committed if the input index for a `SINGLE` signature is greater than or equal to the number of outputs.
+1. In the original algorithm<sup>[3][3]</sup>, a `uint256` of `0x0000......0001` is committed if the input index for a `SINGLE` signature is greater than or equal to the number of outputs.
 In this BIP a `0x0000......0000` is committed, without changing the semantics.
 
 #### sighash type
@@ -205,16 +205,20 @@ Gating code:
 
 ## Note
 
-In the UAHF, a `fork id` of 0 is used (see [4][4] REQ-6-2 NOTE 4), i.e.
+In the UAHF, a `fork id` of 0 is used (see UAHF<sup>[4][4]</sup> REQ-6-2 NOTE 4), i.e.
 the GetForkID() function returns zero.
 In that case the code can be simplified to omit the function.
 
 ## References
 
 [1]: https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki
+\[1]: https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki
 
 [2]: https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki#Motivation
+\[2]: https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki#Motivation
 
 [3]: https://en.bitcoin.it/wiki/OP_CHECKSIG
+\[3]: https://en.bitcoin.it/wiki/OP_CHECKSIG
 
 [4]: https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/uahf-technical-spec.md
+\[4]: https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/uahf-technical-spec.md
