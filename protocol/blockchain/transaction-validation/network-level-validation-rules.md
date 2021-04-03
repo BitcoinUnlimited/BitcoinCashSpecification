@@ -28,15 +28,13 @@ For this reason, among others, it is always wise to send transactions to multipl
 
 The transaction input scriptSig limit must be less or equal to 1650 bytes to be considered standard. The rationale for the number `1650` byte limit was described in the code base as:
 
-```
-Biggest 'standard' txin is a 15-of-15 P2SH multisig with compressed  
-keys. (remember the 520 byte limit on redeemScript size) That works
-out to a (15*(33+1))+3=513 byte redeemScript, 513+1+15*(73+1)+3=1627
-bytes of scriptSig, which we round off to 1650 bytes for some minor
-future-proofing. That's also enough to spend a 20-of-20              
-CHECKMULTISIG scriptPubKey, though such a scriptPubKey is not        
-considered standard)
-```
+> Biggest 'standard' txin is a 15-of-15 P2SH multisig with compressed
+> keys. (remember the 520 byte limit on redeemScript size) That works
+> out to a (15\*(33+1))+3=513 byte redeemScript, 513+1+15\*(73+1)+3=1627
+> bytes of scriptSig, which we round off to 1650 bytes for some minor
+> future-proofing. That's also enough to spend a 20-of-20
+> CHECKMULTISIG scriptPubKey, though such a scriptPubKey is not
+> considered standard)
 
 ### Data Output Size Limit
 
@@ -59,25 +57,25 @@ The exception to this is provably unspendable outputs (e.g. data outputs), which
 
 bchd provides the following comment regarding its dust calculation:
 
-    The output is considered dust if the cost to the network to spend the
-    coins is more than 1/3 of the minimum free transaction relay fee.
-    minFreeTxRelayFee is in Satoshi/KB, so multiply by 1000 to
-    convert to bytes.
-    
-    Using the typical values for a pay-to-pubkey-hash transaction from
-    the breakdown above and the default minimum free transaction relay
-    fee of 1000, this equates to values less than 546 satoshi being
-    considered dust.
+>  The output is considered dust if the cost to the network to spend the
+>  coins is more than 1/3 of the minimum free transaction relay fee.
+>  minFreeTxRelayFee is in Satoshi/KB, so multiply by 1000 to
+>  convert to bytes.
+>
+>  Using the typical values for a pay-to-pubkey-hash transaction from
+>  the breakdown above and the default minimum free transaction relay
+>  fee of 1000, this equates to values less than 546 satoshi being
+>  considered dust.
 
 #### Bitcoin Cash Node
 
 Bitcoin ABC provides the following description of its dust threshold calculation:
 
-    "Dust" is defined in terms of dustRelayFee, which has units
-    satoshis-per-kilobyte. If you'd pay more than 1/3 in fees to spend
-    something, then we consider it dust.  A typical spendable txout is 34
-    bytes big, and will need a CTxIn of at least 148 bytes to spend: so dust
-    is a spendable txout less than 546*dustRelayFee/1000 (in satoshis).
+>  "Dust" is defined in terms of dustRelayFee, which has units
+>  satoshis-per-kilobyte. If you'd pay more than 1/3 in fees to spend
+>  something, then we consider it dust.  A typical spendable txout is 34
+>  bytes big, and will need a CTxIn of at least 148 bytes to spend: so dust
+>  is a spendable txout less than 546\*dustRelayFee/1000 (in satoshis).
 
 #### Bitcoin Unlimited
 
@@ -92,4 +90,4 @@ Bitcoin Verde performs a similar calculation to Bitcoin ABC but with two differe
 
 This is accompanied by the comment:
 
-> For the common default _satoshisPerByteFee (1), the dust threshold is 546 satoshis.
+> For the common default \_satoshisPerByteFee (1), the dust threshold is 546 satoshis.
