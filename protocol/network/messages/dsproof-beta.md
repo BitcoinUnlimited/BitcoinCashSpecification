@@ -4,11 +4,11 @@ This message is meant to inform participants of attempts of double spending an u
 
 ## Summary
 
-A double spend attack can be used, for instance, to redirect payments meant for a specific merchant to a different target and thus defraud the merchant we want to pay to.
+A double spend attack can be used, for instance, to redirect payments sent to a specific merchant to a different target and thus defraud the merchant.
 The basic concept of a double spend is that (at least) one unspent output is spent twice in different transactions which forces miners to pick one of them to mine.
 
-At its most basic we can detect this by finding two signed inputs both spending the same output.
-In the case of pay-to-public-key-hash (P2PKH) this means two signatures signing the same public key.
+At its most basic level, this can be detected by finding two signed inputs both spending the same output.
+In the case of pay-to-public-key-hash (P2PKH) this means two signatures from the same public key.
 
 Cryptographic signatures in Bitcoin Cash follow the "fork-id" algorithm described [here](/protocol/forks/replay-protected-sighash).
 Since a hash of the transaction is signed, the protocol sends only the intermediate components used to build the preimage for the hash, while still allowing receivers to validate both signatures of the same public key, and therefore proving that a double spend has taken place.
@@ -41,14 +41,14 @@ Each field in the (below) table's `description` column loosely corresponds to th
 
 | Field | Length | Format | [Signature Preimage](/protocol/blockchain/transaction/transaction-signing#preimage-format) Component | Description |
 | -----------|:-----------:| ----------:|---------:|
-| tx version | 4 | unsigned integer <sup>[(LE)](/protocol/misc/endian/little)</sup> | #1 | Copy of the transactions version field |
-| sequence | 4 | unsigned integer <sup>[(LE)](/protocol/misc/endian/little)</sup> | #7 | Copy of the sequence field of the input |
-| locktime | 4 | unsigned integer <sup>[(LE)](/protocol/misc/endian/little)</sup> | #9 | Copy of the transactions locktime field |
-| hash prevoutputs | 32 | sha256 <sup>[(BE)](/protocol/misc/endian/big)</sup> | #2 | Transaction hash of prevoutputs |
-| hash sequence | 32 | sha256 <sup>[(BE)](/protocol/misc/endian/big)</sup> | #3 | Transaction hash of sequences |
-| hash outputs | 32 | sha256 <sup>[(BE)](/protocol/misc/endian/big)</sup> | #8 | Transaction hash of outputs |
+| tx version | 4 | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | #1 | Copy of the transactions version field |
+| sequence | 4 | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | #7 | Copy of the sequence field of the input |
+| locktime | 4 | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | #9 | Copy of the transactions locktime field |
+| hash prevoutputs | 32 | sha256 | #2 | Transaction hash of prevoutputs |
+| hash sequence | 32 | sha256 | #3 | Transaction hash of sequences |
+| hash outputs | 32 | sha256 | #8 | Transaction hash of outputs |
 | push-data count | variable | [variable length integer](/protocol/formats/variable-length-integer) | | Number of push-data objects within in the push-data list |
-| push-data | variable | bytes <sup>[(BE)](/protocol/misc/endian/big)</sup> | #10 | List of push-data objects |
+| push-data | variable | bytes | #10 | List of push-data objects |
 
 ### Push Data Format
 
@@ -62,8 +62,7 @@ Each item is a value pushed by the [unlocking script](/protocol/blockchain/trans
 
 ## Validation
 
-It is required that nodes validate the proof before using it or forwarding it to other
-nodes.
+It is required that nodes validate the proof before using it or forwarding it to other nodes.
 Double spend proofs only apply to transactions within the [memory pool](/protocol/blockchain/memory-pool).
 Validated double spend proofs should be advertised (via [inventory message](/protocol/network/messages/inv)) to all connected peers.
 If a peer has a bloom filter set, nodes should only relay double spend proofs that the [bloom filter](/protocol/spv/bloom-filter).
@@ -72,7 +71,7 @@ Validation includes a short list of requirements;
 
 1. The message is well-formed and contains all fields.
 It is allowed for some hashes to be all-zeros.
-2. The two `spenders` must be are different.
+2. The two `spenders` must be different.
 3. The first &amp; double `spender`s are sorted via the following algorithm:
 
   3a. sort via the `hash-outputs` field of the `spender`.
@@ -83,7 +82,9 @@ It is allowed for some hashes to be all-zeros.
 
 4. The double spent output is still available in the UTXO database, implying no spending transaction has been mined.
 
-5. No other valid proof is known.
+5. The push data elements of the two signers are different.
+
+6. No other valid proof is known.
 
 Further validation can be done by validating the signature that
 was copied from the inputs of both transactions against the (soon to be spent) previous transaction output.
@@ -123,3 +124,28 @@ Not all types and all combinations of transactions are supported.
 Wallets and point-of-sale applications are suggested to give a rating of how secure an unconfirmed transaction is based on various factors.
 
 Transactions that spend all, confirmed, P2PKH outputs with all inputs signed `SIGHASH_ALL` without `ANYONECANPAY`, are double-spend-proof's "protected transactions".
+
+## Node-Specific Behavior
+
+### Bitcoin Verde
+
+Bitcoin Verde supports an extended form of the `dsproof-beta` message.
+For P2PKH outputs, the format is as described above for compatibility with other nodes.
+For all other script types, the following changes are made to the existing data:
+
+1. `hash prevoutputs` is always the non-zero version of hash (e.g. for `SIGHASH_ALL`, **not** `ANYONECANPAY` hash types).
+2. `hash sequence` is always the non-zero version of the hash (e.g. for `SIGHASH_ALL`, **not** `ANYONECANPAY` hash types).
+3. `hash outputs` is always all zero (0x00) bytes.
+4. `push data` is defined to be the values push by every (push) operation in the unlocking scripts, except for P2SH, where the last value (the redeem script) is left off.
+
+The following extra data is also appended after the second spender:
+
+| Field | Length | Format | Description |
+| -----------|:-----------:| ----------|---------|
+| hash type count | 1 byte | [variable length integer](/protocol/formats/variable-length-integer) | The number of hashes to follow (always 2 with current signature rules). |
+| hash type indicator 0 | 1 byte | byte | The hash type of the following hash (always 0x01 for `SIGHASH_ALL`). |
+| hash outputs 0 | 32 bytes | sha256 | The hash outputs, as used in the signature preimage for a `SIGHASH_ALL` signature. |
+| hash type indicator 1 | 1 byte | byte | The hash type of the following hash (always 0x03 for `SIGHASH_SINGLE`). |
+| hash outputs 1 | 32 bytes | sha256 | The hash outputs, as used in the signature preimage for a `SIGHASH_SINGLE` signature. |
+
+This format corresponds with Bitcoin Verde's proposal for an alternate double spend proof message that supports all script types.
