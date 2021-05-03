@@ -4,6 +4,8 @@ Requests that the recipient withhold transactions that provide less than the giv
 
 The recipient node may, but is not required to, begin to perform this filtering and send only transactions that have fees at or above this threshold to the sender.
 
+Defined in [BIP-133](/protocol/forks/bip-0133).
+
 ## Message Format
 
 | Field | Length | Format | Description |
