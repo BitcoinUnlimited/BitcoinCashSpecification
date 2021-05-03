@@ -1,4 +1,4 @@
-# Variable Length Integer
+# Compact Variable Length Integer
 
 A variable-width data format for unsigned integers allowing a more compact representation for smaller values.
 
