@@ -41,10 +41,13 @@ In general, though, this combined unlocking/locking script is then executed and 
 Additionally, in order for the combined script to be valid, the following must be true:
 
  - **Non-Empty Scripts** - both the locking and unlocking scripts must be non-empty.
- - **Max Script Length** - the locking and unlocking script must each be less than the max script length of 10,000 bytes (for a combined script maximum of 20,000 bytes).
+ - **Max Script Length** - the locking and unlocking script, when executed, must each be less than the max script length of 10,000 bytes (for a combined script maximum of 20,000 bytes).
  - **Contained Control Flow** - an IF/ELSE block cannot start in the unlocking script and end in the locking script, the script must be in the top-level scope when the locking script execution begins.
  - **Permitted Operations Only** - the locking script must not include operations that are disallowed and must not execute operations that are disabled..
  - **Push Only** - the unlocking script must contain only push operations (i.e. those with op codes 0x60 or less).  Added in [HF-20181115](/protocol/forks/hf-20181115).
+
+NOTE: violations of the above rules does not necessarily make a transaction invalid.
+For example, a locking script may be longer than 10,000 bytes, but it would be unspendable, since the max script length is only checked when the scripts are combined before execution.
 
 ## Operation codes (opcodes)
 
