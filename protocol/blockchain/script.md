@@ -143,8 +143,8 @@ Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. T
 |OP_ADD               | 147   |0x93|a b           |out              | *a* is added to *b*.                                 |
 |OP_SUB               | 148   |0x94|a b           |out              | *b* is subtracted from *a*.                          |
 |OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*.  **DISABLED**              |
-|OP_DIV               | 150   |0x96|a b           |out              | *a* is divided by *b*.                               |
-|OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is divided by *b*.   |
+|OP_DIV               | 150   |0x96|a b           |out              | *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.                               |
+|OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.   |
 |OP_LSHIFT            | 152   |0x98|a b           |out              | Shifts *a* left *b* bits, preserving sign. **DISABLED** |
 |OP_RSHIFT            | 153   |0x99|a b           |out              | Shifts *a* right *b* bits, preserving sign. **DISABLED** |
 |OP_BOOLAND           | 154   |0x9a|a b           |true / false     | If both *a* and *b* are not 0, the output is 1. Otherwise 0. |
