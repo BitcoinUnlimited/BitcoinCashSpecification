@@ -25,7 +25,7 @@
 [Proof of Work](/protocol/blockchain/proof-of-work) — [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) — [Mining](/protocol/blockchain/proof-of-work/mining) — [Stratum Protocol](/mining/stratum-protocol) — [Mining Pools](/mining/mining-pools)
 
 ### Addresses
-Pay To Public Key (P2PK) — Pay To Public Key Hash (P2PKH) — Pay To Script Hash (P2SH) — [Base58Check encoding (legacy)](/protocol/blockchain/encoding/base58check) — [Cashaddr Encoding](/protocol/blockchain/encoding/cashaddr)
+[Address Types](/protocol/blockchain/addresses) — [Base58Check Encoding (legacy)](/protocol/blockchain/encoding/base58check) — [Cashaddr Encoding](/protocol/blockchain/encoding/cashaddr)
 
 ### Cryptography
 [Bitcoin Keys (Public/Private)](/protocol/blockchain/cryptography/keys) — [Signatures (ECDSA/Schnorr)](/protocol/blockchain/cryptography/signatures) — [Multisignature (M-of-N multisig)](/protocol/blockchain/cryptography/multisignature)

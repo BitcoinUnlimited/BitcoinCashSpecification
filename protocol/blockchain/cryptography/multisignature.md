@@ -4,7 +4,7 @@ Multisignature (often called "multisig") refers to requiring multiple keys to sp
 
 Multisignature scripts set a condition where N public keys are recorded in the script and at least M of those must provide signatures to unlock the funds. This is also known as *M-of-N multisignature scheme*, where N is the total number of keys and M is the threshold of signatures required for validation. The signatures used can either be ECDSA signatures or Schnorr signatures.
 
-## Public multisignature: OP_CHECKMULTISIG(VERIFY)
+## Public Multisignature: OP_CHECKMULTISIG(VERIFY)
 
 Multisig schemes can be built with the opcodes `OP_CHECKMULTISIG` and `OP_CHECKMULTISIGVERIFY`, two opcodes of the Bitcoin Cash [scripting language](/protocol/blockchain/script). `OP_CHECKMULTISIGVERIFY` has the same implementation as `OP_CHECKMULTISIG`, except OP_VERIFY is executed afterward.
 
@@ -78,7 +78,9 @@ If they want to use Schnorr, they have to sign the transaction with this algorit
 
 The value of the `dummy` element is 5, whose binary representation is `0b101`. This ensures that Alice's signature (`sigA`) is checked against her public key (`pubkeyA`), that Carol's signature (`sigC`) is not checked against Bob's public key (`pubkeyB`) but against her public key (`pubkeyC`).
 
-## Private multisignature
+## Private Multisignature
 
-Multisig schemes can also be implemented in P2PKH outputs, using Schnorr agregation property.
-
+N-of-N multisig schemes can also be implemented in P2PKH outputs, using the Schnorr aggregation property.
+By combining the public keys of the cooperating parties, a combined public key can be created and used in a locking script.
+When spending the output, the parties can jointly create a signature that will validate as a normal Schnorr signature for the combined public key in the locking script.
+For more details, see [MuSig](https://eprint.iacr.org/2018/068).

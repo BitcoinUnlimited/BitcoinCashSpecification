@@ -31,7 +31,7 @@ That is, if it ever becomes possible to create a signature using a public key (n
 
 ### Pay to Public Key Hash (P2PKH)
 
-Pay to Public Key Hash is a widely used standard locking script format, that works similarly to P2PK but instead of pushing the public key, it pushes a hash of the public key, commonly referred to as an address.
+Pay to Public Key Hash is a widely used standard locking script format, that works similarly to P2PK but instead of pushing the public key, it pushes a hash of the public key, commonly referred to as an [address](/protocol/blockchain/addresses).
 This heavily reduces the risks associated with a plain P2PK script as the hashing algorithms used provide a considerable barrier to determining the public key a priori.
 To spend an output locked with this type of script, the unlocking script is expected to push a signature and then the public key corresponding to the private key that created the signature.
 If that public key hashes to the expected address, and the signature is valid, the output is allowed to be spent.
@@ -84,13 +84,15 @@ One drawback of this is that it is not possible to determine whether certain ins
 This makes retirement of opcodes impossible.
 However, it's also possible for people to create transactions and not commit them to the blockchain, so the viability of opcode retirement is questionable anyway.
 
-### Multisig
+### Multisig (P2MS)
 
 Multiple-signature, or multisig, scripts provide a mechanism to have multiple private keys coordinate with spending funds.
 For example, three people could share funds and require that for some transactions any one of them could spend it while, for others, two of them would need to agree, and for others still, all three people would need to agree to spend the funds.
 Each party's public key is included in the locking script along with the required number of signatures (i.e. from above, 1, 2, and 3, respectively).
 
 An unlocking script is therefore expected to provide the required number of signatures which are then checked against the list of public keys.  If a sufficient number of valid signatures are provided, the output is allowed to be spent.
+
+These are also referred to as "bare multisig" scripts to disambiguate them from P2SH multisig scripts (see [Multisignature](/protocol/blockchain/cryptography/multisignature)).
 
 | Operation | Description |
 |--|--|
