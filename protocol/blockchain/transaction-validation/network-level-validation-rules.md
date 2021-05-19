@@ -14,11 +14,9 @@ Standard transactions are those that:
  - Have a version 1 or [version 2](/protocol/forks/bip-0068/)
  - Have input scripts that only contain push operations
  - Have input scripts with unlocking scripts less or equal to 1650 bytes in length (see scriptSig limit below)
- - Have at most one [data output](/protocol/blockchain/transaction/locking-script#data-output), with a script no longer than 223 bytes (see [data output size limit](#data-output-size-limit) below)
+ - Have the total size of [data output](/protocol/blockchain/transaction/locking-script#data-output) locking scripts no larger than 223 bytes (see [data output size limit](#data-output-size-limit) below)
  - For [multisig](/protocol/blockchain/transaction/locking-script#multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
  - Have non-data outputs with amount above the [dust](#dust) threshold
-
-\* 223 bytes was chosen to allow for the `OP_RETURN` operation (1 byte), a push operations (2 bytes), and 220 bytes of pushed data.
 
 Be aware, however, that these rules may vary from node-to-node as they are often configurable.
 Some nodes may also accept and relay non-standard transactions.
@@ -43,6 +41,10 @@ The data output size limit is calculated as follows:
 * 1 byte for the `OP_RETURN` [op code](/protocol/blockchain/script#operation-codes-opcodes)
 * 2 bytes for a push operation
 * Up to 220 bytes of data to be "pushed"
+
+In [HF-20210515](/protocol/forks/hf-20210515) this size limit was kept the same but allowed to apply to any number of data outputs in the transaction, provided the total size of data output locking scripts does not exceed the limit.
+For example, a transaction is now allowed to have three locking scripts that are each 74 bytes in length.
+However, a transaction with two data outputs each with 112-byte locking scripts would be invalid as `112 * 2 = 224` exceeds the 223-byte limit.
 
 ## Dust
 

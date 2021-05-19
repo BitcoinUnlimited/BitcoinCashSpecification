@@ -1,5 +1,7 @@
 # CHIP: Multiple OP_RETURNs for Bitcoin Cash
 
+This CHIP was included in [HF-20210515](/protocol/forks/hf-20210515).
+
         Title: Multiple OP_RETURNs for Bitcoin Cash
         First Submission Date: 2021-03-12
         Owner: Benjamin Scherrey @proteusguy on Telegram
@@ -10,8 +12,6 @@
         Is consensus change: No
         Status: FINAL
         Last Edit Date: 2021-05-17
-
-This CHIP was included in [HF-20210515](/protocol/forks/hf-20210515).
 
 ## Discussions
 

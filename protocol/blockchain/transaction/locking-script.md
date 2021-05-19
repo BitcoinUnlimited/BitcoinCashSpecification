@@ -20,7 +20,7 @@ If the signature is valid for the specified public key in the locking script, th
 | Operation | Description |
 |--|--|
 | [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (public key) | Add the recipient's public key to the stack.  The data pushed must be either a compressed or uncompressed public key with appropriate length (33 bytes if the key is compressed, 65 bytes if it is not) for the type for the script to be recognized as P2PK. |
-| [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Check the public key at the top of the stack against the signature below it on the stack. |
+| [OP_CHECKSIG](/protocol/blockchain/script#cryptography) | Check the public key at the top of the stack against the signature below it on the stack. |
 
 <img src="/_static_/images/warning.png" /> **NOTE:** Pay to Public Key is a largely obsolete type of locking script due to its property of leaking the public key of the recipient before the output is unlocked, resulting in:
 
@@ -38,11 +38,11 @@ If that public key hashes to the expected address, and the signature is valid, t
 
 | Operation | Description |
 |--|--|
-| [OP_DUP](/protocol/blockchain/script/opcodes/op-dup) | Copy the value at the top of the stack (public key of the recipient). |
-| [OP_HASH160](/protocol/blockchain/script/opcodes/op-hash160) | Perform a SHA-256 then a RIPEMD-160 on the copied value. |
+| [OP_DUP](/protocol/blockchain/script#stack) | Copy the value at the top of the stack (public key of the recipient). |
+| [OP_HASH160](/protocol/blockchain/script#cryptography) | Perform a SHA-256 then a RIPEMD-160 on the copied value. |
 | [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (20 bytes) | Push the expected 20 byte address. |
-| [OP_EQUALVERIFY](/protocol/blockchain/script/opcodes/op-equalverify) | Verify that the hash of the copied value matches the expected hash that was pushed. |
-| [OP_CHECKSIG](/protocol/blockchain/script/opcodes/op-checksig) | Verify that the stack now contains only a public key (which was duplicated, hashed, and checked against the expected value) and a signature and verify that the signature is valid for that public key. |
+| [OP_EQUALVERIFY](/protocol/blockchain/script#bitwise) | Verify that the hash of the copied value matches the expected hash that was pushed. |
+| [OP_CHECKSIG](/protocol/blockchain/script#cryptography) | Verify that the stack now contains only a public key (which was duplicated, hashed, and checked against the expected value) and a signature and verify that the signature is valid for that public key. |
 
 ### Pay to Script Hash (P2SH)
 
@@ -53,9 +53,9 @@ If this redeem script finishes execution successfully, the output is allowed to 
 
 | Operation | Description |
 |--|--|
-| [OP_HASH160](/protocol/blockchain/script/opcodes/op-hash160) | Hash the data at the top of the stack, this should be the script to be executed. |
+| [OP_HASH160](/protocol/blockchain/script#cryptography) | Hash the data at the top of the stack, this should be the script to be executed. |
 | [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (20 bytes) | Push the expected redeem script hash. |
-| [OP_EQUAL](/protocol/blockchain/script/opcodes/op-equal) | Verify that the hash of the provided script is equal to the expected hash. |
+| [OP_EQUAL](/protocol/blockchain/script#bitwise) | Verify that the hash of the provided script is equal to the expected hash. |
 
 Due to the nature of this type of locking script, the following steps must be performed by a node executing this script:
 
@@ -99,7 +99,7 @@ These are also referred to as "bare multisig" scripts to disambiguate them from 
 | [OP_X](/protocol/blockchain/script/op-codes/op-x) | Push the number of parties required to provide signatures. |
 | 1 or more [OP_DATA_X](/protocol/blockchain/script/op-codes/op-data-x) (public key) | Push 1 or more public keys, indicating all of the parties that could provide signatures. |
 | [OP_X](/protocol/blockchain/script/op-codes/op-x) | The total number of parties added (i.e. the number of public keys pushed). |
-| [OP_CHECKMULTISIG](/protocol/blockchain/script/op-codes/op-checkmultisig) | Check for signatures matching the number of required parties, verify that they correspond to permitted public keys, and that the signatures are valid. |
+| [OP_CHECKMULTISIG](/protocol/blockchain/script#cryptography) | Check for signatures matching the number of required parties, verify that they correspond to permitted public keys, and that the signatures are valid. |
 
 NOTE: due to a historical bug, the locking script must push an additional value before the signatures.  Traditionally this is done via [OP_0](/protocol/blockchain/script/op-codes/op-x).  The value is not used but is popped off of the stack by the OP_CHECKMULTISIG at the end of the locking script.
 
@@ -111,5 +111,5 @@ As such, outputs locked with data scripts generally have zero satoshis associate
 
 | Operation | Description |
 |--|--|
-| [OP_RETURN](/protocol/blockchain/script/opcodes/op-return) | Fail execution immediately. |
-| Data | Any additional data is not executed and thus can be whatever data is desired by the script creator. |
+| [OP_RETURN](/protocol/blockchain/script#flow-control) | Fail execution immediately. |
+| Data Pushes | Data may optionally be added as a series of push operations.  However, these push operations are not executed and thus can push whatever arbitrary data is desired by the script creator. |

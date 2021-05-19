@@ -19,9 +19,6 @@ Other block-level validation rules include:
 
  - Coinbase Transaction Reward Validation
 	 - The coinbase transaction in a block must collect the correct reward for the block height.  For more information see [Coinbase Transaction](/protocol/blockchain/block#coinbase-transaction).
- - Transaction Chaining Limit
-	 - Many nodes impose a limit of transactions that can be chained together in a single block.  That is, if transaction Z spends an output of transaction Y, which spends an input of transaction X, and so on to Transaction A, the transaction may be rejected.
-	 - This limit is often set to 25 chained transactions.
  - Coinbase Transaction Block Height
 	 - The coinbase transaction in a block must provide an unlocking script that that starts with a push operation which pushes the block height of the block it is contained in.
 	 - This requirement was added in [BIP-34](/protocol/forks/bip-0034) to ensure that coinbase transactions are unique.
