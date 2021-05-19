@@ -17,6 +17,7 @@ Standard transactions are those that:
  - Have the total size of [data output](/protocol/blockchain/transaction/locking-script#data-output) locking scripts no larger than 223 bytes (see [data output size limit](#data-output-size-limit) below)
  - For [multisig](/protocol/blockchain/transaction/locking-script#multisig) outputs, must have at most 3 parties and at least 1 required party (i.e. 1-of-1 through 3-of-3).
  - Have non-data outputs with amount above the [dust](#dust) threshold
+ - Each input of the transaction, must require no more than `((scriptLength + 60) / 43)` [SigChecks](/protocol/blockchain/transaction-validation/block-level-validation-rules#sigchecks)
 
 Be aware, however, that these rules may vary from node-to-node as they are often configurable.
 Some nodes may also accept and relay non-standard transactions.

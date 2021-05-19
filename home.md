@@ -67,7 +67,7 @@
 [sendcmpct](/protocol/network/messages/sendcmpct) — [get_xthin](/protocol/network/messages/get_xthin) — [xthinblock](/protocol/network/messages/xthinblock) — [thinblock](/protocol/network/messages/thinblock) — [get_xblocktx](/protocol/network/messages/get_xblocktx) — [xblocktx](/protocol/network/messages/xblocktx) — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
 
 ### Simple Payment Verification (SPV)
-[SPV](/protocol/spv) - [Bloom Filters](/protocol/spv/bloom-filter)
+[SPV](/protocol/spv) — [Bloom Filters](/protocol/spv/bloom-filter)
 ### Simple Ledger Protocol
 [SLP](/protocol/slp)
 ### Miscellaneous
