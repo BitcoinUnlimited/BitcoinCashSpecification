@@ -31,7 +31,18 @@
 [Bitcoin Keys (Public/Private)](/protocol/blockchain/cryptography/keys) — [Signatures (ECDSA/Schnorr)](/protocol/blockchain/cryptography/signatures) — [Multisignature (M-of-N multisig)](/protocol/blockchain/cryptography/multisignature)
 
 ### Network upgrades
-[Bip-16](/protocol/forks/bip-0016) — [Bip-34](/protocol/forks/bip-0034) — [Bip-37](/protocol/forks/bip-0037) — [Bip-65](/protocol/forks/bip-0065) — [Bip-66](/protocol/forks/bip-0066) — [Bip-68](/protocol/forks/bip-0068) — [Bip-112](/protocol/forks/bip-0112) — [Bip-113](/protocol/forks/bip-0113) — [Bip-133](/protocol/forks/bip-0133) — [Bip-157](/protocol/forks/bip-0157) — [Bip-158](/protocol/forks/bip-0158) — [Bip-159](/protocol/forks/bip-0159) — [BCH-UAHF (BUIP-55)](/protocol/forks/bch-uahf) — [HF-20171113](/protocol/forks/hf-20171113) — [HF-20180515](/protocol/forks/hf-20180515) — [HF-20181115](/protocol/forks/hf-20181115) — [HF-20190515](/protocol/forks/hf-20190515) — [HF-20191115](/protocol/forks/hf-20191115)
+
+**Pre-BCH:** [Bip-9](/protocol/forks/bip-0009) — [Bip-16](/protocol/forks/bip-0016) — [Bip-34](/protocol/forks/bip-0034) — [Bip-37](/protocol/forks/bip-0037) — [Bip-65](/protocol/forks/bip-0065) — [Bip-66](/protocol/forks/bip-0066) — [Bip-68](/protocol/forks/bip-0068) — [Bip-112](/protocol/forks/bip-0112) — [Bip-113](/protocol/forks/bip-0113) — [Bip-133](/protocol/forks/bip-0133) — [Bip-157](/protocol/forks/bip-0157) — [Bip-158](/protocol/forks/bip-0158) — [Bip-159](/protocol/forks/bip-0159)
+
+**2017:** [BCH-UAHF (BUIP-55)](/protocol/forks/bch-uahf) — [HF-20171113](/protocol/forks/hf-20171113)
+
+**2018:** [HF-20180515](/protocol/forks/hf-20180515) — [HF-20181115](/protocol/forks/hf-20181115)
+
+**2019:** [HF-20190515](/protocol/forks/hf-20190515) — [HF-20191115](/protocol/forks/hf-20191115)
+
+**2020:** [HF-20200515](/protocol/forks/hf-20200515) — [HF-20201115](/protocol/forks/hf-20201115)
+
+**2021:** [HF-20210515](/protocol/forks/hf-20210515)
 
 ### Network protocol
 
