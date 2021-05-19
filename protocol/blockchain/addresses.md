@@ -19,6 +19,20 @@ Mainnet P2PKH addresses always start with `1` in Base58Check encoding and `q` in
     Base58Check:  1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
     CashAddr:     bitcoincash:qp3wjpa3tjlj042z2wv7hahsldgwhwy0rq9sywjpyy
 
+The following diagram show the full creation process for a P2PKH address:
+
+```mermaid
+graph LR
+PrivK["Private Key"] ==>PubK[Public key]
+PubK == SHA256 and RIPEMD160 ==> PubKH[Public Key Hash]
+PubKH ==> Address
+Address ==> PubKH
+style PubK fill:#F06,stroke:#333,stroke-width:2px;
+style PrivK fill:#B06,stroke:#333,stroke-width:8px;
+style PubKH fill:#0F6,stroke:#333,stroke-width:2px;
+style Address fill:#0F6,stroke:#333,stroke-width:2px;
+```
+
 ## Pay to Script Hash (P2SH) Addresses
 
 [P2SH](/protocol/blockchain/transaction/locking-script#pay-to-script-hash-p2sh) addresses encode the redeem script hash (i.e. `RIPEMD-160(redeemScript)`).
