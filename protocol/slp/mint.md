@@ -11,7 +11,7 @@ This makes it possible to prove end-of-minting capabilities for a token even aft
 **Transaction outputs**:
 
 | v<sub>out</sub> | ScriptPubKey ("Address") | BCH amount | Implied token amount (base units) |
-|-|-|-|-|
+|--|--|--|--|
 | 0 | OP_RETURN<br>&lt; lokad_id: 'SLP\x00'&gt; (4 bytes, ascii)<br>&lt; token_type: 1&gt; (1 to 2 byte integer)<br>&lt; transaction_type: 'MINT'&gt; (4 bytes, ascii)<br>&lt; token_id&gt; (32 bytes)<br>&lt; mint_baton_vout&gt; (0 bytes or 1 byte between 0x02-0xff)<br>&lt; additional_token_quantity&gt; (8 byte integer) | any | 0 |
 | 1 | Token mint receiver | any | additional_token_quantity |
 | ... | Any | any | 0 |
