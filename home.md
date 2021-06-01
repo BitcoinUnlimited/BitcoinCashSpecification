@@ -1,7 +1,6 @@
 # Bitcoin Cash Protocol
 
 ### About
-
 [Style Guide](/style-guide) — [Contributors](/contributors) — [Target Audience](/target-audience) — [Project History](/project-history)
 
 ### Basics
@@ -24,15 +23,11 @@
 ### Proof of Work (PoW)
 [Proof of Work](/protocol/blockchain/proof-of-work) — [Difficulty Adjustment Algorithm](/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm) — [Mining](/protocol/blockchain/proof-of-work/mining) — [Stratum Protocol](/mining/stratum-protocol) — [Mining Pools](/mining/mining-pools)
 
-### Addresses
-[Address Types](/protocol/blockchain/addresses) — [Base58Check Encoding (legacy)](/protocol/blockchain/encoding/base58check) — [Cashaddr Encoding](/protocol/blockchain/encoding/cashaddr)
-
 ### Cryptography
 [Bitcoin Keys (Public/Private)](/protocol/blockchain/cryptography/keys) — [Signatures (ECDSA/Schnorr)](/protocol/blockchain/cryptography/signatures) — [Multisignature (M-of-N multisig)](/protocol/blockchain/cryptography/multisignature)
 
 ### Network upgrades
-
-**Pre-BCH:** [Bip-9](/protocol/forks/bip-0009) — [Bip-16](/protocol/forks/bip-0016) — [Bip-34](/protocol/forks/bip-0034) — [Bip-37](/protocol/forks/bip-0037) — [Bip-65](/protocol/forks/bip-0065) — [Bip-66](/protocol/forks/bip-0066) — [Bip-68](/protocol/forks/bip-0068) — [Bip-112](/protocol/forks/bip-0112) — [Bip-113](/protocol/forks/bip-0113) — [Bip-133](/protocol/forks/bip-0133) — [Bip-157](/protocol/forks/bip-0157) — [Bip-158](/protocol/forks/bip-0158) — [Bip-159](/protocol/forks/bip-0159)
+**Pre-BCH:** [Bip-9](/protocol/forks/bip-0009) — [Bip-16](/protocol/forks/bip-0016) — [Bip-34](/protocol/forks/bip-0034) — [Bip-37](/protocol/forks/bip-0037) — [Bip-65](/protocol/forks/bip-0065) — [Bip-66](/protocol/forks/bip-0066) — [Bip-68](/protocol/forks/bip-0068) — [Bip-112](/protocol/forks/bip-0112) — [Bip-113](/protocol/forks/bip-0113) — [Bip-133](/protocol/forks/bip-0133) — [Bip-152](/protocol/forks/bip-0152) — [Bip-157](/protocol/forks/bip-0157) — [Bip-158](/protocol/forks/bip-0158) — [Bip-159](/protocol/forks/bip-0159)
 
 **2017:** [BCH-UAHF (BUIP-55)](/protocol/forks/bch-uahf) — [HF-20171113](/protocol/forks/hf-20171113)
 
@@ -45,33 +40,15 @@
 **2021:** [HF-20210515](/protocol/forks/hf-20210515)
 
 ### Network protocol
-
 [Network Messages](/protocol/network/messages) — [Handshake](/protocol/network/node-handshake)
 
-#### Announcement messages
-
-[filteradd](/protocol/network/messages/filteradd) — [filterclear](/protocol/network/messages/filterclear) — [filterload](/protocol/network/messages/filterload) — [inv](/protocol/network/messages/inv)
-
-#### Request messages
-
-[feefilter](/protocol/network/messages/feefilter) — [getaddr](/protocol/network/messages/getaddr) — [getblocks](/protocol/network/messages/getblocks) — [getdata](/protocol/network/messages/getdata) — [getheaders](/protocol/network/messages/getheaders) — [ping](/protocol/network/messages/ping) —
-[sendheaders](/protocol/network/messages/sendheaders) — [version](/protocol/network/messages/version)
-
-#### Response messages
-
-[addr](/protocol/network/messages/addr) — [block](/protocol/network/messages/block) — [headers](/protocol/network/messages/headers) — [notfound](/protocol/network/messages/notfound) — [merkleblock](/protocol/network/messages/merkleblock) — [pong](/protocol/network/messages/pong) —
-[reject](/protocol/network/messages/reject) — [tx](/protocol/network/messages/tx) — [verack](/protocol/network/messages/verack)
-
-#### Other messages (extensions)
-
-[sendcmpct](/protocol/network/messages/sendcmpct) — [get_xthin](/protocol/network/messages/get_xthin) — [xthinblock](/protocol/network/messages/xthinblock) — [thinblock](/protocol/network/messages/thinblock) — [get_xblocktx](/protocol/network/messages/get_xblocktx) — [xblocktx](/protocol/network/messages/xblocktx) — [xupdate](/protocol/network/messages/xupdate) — [xversion](/protocol/network/messages/xversion) — [xverack](/protocol/network/messages/xverack)
+### Addresses
+[Address Types](/protocol/blockchain/addresses) — [Base58Check Encoding (legacy)](/protocol/blockchain/encoding/base58check) — [Cashaddr Encoding](/protocol/blockchain/encoding/cashaddr)
 
 ### Simple Payment Verification (SPV)
-
 [SPV](/protocol/spv) — [Bloom Filters](/protocol/spv/bloom-filter)
 
 ### Simple Ledger Protocol
-
 [SLP Overview](/protocol/slp) — [GENESIS](/protocol/slp/genesis) — [MINT](/protocol/slp/mint) — [SEND](/protocol/slp/send) — [COMMIT](/protocol/slp/commit)
 
 ### Miscellaneous
