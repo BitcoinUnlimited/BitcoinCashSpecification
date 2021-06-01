@@ -1,4 +1,4 @@
-# Request: SENDCMPCT
+# Request: Send Compact Blocks ("sendcmpct")
 
 This message notifies the peer that this node support Compact Block Relay.
 Node should only send this message after protocol version >= 70014.

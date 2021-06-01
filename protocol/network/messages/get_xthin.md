@@ -1,9 +1,9 @@
-# Request: GET_XTHIN
+# Request: Get Xthin Block ("get_xthin")
 
-Request the [`XTHINBLOCK`](xthinblock) from the peer that was anoounced via the previous [`INV`](..\network\messages\inv) message.
-The message should start with an inventory message that indicates the `XTHINBLOCK` requested, followed by the Bloom filter generated from the mempool.
-Upon receipt of this request, the peer should loads the attached Bloom filter, creates and responds with `XTHINBLOCK`.
-If the `XTHINBLOCK` cannot be created without hash collisions, the peer may repond with `THINBLOCK` or full blocks.
+Request the [`xthinblock`](xthinblock) from the peer that was anoounced via the previous [`inv`](/protocol/network/messages/inv) message.
+The message should start with an inventory message that indicates the `xthinblock` requested, followed by the Bloom filter generated from the mempool.
+Upon receipt of this request, the peer should loads the attached Bloom filter, creates and responds with `xthinblock`.
+If the `xthinblock` cannot be created without hash collisions, the peer may respond with `thinblock` or full blocks.
 
 ## Format
 

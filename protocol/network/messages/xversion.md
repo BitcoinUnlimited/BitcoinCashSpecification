@@ -5,7 +5,7 @@
 
 # Handshake Extension: XVersion (“xversion”) 
 
-This message notifies a peer about extended protocol parameters.  This message MAY be sent during connection initialization.  If sent, it MUST be sent immediately subsequent to the receipt of the [verack](/protocol/network/messages/verack.md) message, and before other non-initialization messages are sent.
+This message notifies a peer about extended protocol parameters.  This message MAY be sent during connection initialization.  If sent, it MUST be sent immediately subsequent to the receipt of the [`verack`](/protocol/network/messages/verack) message, and before other non-initialization messages are sent.
 
 ## Message Format
 
@@ -38,7 +38,7 @@ XVersion field identifiers are 32 bits and split into a 16 bit prefix and 16 bit
 See [xversionkeys.dat](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/bucash1.7.0.0/src/xversionkeys.dat) for the most up-to-date field definitions defined by the BitcoinUnlimited full node.
 Note that:
 * *u64c* refers to a [variable length integer](/protocol/formats/variable-length-integer).
-* *Changeable* fields MAY be changed during the course of a connection via the [xupdate](/protocol/network/messages/xupdate) message.
+* *Changeable* fields MAY be changed during the course of a connection via the [`xupdate`](/protocol/network/messages/xupdate) message.
 
 ### Support
 

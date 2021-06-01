@@ -5,7 +5,10 @@
 
 # Handshake Extension: XVersion (“xversion”)
 
-This message notifies a peer about changes to protocol parameters.  It follows the same format as [xversion](/protocol/network/messages/xversion) protocol parameters.  Implementations **SHOULD** only send changed parameters, rather than every parameter.   Note that some XVERSION parameters are not changeable and therefore will be ignored if they appear in this message.
+This message notifies a peer about changes to protocol parameters.
+It follows the same format as [`xversion`](/protocol/network/messages/xversion) protocol parameters.
+Implementations SHOULD only send changed parameters, rather than every parameter.
+Note that some `xversion` parameters are not changeable and therefore will be ignored if they appear in this message.
 
 See the [xversion fields](/protocol/network/messages/xversion#xversion-fields) for detailed information about each parameter.
 

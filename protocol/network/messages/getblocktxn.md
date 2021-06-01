@@ -1,9 +1,9 @@
-# Request: GETBLOCKTXN
+# Request: Get Block Transactions ("getblocktxn")
 
 Requests unknown transactions in a block from a peer.
 
-Upon receiving a [cmpctblock](/protocol/network/messages/cmpctblock) message, a node may determine it is still missing some transactions from the recent block, which it can request using a getblocktxn message.
-A node receiving a getblocktxn message, that has recently sent a cmpctblock message for the specified block to this peer, must respond with either a [blocktxn](/protocol/network/messages/blocktxn) message or a [block](/protocol/network/messages/block) message.
+Upon receiving a [`cmpctblock`](/protocol/network/messages/cmpctblock) message, a node may determine it is still missing some transactions from the recent block, which it can request using a `getblocktxn` message.
+A node receiving a `getblocktxn` message, that has recently sent a `cmpctblock` message for the specified block to this peer, must respond with either a [`blocktxn`](/protocol/network/messages/blocktxn) message or a [`block`](/protocol/network/messages/block) message.
 
 ## Format
 

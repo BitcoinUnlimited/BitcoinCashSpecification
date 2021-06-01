@@ -3,7 +3,7 @@
 
 The version message is a part of the node connection [handshake](/protocol/network/node-handshake) and indicates various connection settings, networking information, and the services provided by the sending node (see Services Bitfield [below](#services-bitfield)).
 
-The node connection is not considered established until both nodes have sent and received both a `version` and [verack](/protocol/network/messages/verack) message.
+The node connection is not considered established until both nodes have sent and received both a `version` and [`verack`](/protocol/network/messages/verack) message.
 
 ## Message Format
 

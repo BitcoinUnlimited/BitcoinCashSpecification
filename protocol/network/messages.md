@@ -72,7 +72,7 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | [ping](/protocol/network/messages/ping) | *Requests a confirmation (pong) that the peer is still active* |
 | [sendheaders](/protocol/network/messages/sendheaders) | *Requests that new blocks are sent as headers instead of hashes* |
 | [version](/protocol/network/messages/version) | *Describes peer capabilities, particularly through the [Services Bitfield](/protocol/network/messages/version#services-bitfield)* |
-| mempool | *Request mempool contents* |
+| [mempool](/protocol/network/messages/mempool) | *Request mempool contents* |
 
 #### Responses
 

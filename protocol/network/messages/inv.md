@@ -7,9 +7,9 @@
 
 Notifies peers about the existence of some information (block or transaction).
 
-Based on selected services in the [version](/protocol/network/messages/version) message, inventory messages may not be sent.
+Based on selected services in the [`version`](/protocol/network/messages/version) message, inventory messages may not be sent.
 
-If a bloom filter has been sent to this node via [filterload](/protocol/network/messages/filterload), a transaction inventory will only be sent for transactions that match the bloom filter.
+If a bloom filter has been sent to this node via [`filterload`](/protocol/network/messages/filterload), a transaction inventory will only be sent for transactions that match the bloom filter.
 
 ## Message Format
 
@@ -18,7 +18,7 @@ If a bloom filter has been sent to this node via [filterload](/protocol/network/
 | inventory count | variable | [variable length integer](/protocol/formats/variable-length-integer) | The number of inventory items in this message. |
 | inventory items | `inventory_count` * 36 bytes | `inventory_count` [inventory items](#inventory-item-format) | The set of inventory items being transmitted. Up to 50,000 inventory items can be sent in a single inventory message.|
 
-NOTE: Since a block header is a relatively small data structure, and block propagation speed is an important network metric, a peer may send [headers](/protocol/network/messages/headers) messages in place of inventory messages when a block arrives.  This behavior can be requested using the [sendheaders](/protocol/network/messages/sendheaders) message.
+NOTE: Since a block header is a relatively small data structure, and block propagation speed is an important network metric, a peer may send [`headers`](/protocol/network/messages/headers) messages in place of inventory messages when a block arrives.  This behavior can be requested using the [`sendheaders`](/protocol/network/messages/sendheaders) message.
 
 #### Inventory Item Format
 

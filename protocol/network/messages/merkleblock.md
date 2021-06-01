@@ -7,9 +7,9 @@
 
 Provides a block header and partial merkle proof tree to show that the selected transaction [hashes](/protocol/blockchain/hash) exist in the block.
 
-Transactions are selected by honest servers if they match the bloom filter installed by the client.  However, note that servers can omit transactions and this cannot be detected except by receiving a merkleblock message from an honest server.
+Transactions are selected by honest servers if they match the bloom filter installed by the client.  However, note that servers can omit transactions and this cannot be detected except by receiving a `merkleblock` message from an honest server.
 
-All selected transactions are subsequently sent as separate [tx](/protocol/network/messages/tx) messages.  Due to multi-threading on the server, clients should not assume that these transaction messages directly follow the merkleblock message.
+All selected transactions are subsequently sent as separate [`tx`](/protocol/network/messages/tx) messages.  Due to multi-threading on the server, clients should not assume that these transaction messages directly follow the `merkleblock` message.
 
 ## Message Format
 
@@ -24,7 +24,7 @@ All selected transactions are subsequently sent as separate [tx](/protocol/netwo
 
 #### Partial Merkle Tree Flag Bits
 
-The partial merkle tree flag bits effectively create a variable-width bitfield, indicating which transaction hashes from the block the merkleblock message pertains to actually matched the client's bloom filter.
+The partial merkle tree flag bits effectively create a variable-width bitfield, indicating which transaction hashes from the block the `merkleblock` message pertains to actually matched the client's bloom filter.
 If you picture the merkle tree root at the top, the flag bits represent a top-down yes/no approach to whether the a given branch (or leaf node) of the tree includes any matching transactions.
 
 For full details, see [BIP-37: Partial Merkle Branch Format](/protocol/forks/bip-0037#partial-merkle-branch-format).

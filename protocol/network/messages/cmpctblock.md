@@ -1,8 +1,8 @@
-# Announcement: CMPCTBLOCK
+# Announcement: Compact Block ("cmpctblock")
 
 Transmits a compact block to a peer.
 
-This message is automatically sent to "high bandwidth relaying" peers, or in response to a [getdata](/protocol/network/messages/getdata) request specifying the [compact block inventory type](/protocol/network/messages/inv#inventory-types) and block hash.
+This message is automatically sent to "high bandwidth relaying" peers, or in response to a [`getdata`](/protocol/network/messages/getdata) request specifying the [compact block inventory type](/protocol/network/messages/inv#inventory-types) and block hash.
 
 ## Format
 
@@ -37,7 +37,7 @@ The format is as follows:
 | Field | Length | Format | Description |
 |--|--|--|--|
 | index | variable | [variable length integer](/protocol/formats/variable-length-integer) | The ["differentially encoded"](#differentially-encoded-indexes) position of the transaction with in the block. |
-| transaction | variable | [transaction](/protocol/blockchain/transaction#format) | The full transaction contents, as in a [tx](/protocol/network/messages/tx) message. |
+| transaction | variable | [transaction](/protocol/blockchain/transaction#format) | The full transaction contents, as in a [`tx`](/protocol/network/messages/tx) message. |
 
 ## Differentially Encoded Indexes
 
@@ -51,6 +51,6 @@ Conversely, `d<sub>n</sub> = t<sub>n</sub> - t<sub>n-1</sub> - 1`.
 
 ## Reconstructing the Block
 
-Upon receipt of a cmpctblock message, the recipient must first determine whether it now has all the transactions needed to reconstruct the block.  First, all prefilled transactions should be processed.  If some transactions are still unknown, the recipient may request then using a [getblocktxn](/protocol/network/messages/getblocktxn) message.  Once the recipient has all of the necessary transactions, the block's [merkle tree](/protocol/blockchain/block/merkle-tree) can be re-built by adding the transactions in the order specified by the indexes.  NOTE: since [HF-20181115](/protocol/forks/hf-20181115), [CTOR](/protocol/forks/hf-20181115#canonical-transaction-order) means that this the same order can also be achieved by sorting the transactions by their hashes.
+Upon receipt of a `cmpctblock` message, the recipient must first determine whether it now has all the transactions needed to reconstruct the block.  First, all prefilled transactions should be processed.  If some transactions are still unknown, the recipient may request then using a [`getblocktxn`](/protocol/network/messages/getblocktxn) message.  Once the recipient has all of the necessary transactions, the block's [merkle tree](/protocol/blockchain/block/merkle-tree) can be re-built by adding the transactions in the order specified by the indexes.  NOTE: since [HF-20181115](/protocol/forks/hf-20181115), [CTOR](/protocol/forks/hf-20181115#canonical-transaction-order) means that this the same order can also be achieved by sorting the transactions by their hashes.
 
-For more information on when cmpctblock messages should be sent and how they should be validated, see [BIP-152](/protocol/forks/bip-0152).
+For more information on when `cmpctblock` messages should be sent and how they should be validated, see [BIP-152](/protocol/forks/bip-0152).
