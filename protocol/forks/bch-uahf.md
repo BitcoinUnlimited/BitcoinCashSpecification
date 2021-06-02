@@ -1,4 +1,4 @@
-# UAHF
+# BCH-UAHF: Bitcoin Cash User-Activated Hard Fork
 
     layout: specification
     title: UAHF Technical Specification
