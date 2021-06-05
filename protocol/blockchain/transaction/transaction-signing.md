@@ -52,15 +52,30 @@ Combining these, there are 6 valid signature hash types in Bitcoin Cash.  Only t
 
 ## Bitcoin Cash Signatures
 
-In Bitcoin Cash, transaction signatures use the transaction digest algorithm described in [BIP143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
+In Bitcoin Cash, transaction signatures use the transaction digest algorithm described in a modification of [BIP143](/protocol/forks/replay-protected-sighash), in order to minimize redundant data hashing in verification and to cover the input value by the signature.
 
 ### Preimage Format
+
+At a high level, the preimage format for a signature within a single input is a serialization of the following transaction components, **many of which are hashed, modified, or substituted** depending on the context:
+
+1. Transaction version
+2. Previous transaction outputs identifiers
+3. Transaction input sequence numbers
+4. The identifier of the output being spent
+5. The locking script of the output being spent
+6. The value of the output being spent
+7. The sequence number of the transaction input
+8. The created transaction outputs
+9. Transaction locktime
+10. The signature hash type
+
+The following table specifies, in detail, the preimage format for a signature within a single input:
 
 | Field | Length | Format | Description |
 |--|--|--|--|
 | transaction version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The value of transaction's version field. |
-| previous outputs hash | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup> | A double SHA-256 hash of the set of previous outputs spent by the inputs of the transaction.  See [Previous Outputs](#previous-outputs-hash) for the hash preimage format.<br/><br/>If hash type is "ANYONE CAN PAY" then this is all `0x00` bytes.  |
-| sequence numbers hash | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup> | A double SHA-256 hash of the set of sequence numbers of the inputs of the transaction.  See [Sequence Numbers](#sequence-numbers-hash) for the hash preimage format.<br/><br/>If hash type is "ANYONE CAN PAY" then this is all `0x00` bytes.  |
+| previous outputs hash | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup> | A double SHA-256 hash of the set of previous outputs spent by the inputs of the transaction.  See [Previous Outputs](#previous-outputs-hash) for the hash preimage format.<br/><br/>If hash type is "ANYONECANPAY" then this is all `0x00` bytes.  |
+| sequence numbers hash | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup> | A double SHA-256 hash of the set of sequence numbers of the inputs of the transaction.  See [Sequence Numbers](#sequence-numbers-hash) for the hash preimage format.<br/><br/>If hash type is "ANYONECANPAY", "SINGLE", or "NONE" then this is all `0x00` bytes.  |
 | previous output hash | 32 bytes | hash<sup>[(LE)](/protocol/misc/endian/little)</sup> | The transaction ID of the previous output being spent. |
 | previous output index | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The index of the output to be spent. |
 | modified locking script length | variable | [variable length integer](/protocol/format/variable-length-integer) | The number of bytes for `modified_locking_script`. |

@@ -71,10 +71,11 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | [getheaders](/protocol/network/messages/getheaders) | *Requests block headers from a peer*  |
 | [ping](/protocol/network/messages/ping) | *Requests a confirmation (pong) that the peer is still active* |
 | [sendheaders](/protocol/network/messages/sendheaders) | *Requests that new blocks are sent as headers instead of hashes* |
-| [version](/protocol/network/messages/version) | *Describes peer capabilities* |
-
+| [version](/protocol/network/messages/version) | *Describes peer capabilities, particularly through the [Services Bitfield](/protocol/network/messages/version#services-bitfield)* |
+| [mempool](/protocol/network/messages/mempool) | *Request mempool contents* |
 
 #### Responses
+
 | Command String | Synopsis |
 | -- | -- |
 | [addr](/protocol/network/messages/addr) | *Provides a peer with the addresses of other peers* |
@@ -87,20 +88,29 @@ Messages with an unrecognized `command string` are ignored by most implementatio
 | [tx](/protocol/network/messages/tx) | *Provides a transaction* |
 | [verack](/protocol/network/messages/verack) | *Response to a [version](/protocol/network/messages/version) message* |
 
+#### Compact Blocks
+
+Compact blocks, defined in [BIP-152](/protocol/forks/bip-0152), seek to minimize the amount of data transferred when a block is mined by taking advantage of the fact that peers often already have most, if not all, of the transactions in a new block.
+
+| Command String | Synopsis |
+| -- | -- |
+| [sendcmpct](/protocol/network/messages/sendcmpct) | *Indicates that this node supports the Compact Block protocol.* |
+| [cmpctblock](/protocol/network/messages/cmpctblock) | *Announces and provides abbreviated contents of a block.* |
+| [getblocktxn](/protocol/network/messages/getblocktxn) | *Requests additional transactions from a given block.* |
+| [blocktxn](/protocol/network/messages/blocktxn) | *Returns requests transactions contained within a block (in response to [getblocktxn](/protocol/network/messages/getblocktxn).* |
+
 #### Other Message Types (Extensions)
 
 | Command String | Synopsis | Supported Implementations
 | -- | -- | -- |
-| get_xblocktx |  |  |
-| get_xthin |  |  |
-| mempool |  |
-| sendcmpct |  |  |
-| thinblock |  |  |
-| xblocktx |  |  |
-| xthinblock |  |  |
-| [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities* | BCHUnlimited
-| [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner* | BCHUnlimited
-| [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message* | BCHUnlimited
+| **XVersion:** [xupdate](/protocol/network/messages/xupdate)  | *Communicates a change in peer capabilities.* | BCHUnlimited |
+| **XVersion:** [xversion](/protocol/network/messages/xversion) | *Describes peer capabilities in an extensible manner.* | BCHUnlimited |
+| **XVersion:** [xverack](/protocol/network/messages/xverack) | *Response to an [xversion](/protocol/network/messages/xversion) message.* | BCHUnlimited |
+| **XThin:** [get_xblocktx](/protocol/network/messages/get_xblocktx) | *Request unknown transactions from a block.* | BCHUnlimited |
+| **XThin:** [get_xthin](/protocol/network/messages/get_xthin) | *Request a previously announced xthin block from the announcing peer.* | BCHUnlimited |
+| **XThin:** [thinblock](/protocol/network/messages/thinblock) | *A description of a block including full transactions only when it is known that the peer does not have them.* | BCHUnlimited |
+| **XThin:** [xthinblock](/protocol/network/messages/xthinblock) | *A description of a block including full transactions only when it is known that the peer does not have them.  Uses truncated hashes to minimize data transfer* | BCHUnlimited |
+| **XThin:** [xblocktx](/protocol/network/messages/xblocktx) | *Provides a set of a transactions contained within a block (in response to [get_xblocktx](/protocol/network/messages/get_xblocktx)).* | BCHUnlimited |
 
 ## Example message
 

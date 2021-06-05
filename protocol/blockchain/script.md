@@ -41,10 +41,13 @@ In general, though, this combined unlocking/locking script is then executed and 
 Additionally, in order for the combined script to be valid, the following must be true:
 
  - **Non-Empty Scripts** - both the locking and unlocking scripts must be non-empty.
- - **Max Script Length** - the locking and unlocking script must each be less than the max script length of 10,000 bytes (for a combined script maximum of 20,000 bytes).
+ - **Max Script Length** - the locking and unlocking script, when executed, must each be less than the max script length of 10,000 bytes (for a combined script maximum of 20,000 bytes).
  - **Contained Control Flow** - an IF/ELSE block cannot start in the unlocking script and end in the locking script, the script must be in the top-level scope when the locking script execution begins.
  - **Permitted Operations Only** - the locking script must not include operations that are disallowed and must not execute operations that are disabled..
  - **Push Only** - the unlocking script must contain only push operations (i.e. those with op codes 0x60 or less).  Added in [HF-20181115](/protocol/forks/hf-20181115).
+
+NOTE: violations of the above rules does not necessarily make a transaction invalid.
+For example, a locking script may be longer than 10,000 bytes, but it would be unspendable, since the max script length is only checked when the scripts are combined before execution.
 
 ## Operation codes (opcodes)
 
@@ -140,8 +143,8 @@ Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. T
 |OP_ADD               | 147   |0x93|a b           |out              | *a* is added to *b*.                                 |
 |OP_SUB               | 148   |0x94|a b           |out              | *b* is subtracted from *a*.                          |
 |OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*.  **DISABLED**              |
-|OP_DIV               | 150   |0x96|a b           |out              | *a* is divided by *b*.                               |
-|OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is divided by *b*.   |
+|OP_DIV               | 150   |0x96|a b           |out              | *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.                               |
+|OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.   |
 |OP_LSHIFT            | 152   |0x98|a b           |out              | Shifts *a* left *b* bits, preserving sign. **DISABLED** |
 |OP_RSHIFT            | 153   |0x99|a b           |out              | Shifts *a* right *b* bits, preserving sign. **DISABLED** |
 |OP_BOOLAND           | 154   |0x9a|a b           |true / false     | If both *a* and *b* are not 0, the output is 1. Otherwise 0. |
@@ -201,47 +204,3 @@ Please help improve this article by categorizing and describing the following op
 | 0x89 | OP_RESERVED1 **(do not use)** |
 | 0x8A | OP_RESERVED2 **(do not use)** |
 | 0xBD - 0xFF | Unused **(disabled)** |
-
-### Node-Specific Behavior
-
-Some node implementations define custom op codes.
-
-#### bchd
-
-| Op Code Range | Name |
-|--|--|
-| 0xFA | OP_SMALLINTEGER <img src="/_static_/images/warning.png" /> |
-| 0xFB | OP_PUBKEYS <img src="/_static_/images/warning.png" /> |
-| 0xFD | OP_PUBKEYHASH <img src="/_static_/images/warning.png" /> |
-| 0xFE | OP_PUBKEY <img src="/_static_/images/warning.png" /> |
-| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
-
-#### Bitcoin ABC
-
-| Op Code Range | Name |
-|--|--|
-| 0xF0 | OP_PREFIX_BEGIN <img src="/_static_/images/warning.png" /> |
-| 0xF7 | OP_PREFIX_END <img src="/_static_/images/warning.png" /> |
-| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
-
-#### Bitcoin Unlimited
-
-| Op Code Range | Name |
-|--|--|
-| 0xF0 | OP_BIGINTEGER <img src="/_static_/images/warning.png" /> |
-| 0xF1 | OP_DATA <img src="/_static_/images/warning.png" /> |
-| 0xFA | OP_SMALLINTEGER <img src="/_static_/images/warning.png" /> |
-| 0xFB | OP_PUBKEYS <img src="/_static_/images/warning.png" /> |
-| 0xFD | OP_PUBKEYHASH <img src="/_static_/images/warning.png" /> |
-| 0xFE | OP_PUBKEY <img src="/_static_/images/warning.png" /> |
-| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |
-
-#### Flowee the Hub
-
-| Op Code Range | Name |
-|--|--|
-| 0xFA | OP_SMALLINTEGER <img src="/_static_/images/warning.png" /> |
-| 0xFB | OP_PUBKEYS <img src="/_static_/images/warning.png" /> |
-| 0xFD | OP_PUBKEYHASH <img src="/_static_/images/warning.png" /> |
-| 0xFE | OP_PUBKEY <img src="/_static_/images/warning.png" /> |
-| 0xFF | OP_INVALIDOPCODE <img src="/_static_/images/warning.png" /> |

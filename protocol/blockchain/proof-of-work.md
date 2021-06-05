@@ -34,7 +34,7 @@ This results in two benefits relative to using targets directly:
 Chainwork is a representation of the work performed through a block's entire history.
 It is the [expected](https://en.wikipedia.org/wiki/Expected_value) number of hashes required to re-solve every block in the chain.
 It is calculated using the difficulties of each of the blocks in the chain.
-The work for a single block is calculated as <code>2<sup>256</sup> / (target + 1)</code>, or equivalently in 256-bit two's-complement arithmetic, <code>(~target / (target + 1)) + 1</code>, where `~` is the bitwise NOT operation.
+The work for a single block is calculated as <code>2<sup>256</sup> / (target + 1)</code>, or equivalently in 256-bit two's-complement arithmetic, `(~target / (target + 1)) + 1`, where `~` is the bitwise NOT operation.
 The chainwork for a block is the sum of its work with the work of all the blocks preceeding it.
 As such, when a new block is mined, its chainwork is simply its work plus the chainwork of the block before it.
 

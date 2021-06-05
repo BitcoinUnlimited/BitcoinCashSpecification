@@ -5,7 +5,7 @@
 
 # Response: Addresses ("addr")
 
-Provide information about other prospective P2P protocol peers.  Peers SHOULD not send this message unsolicited (see [getaddr](/protocol/network/messages/getaddr)), and nodes that receive an unsolicited addr message MUST ignore it.  This behavior helps prevent eclipse and partitioning attacks by not allowing an attacker to aggressively seed peer connection tables with its own nodes.
+Provide information about other prospective P2P protocol peers.  Peers SHOULD not send this message unsolicited (see [`getaddr`](/protocol/network/messages/getaddr)), and nodes that receive an unsolicited `addr` message MUST ignore it.  This behavior helps prevent eclipse and partitioning attacks by not allowing an attacker to aggressively seed peer connection tables with its own nodes.
 
 ## Message Format
 

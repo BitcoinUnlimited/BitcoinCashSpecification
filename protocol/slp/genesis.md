@@ -29,7 +29,7 @@ The genesis transaction includes an initial minting of `initial_token_mint_quant
 **Transaction outputs**:
 
 | v<sub>out</sub> | ScriptPubKey ("Address")| BCH amount| Implied token amount (base units) |
-| - | - | - | - |
+|--|--|--|--|
 | 0 | OP_RETURN<br>&lt;lokad_id: 'SLP\x00'&gt; (4 bytes, ascii)<sup>1</sup><br>&lt;token_type: 1&gt; (1 to 2 byte integer)<br>&lt;transaction_type: 'GENESIS'&gt; (7 bytes, ascii)<br>&lt;token_ticker&gt; (0 to ∞ bytes, suggested utf-8)<br>&lt;token_name&gt; (0 to ∞ bytes, suggested utf-8)<br>&lt;token_document_url&gt; (0 to ∞ bytes, suggested ascii)<br>&lt;token_document_hash&gt; (0 bytes or 32 bytes)<br>&lt;decimals&gt; (1 byte in range 0x00-0x09)<br>&lt;mint_baton_vout&gt; (0 bytes, or 1 byte in range 0x02-0xff)<br>&lt;initial_token_mint_quantity&gt; (8 byte integer)<br> | any<sup>2</sup> | 0 |
 | 1 | Initial mint receiver | any<sup>2</sup> | initial_token_mint_quantity |
 | ... | Any | any<sup>2</sup> | 0 |

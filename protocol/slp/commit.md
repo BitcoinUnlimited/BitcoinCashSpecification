@@ -23,6 +23,6 @@ The set will be carefully chosen to satisfy the above requirements with a minima
 **Transaction outputs**:
 
 | v<sub>out</sub> | ScriptPubKey ("Address") | BCH amount |
-|-|-|-|
+|--|--|--|
 | 0 | OP_RETURN<br>&lt;lokad_id: 'SLP\x00'&gt; (4 bytes, ascii)<br>&lt;token_type: 1&gt; (1 to 2 byte integer)<br>&lt;transaction_type: 'COMMIT'&gt; (6 bytes, ascii)<br>&lt;token_id&gt; (32 bytes)<br>&lt;for_bitcoin_block_hash&gt; (32 bytes)<br>&lt;block_height&gt; (8 byte integer)<br>&lt;token_txn_set_hash&gt; (32 bytes)<br>&lt;txn_set_data_url&gt; (0 to ∞ bytes, ascii) [to be determined] | any |
 | ... | Any | any |

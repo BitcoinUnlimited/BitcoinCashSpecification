@@ -1,6 +1,6 @@
 # Compact Variable Length Integer
 
-A variable-width data format for unsigned integers allowing a more compact representation for smaller values.
+A variable-width data format for unsigned integers allowing a more compact representation for smaller values.  This is sometimes referred to as "compact size" or "var int".
 
 ## Format
 

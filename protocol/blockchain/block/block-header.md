@@ -16,9 +16,9 @@ Since validation of all the transactions in the block can be expensive, the abil
 
 | Field | Length | Format | Description |
 |--|--|--|--|
-| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The block format version. |
+| version | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The block format version. Currently 0x04000000. <br>For more details refer to the [block version history](/history/block-version).  |
 | previous block hash | 32 bytes | [block hash](/protocol/blockchain/hash)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The hash of the block immediately preceding this block in the blockchain. |
-| merkle root | 32 bytes | [merkle root](/protocol/blockchain/merkle-tree)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The merkle tree root of the transactions in the block. |
+| merkle root | 32 bytes | [merkle root](/protocol/blockchain/block/merkle-tree)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The merkle tree root of the transactions in the block. |
 | timestamp | 4 bytes | unix timestamp<sup>[(LE)](/protocol/misc/endian/little)</sup> | The epoch timestamp of the block in seconds. |
 | target | 4 bytes | [compressed target](#compressed-target-format)<sup>[(LE)](/protocol/misc/endian/little)</sup> | The target that the block hash must be below to be valid.  This value is determined by the timestamps of previously mined blocks.  See [Target](/protocol/blockchain/proof-of-work#target) for more information. |
 | nonce | 4 bytes | bytes<sup>[(LE)](/protocol/misc/endian/little)</sup> | A random value that is repeatedly changes during block mining in order to achieve the block hash requirements. |

@@ -20,7 +20,7 @@ Users and creators of the tokens can utilize the computational power and other b
 Simple Ledger Protocol (SLP) is one of the most prevalent token systems on Bitcoin Cash.
 SLP employs a “colored coins” design that associates token amounts with BCH [transaction](/protocol/blockchain/transaction) outputs.
 An SLP transaction will utilize a [data output](/protocol/blockchain/transaction/locking-script#data-output) to include a message in one of four predefined formats to annotate the SLP transaction information associated with each transaction output in the same transaction.
-The predefined formats include: [GENESIS](/protocol/slp/genesis), [MINT](protocol/slp/mint), [SEND](/protocol/slp/send), and [COMMIT](/protocol/slp/commit).
+The predefined formats include: [GENESIS](/protocol/slp/genesis), [MINT](/protocol/slp/mint), [SEND](/protocol/slp/send), and [COMMIT](/protocol/slp/commit).
 The GENESIS message defines the SLP token and issues the first batch of tokens.
 The MINT message issues further batches of tokens.
 The SEND message denotes the number of tokens sent to each output.

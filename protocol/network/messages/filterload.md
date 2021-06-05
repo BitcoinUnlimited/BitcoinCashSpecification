@@ -9,7 +9,7 @@ Inserts a transaction and merkle block filter into the receiving peer, overwriti
 
 ### Effect on Transactions
 
-This message installs a [bloom filter](/protocol/spv/bloom-filter) into the peer.  Subsequent [inv](/protocol/network/messages/inv) and [merkleblock](/protocol/network/messages/merkleblock) messages only provide transactions that in match this bloom filter in some manner.  The following items in a transaction are checked against the bloom filter:
+This message installs a [bloom filter](/protocol/spv/bloom-filter) into the peer.  Subsequent [`inv`](/protocol/network/messages/inv) and [`merkleblock`](/protocol/network/messages/merkleblock) messages only provide transactions that in match this bloom filter in some manner.  The following items in a transaction are checked against the bloom filter:
 
  - The transaction hash
  - Each data field in every [locking script](/protocol/blockchain/transaction/locking-script) in the transaction

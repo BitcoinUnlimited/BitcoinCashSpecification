@@ -5,7 +5,7 @@
 
 # Request: Get Data (“getdata”)
 
-Requests information (generally previously announced via an [inv](/protocol/network/messages/inv) message) from a peer.
+Requests information (generally previously announced via an [`inv`](/protocol/network/messages/inv) message) from a peer.
 As such, a getdata request carries the same general format as an inventory message and is used to request any items that the node was previously unaware.
 
 ## Message Format
