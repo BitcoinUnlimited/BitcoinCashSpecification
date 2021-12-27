@@ -81,7 +81,7 @@ The following table specifies, in detail, the preimage format for a signature wi
 | modified locking script length | variable | [variable length integer](/protocol/format/variable-length-integer) | The number of bytes for `modified_locking_script`. |
 | modified locking script | `modified_locking_script_length` bytes | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The subset of the locking script used for signing.  See [Modified Locking Script](#modified-locking-script) |
 | previous output value | 8 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The value of the transaction output being spent. |
-| input sequence number | 8 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The sequence number of the input this signature is for. |
+| input sequence number | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The sequence number of the input this signature is for. |
 | transaction outputs hash | 32 bytes | hash<sup>[(BE)](/protocol/misc/endian/big)</sup> | A double SHA-256 hash of the outputs of the transaction.  See [Transaction Outputs](#transaction-outputs-hash) for the hash preimage format.  |
 | transaction lock time | 4 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The lock time of the transaction. |
 | hash type | 4 bytes | [Hash Type](#hash-type)<sup>[(LE)](/protocol/misc/endian/little)</sup> | Flags indicating the rules for how this signature was generated. |
