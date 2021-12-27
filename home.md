@@ -46,6 +46,7 @@
 | 2019 | [HF-20190515](/protocol/forks/hf-20190515) — [HF-20191115](/protocol/forks/hf-20191115) |
 | 2020 | [HF-20200515](/protocol/forks/hf-20200515) — [HF-20201115](/protocol/forks/hf-20201115) |
 | 2021 | [HF-20210515](/protocol/forks/hf-20210515) |
+| 2022 | [HF-20220515](/protocol/forks/hf-20220515) |
 
 ### Network protocol
 [Network Messages](/protocol/network/messages) — [Handshake](/protocol/network/node-handshake)
