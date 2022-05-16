@@ -184,6 +184,25 @@ Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. T
 | OP_CHECKLOCKTIMEVERIFY | 177     | 0xb1      | x     |x / *fail* | Marks transaction as invalid if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the stack is empty; or 2. the top stack item is negative; or 3. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 4. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in [BIP65](/protocol/forks/bip-0065). |
 | OP_CHECKSEQUENCEVERIFY | 178     | 0xb2      | x     |x / *fail* |  Marks transaction as invalid if the relative lock time of the input (enforced by BIP68 with nSequence) is not equal to or longer than the value of the top stack item. The precise semantics are described in [BIP112](/protocol/forks/bip-0112). |
 
+### Introspection
+
+|Word                    |Value | Hex  |Input           |Output   | Description                                            |
+|------------------------|------|------|----------------|---------|--------------------------------------------------------|
+| OP_INPUTINDEX          | 192  | 0xc0 | Nothing        | number  | Push the index of the input being evaluated to the stack as a Script Number.   |
+| OP_ACTIVEBYTECODE      | 193  | 0xc1 | Nothing        | script  | Push the bytecode currently being evaluated, beginning after the last executed OP_CODESEPARATOR, to the stack1. For Pay-to-Script-Hash (P2SH) evaluations, this is the redeem bytecode of the Unspent Transaction Output (UTXO) being spent; for all other evaluations, this is the locking bytecode of the UTXO being spent.  |
+| OP_TXVERSION           | 194  | 0xc2 | Nothing        | number  | Push the version of the current transaction to the stack as a Script Number. |
+| OP_TXINPUTCOUNT        | 195  | 0xc3 | Nothing        | number  | Push the count of inputs in the current transaction to the stack as a Script Number. |
+| OP_TXOUTPUTCOUNT       | 196  | 0xc4 | Nothing        | number  | Push the count of outputs in the current transaction to the stack as a Script Number.  |
+| OP_TXLOCKTIME          | 197  | 0xc5 | Nothing        | number  | Push the locktime of the current transaction to the stack as a Script Number. |
+| OP_UTXOVALUE           | 198  | 0xc6 | index          | number  | Pop the top item from the stack as an input index (Script Number). Push the value (in satoshis) of the Unspent Transaction Output (UTXO) spent by that input to the stack as a Script Number. |
+| OP_UTXOBYTECODE        | 199  | 0xc7 | index          | script  | Pop the top item from the stack as an input index (Script Number). Push the full locking bytecode of the Unspent Transaction Output (UTXO) spent by that input to the stack. |
+| OP_OUTPOINTTXHASH      | 200  | 0xc8 | index          | hash    | Pop the top item from the stack as an input index (Script Number). From that input, push the outpoint transaction hash – the hash of the transaction which created the Unspent Transaction Output (UTXO) which is being spent – to the stack in OP_HASH256 byte order. |
+| OP_OUTPOINTINDEX       | 201  | 0xc9 | index          | number  | Pop the top item from the stack as an input index (Script Number). From that input, push the outpoint index – the index of the output in the transaction which created the Unspent Transaction Output (UTXO) which is being spent – to the stack as a Script Number.                                                       |
+| OP_INPUTBYTECODE       | 202  | 0xca | index          | script  | Pop the top item from the stack as an input index (Script Number). Push the unlocking bytecode of the input at that index to the stack. |
+| OP_INPUTSEQUENCENUMBER | 203  | 0xcb | index          | number  | Pop the top item from the stack as an input index (Script Number). Push the sequence number of the input at that index to the stack as a Script Number. |
+| OP_OUTPUTVALUE         | 204  | 0xcc | index          | number  | Pop the top item from the stack as an output index (Script Number). Push the value (in satoshis) of the output at that index to the stack as a Script Number. |
+| OP_OUTPUTBYTECODE      | 205  | 0xcd | index          | script  | Pop the top item from the stack as an output index (Script Number). Push the locking bytecode of the output at that index to the stack. |
+
 ### Reserved
 
 | Word             | Value   | Hex       | Description                                                              |
