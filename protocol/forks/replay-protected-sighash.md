@@ -34,7 +34,7 @@ It is defined as follows:
 
 In presence of the `SIGHASH_FORKID` flag in the signature's sighash type, the proposed algorithm is used.
 
-Signatures using the `SIGHASH_FORKID` digest method must be rejected before [UAHF](/protocol/forks/bch-uahf.md) is activated.
+Signatures using the `SIGHASH_FORKID` digest method must be rejected before [UAHF](/protocol/forks/bch-uahf) is activated.
 
 In order to ensure proper activation, the reference implementation uses the `SCRIPT_ENABLE_SIGHASH_FORKID` flag when executing `EvalScript` .
 
