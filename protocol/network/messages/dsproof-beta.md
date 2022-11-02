@@ -40,7 +40,7 @@ The `spender` format is as follows.
 Each field in the (below) table's `description` column loosely corresponds to the name of the preimage component used when generating transaction signatures per the [transaction signing algorithm](/protocol/blockchain/transaction/transaction-signing).
 
 | Field | Length | Format | [Signature Preimage](/protocol/blockchain/transaction/transaction-signing#preimage-format) Component | Description |
-| -----------|:-----------:| ----------:|---------:|
+| -----------|:-----------:| ----------:|---------:|---------:|
 | tx version | 4 | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | #1 | Copy of the transactions version field |
 | sequence | 4 | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | #7 | Copy of the sequence field of the input |
 | locktime | 4 | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | #9 | Copy of the transactions locktime field |
