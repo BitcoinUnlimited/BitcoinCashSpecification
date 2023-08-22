@@ -128,7 +128,10 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Arithmetic
 
-Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. The semantics are subtle, though: operands must be in the range [-2^31 +1...2^31 -1], but results may overflow (and are valid as long as they are not used in a subsequent numeric operation).
+Numeric opcodes (OP_1ADD, etc.) are restricted to operating on 8-byte signed "Script Number" integers, enabled in [HF-20220515](/protocol/forks/hf-20220515).
+This excludes the value `-9223372036854775808` that fits in 8-byte two's complement encoding, but does not fit in an 8-byte Script Number encoding used by the Script VM.
+If an operation [overflows or underflows](protocol/forks/chips/2022-05-bigger-script-integers#arithmetic-operation-overflows), the operation must immediately fail evaluation.
+
 
 |Word                 |Value  |Hex |Input         |Output           | Description                                          |
 |---------------------|-------|----|--------------|-----------------|------------------------------------------------------|
@@ -142,7 +145,7 @@ Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. T
 |OP_0NOTEQUAL         | 146   |0x92|in            |true / false    	| Returns 0 if the input is 0. 1 otherwise.            |
 |OP_ADD               | 147   |0x93|a b           |out              | *a* is added to *b*.                                 |
 |OP_SUB               | 148   |0x94|a b           |out              | *b* is subtracted from *a*.                          |
-|OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*.  **DISABLED**              |
+|OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*. Enabled in [HF-20220515](/protocol/forks/hf-20220515). |
 |OP_DIV               | 150   |0x96|a b           |out              | *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.                               |
 |OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.   |
 |OP_LSHIFT            | 152   |0x98|a b           |out              | Shifts *a* left *b* bits, preserving sign. **DISABLED** |
