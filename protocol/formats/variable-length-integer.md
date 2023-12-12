@@ -1,6 +1,8 @@
 # Compact Variable Length Integer
 
-A variable-width data format for unsigned integers allowing a more compact representation for smaller values.  This is sometimes referred to as "compact size" or "var int".
+A variable-width data format for unsigned integers allowing a more compact representation for smaller values.  This is sometimes referred to as "compact size" or "var int"\*.  
+
+\* - Caution should be used when refering to this integer format as "var int" (or "VarInt"), however, in that it may create an ambiguity. The "Core" family of software (BCHN, BU, and Flowee) all have an internal "VARINT" format that is distinct from this integer format. In that "Core" lineage of software, COMPACTSIZE or CompactSize is used to refer to the protocol's variable length integer format, while "VarInt" refers specifically to their internal variable length integer format and is *not* a part of the Bitcoin Cash P2P protocol.
 
 ## Format
 

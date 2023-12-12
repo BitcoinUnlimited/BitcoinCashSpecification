@@ -64,10 +64,11 @@ As with lock-time, when the relative lock-time is interpreted as a time, it is c
 ## Transaction Output
 
 Transaction outputs are the "credits" of Bitcoin Cash.
-Each transaction output denotes a number of satoshis and the requirements are spending them.
+Each transaction output denotes a number of satoshis and the requirements for spending them.
 These requirements take the form of a [locking script](/protocol/blockchain/transaction/locking-script) and can equate to anything from the satoshis only being spendable by the owner of a specific private key, to anyone being able to spend them, to no one being able to spend them.
 While a transaction output has not been spent by another transaction (i.e. had its locking script "unlocked" by an input of a valid transaction) it is referred to as an unspent transaction output, or UTXO.
 A Transaction Output that is being spent by a Transaction Input is often referred to as the "PrevOut", short for the "Previous Output".
+In addition to number of satoshis, transaction outputs may optionally encode token state using the [token output format](#token-output-format) enabled in [HF-20230515](/protocol/forks/hf-20230515).
 
 ### Format
 
@@ -77,6 +78,47 @@ A Transaction Output that is being spent by a Transaction Input is often referre
 | locking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the locking script in bytes. |
 | locking script | variable | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The contents of the locking script. |
 
+#### Token Output Format
+
+Tokens may be encoded in outputs in addition to satoshi value using a "token prefix", a data structure that can encode a token category, zero or one non-fungible token (NFT), and an amount of fungible tokens (FTs).
+
+For backwards-compatibility with existing transaction decoding implementations, a transaction output's token prefix (if present) is encoded before byte 0 of its locking bytecode, and the locking script length preceding the two fields is increased to cover both fields (such that the length could be renamed to "token prefix and locking script length").
+The token prefix is not part of the locking bytecode and must not be included in bytecode evaluation.
+If the output contains a token, then the serialized output format becomes:
+
+| Field | Length | Format | Description |
+|--|--|--|--|
+| value | 8 bytes | unsigned integer<sup>[(LE)](/protocol/misc/endian/little)</sup> | The number of satoshis to be transferred. |
+| token prefix and locking script length | variable | [variable length integer](/protocol/formats/variable-length-integer) | The combined size of full token prefix and the locking script in bytes. |
+| PREFIX_TOKEN | 1 byte | constant | Magic byte defined at codepoint 0xef (239) and indicates the presence of a token prefix. |
+| token category ID | 32 bytes | bytes | After the PREFIX_TOKEN byte, a 32-byte "token category ID" is required, encoded in OP_HASH256 byte order. |
+| token bitfield | 1 byte | bitfield | A bitfield encoding two 4-bit fields is required. |
+| \[NFT commitment length\] | variable | [variable length integer](/protocol/formats/variable-length-integer) | The size of the NFT commitment in bytes. Present only if token bitfield bit 0x40 is set. |
+| \[NFT commitment\] | variable | bytes | The contents of the NFT commitment. Present only if token bitfield bit 0x40 is set. |
+| \[FT amount\] | variable | [variable length integer](/protocol/formats/variable-length-integer) | An amount of fungible tokens, present only if token bitfield bit `0x10` is set. |
+| locking script | variable | bytes<sup>[(BE)](/protocol/misc/endian/big)</sup> | The contents of the locking script. |
+
+**Token Bitfield**
+
+The token bitfield encodes part of the NFT state, and bit flags that specify whether optional fields are present.
+The two 4-bit fields are specified as:
+   1. `prefix_structure` (`token_bitfield & 0xf0`) - 4 bitflags, defined at the higher half of the bitfield, indicating the structure of the token prefix:
+      1. `0x80` (`0b10000000`) - `RESERVED_BIT`, must be unset.
+      2. `0x40` (`0b01000000`) - `HAS_COMMITMENT_LENGTH`, the prefix encodes a commitment length and commitment.
+      3. `0x20` (`0b00100000`) - `HAS_NFT`, the prefix encodes a non-fungible token.
+      4. `0x10` (`0b00010000`) - `HAS_AMOUNT`, the prefix encodes an amount of fungible tokens.
+   2. `nft_capability` (`token_bitfield & 0x0f`) – A 4-bit value, defined at the lower half of the bitfield, indicating the non-fungible token capability, if present.
+      1. If not `HAS_NFT`: must be `0x00`.
+      2. If `HAS_NFT`:
+         1. `0x00` – No capability – the encoded non-fungible token is an **immutable token**.
+         2. `0x01` – The **`mutable` capability** – the encoded non-fungible token is a **mutable token**.
+         3. `0x02` – The **`minting` capability** – the encoded non-fungible token is a **minting token**.
+         4. Values greater than `0x02` are reserved and must not be used.
+
 ## Transaction Fee
 
 Extra satoshis from the Transaction Inputs that are not accounted for in the Transaction Outputs may be collected by the miner as the transaction fee.
+
+## Implicit Burning of Tokens
+
+Extra satoshis from the Transaction Inputs that are not accounted for in the Transaction Outputs will be burned in such a transaction.

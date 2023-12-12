@@ -128,7 +128,10 @@ Op codes marked with **(do not use)** are disallowed and will make a transaction
 
 ### Arithmetic
 
-Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. The semantics are subtle, though: operands must be in the range [-2^31 +1...2^31 -1], but results may overflow (and are valid as long as they are not used in a subsequent numeric operation).
+Numeric opcodes (OP_1ADD, etc.) are restricted to operating on 8-byte signed "Script Number" integers, enabled in [HF-20220515](/protocol/forks/hf-20220515).
+This excludes the value `-9223372036854775808` that fits in 8-byte two's complement encoding, but does not fit in an 8-byte Script Number encoding used by the Script VM.
+If an operation [overflows or underflows](protocol/forks/chips/2022-05-bigger-script-integers#arithmetic-operation-overflows), the operation must immediately fail evaluation.
+
 
 |Word                 |Value  |Hex |Input         |Output           | Description                                          |
 |---------------------|-------|----|--------------|-----------------|------------------------------------------------------|
@@ -142,7 +145,7 @@ Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. T
 |OP_0NOTEQUAL         | 146   |0x92|in            |true / false    	| Returns 0 if the input is 0. 1 otherwise.            |
 |OP_ADD               | 147   |0x93|a b           |out              | *a* is added to *b*.                                 |
 |OP_SUB               | 148   |0x94|a b           |out              | *b* is subtracted from *a*.                          |
-|OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*.  **DISABLED**              |
+|OP_MUL               | 149   |0x95|a b           |out              | *a* is multiplied by *b*. Enabled in [HF-20220515](/protocol/forks/hf-20220515). |
 |OP_DIV               | 150   |0x96|a b           |out              | *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.                               |
 |OP_MOD               | 151   |0x97|a b           |out              | Returns the remainder after *a* is [divided](/protocol/blockchain/script/integer-division) by *b*.   |
 |OP_LSHIFT            | 152   |0x98|a b           |out              | Shifts *a* left *b* bits, preserving sign. **DISABLED** |
@@ -186,22 +189,28 @@ Numeric opcodes (OP_1ADD, etc) are restricted to operating on 4-byte integers. T
 
 ### Introspection
 
-|Word                    |Value | Hex  |Input           |Output   | Description                                            |
-|------------------------|------|------|----------------|---------|--------------------------------------------------------|
-| OP_INPUTINDEX          | 192  | 0xc0 | Nothing        | number  | Push the index of the input being evaluated to the stack as a Script Number.   |
-| OP_ACTIVEBYTECODE      | 193  | 0xc1 | Nothing        | script  | Push the bytecode currently being evaluated, beginning after the last executed OP_CODESEPARATOR, to the stack1. For Pay-to-Script-Hash (P2SH) evaluations, this is the redeem bytecode of the Unspent Transaction Output (UTXO) being spent; for all other evaluations, this is the locking bytecode of the UTXO being spent.  |
-| OP_TXVERSION           | 194  | 0xc2 | Nothing        | number  | Push the version of the current transaction to the stack as a Script Number. |
-| OP_TXINPUTCOUNT        | 195  | 0xc3 | Nothing        | number  | Push the count of inputs in the current transaction to the stack as a Script Number. |
-| OP_TXOUTPUTCOUNT       | 196  | 0xc4 | Nothing        | number  | Push the count of outputs in the current transaction to the stack as a Script Number.  |
-| OP_TXLOCKTIME          | 197  | 0xc5 | Nothing        | number  | Push the locktime of the current transaction to the stack as a Script Number. |
-| OP_UTXOVALUE           | 198  | 0xc6 | index          | number  | Pop the top item from the stack as an input index (Script Number). Push the value (in satoshis) of the Unspent Transaction Output (UTXO) spent by that input to the stack as a Script Number. |
-| OP_UTXOBYTECODE        | 199  | 0xc7 | index          | script  | Pop the top item from the stack as an input index (Script Number). Push the full locking bytecode of the Unspent Transaction Output (UTXO) spent by that input to the stack. |
-| OP_OUTPOINTTXHASH      | 200  | 0xc8 | index          | hash    | Pop the top item from the stack as an input index (Script Number). From that input, push the outpoint transaction hash – the hash of the transaction which created the Unspent Transaction Output (UTXO) which is being spent – to the stack in OP_HASH256 byte order. |
-| OP_OUTPOINTINDEX       | 201  | 0xc9 | index          | number  | Pop the top item from the stack as an input index (Script Number). From that input, push the outpoint index – the index of the output in the transaction which created the Unspent Transaction Output (UTXO) which is being spent – to the stack as a Script Number.                                                       |
-| OP_INPUTBYTECODE       | 202  | 0xca | index          | script  | Pop the top item from the stack as an input index (Script Number). Push the unlocking bytecode of the input at that index to the stack. |
-| OP_INPUTSEQUENCENUMBER | 203  | 0xcb | index          | number  | Pop the top item from the stack as an input index (Script Number). Push the sequence number of the input at that index to the stack as a Script Number. |
-| OP_OUTPUTVALUE         | 204  | 0xcc | index          | number  | Pop the top item from the stack as an output index (Script Number). Push the value (in satoshis) of the output at that index to the stack as a Script Number. |
-| OP_OUTPUTBYTECODE      | 205  | 0xcd | index          | script  | Pop the top item from the stack as an output index (Script Number). Push the locking bytecode of the output at that index to the stack. |
+|Word                      |Value | Hex  |Input           |Output   | Description                                            |
+|--------------------------|------|------|----------------|---------|--------------------------------------------------------|
+| OP_INPUTINDEX            | 192  | 0xc0 | Nothing        | number  | Push the index of the input being evaluated to the stack as a Script Number.   |
+| OP_ACTIVEBYTECODE        | 193  | 0xc1 | Nothing        | script  | Push the bytecode currently being evaluated, beginning after the last executed OP_CODESEPARATOR, to the stack1. For Pay-to-Script-Hash (P2SH) evaluations, this is the redeem bytecode of the Unspent Transaction Output (UTXO) being spent; for all other evaluations, this is the locking bytecode of the UTXO being spent.  |
+| OP_TXVERSION             | 194  | 0xc2 | Nothing        | number  | Push the version of the current transaction to the stack as a Script Number. |
+| OP_TXINPUTCOUNT          | 195  | 0xc3 | Nothing        | number  | Push the count of inputs in the current transaction to the stack as a Script Number. |
+| OP_TXOUTPUTCOUNT         | 196  | 0xc4 | Nothing        | number  | Push the count of outputs in the current transaction to the stack as a Script Number.  |
+| OP_TXLOCKTIME            | 197  | 0xc5 | Nothing        | number  | Push the locktime of the current transaction to the stack as a Script Number. |
+| OP_UTXOVALUE             | 198  | 0xc6 | index          | number  | Pop the top item from the stack as an input index (Script Number). Push the value (in satoshis) of the Unspent Transaction Output (UTXO) spent by that input to the stack as a Script Number. |
+| OP_UTXOBYTECODE          | 199  | 0xc7 | index          | script  | Pop the top item from the stack as an input index (Script Number). Push the full locking bytecode of the Unspent Transaction Output (UTXO) spent by that input to the stack. |
+| OP_OUTPOINTTXHASH        | 200  | 0xc8 | index          | hash    | Pop the top item from the stack as an input index (Script Number). From that input, push the outpoint transaction hash â€“ the hash of the transaction which created the Unspent Transaction Output (UTXO) which is being spent â€“ to the stack in OP_HASH256 byte order. |
+| OP_OUTPOINTINDEX         | 201  | 0xc9 | index          | number  | Pop the top item from the stack as an input index (Script Number). From that input, push the outpoint index â€“ the index of the output in the transaction which created the Unspent Transaction Output (UTXO) which is being spent â€“ to the stack as a Script Number.                                                       |
+| OP_INPUTBYTECODE         | 202  | 0xca | index          | script  | Pop the top item from the stack as an input index (Script Number). Push the unlocking bytecode of the input at that index to the stack. |
+| OP_INPUTSEQUENCENUMBER   | 203  | 0xcb | index          | number  | Pop the top item from the stack as an input index (Script Number). Push the sequence number of the input at that index to the stack as a Script Number. |
+| OP_OUTPUTVALUE           | 204  | 0xcc | index          | number  | Pop the top item from the stack as an output index (Script Number). Push the value (in satoshis) of the output at that index to the stack as a Script Number. |
+| OP_OUTPUTBYTECODE        | 205  | 0xcd | index          | script  | Pop the top item from the stack as an output index (Script Number). Push the locking bytecode of the output at that index to the stack. |
+| OP_UTXOTOKENCATEGORY     | 206  | 0xce | index          | script  | Pop the top item from the stack as an input index (VM Number). If the Unspent Transaction Output (UTXO) spent by that input includes no tokens, push a 0 (VM Number) to the stack. If the UTXO does not include a non-fungible token with a capability, push the UTXO's token category, otherwise, push the concatenation of the token category and capability, where the mutable capability is represented by 1 (VM Number) and the minting capability is represented by 2 (VM Number). |
+| OP_UTXOTOKENCOMMITMENT   | 207  | 0xcf | index          | script  | Pop the top item from the stack as an input index (VM Number). Push the token commitment of the Unspent Transaction Output (UTXO) spent by that input to the stack. If the UTXO does not include a non-fungible token, or if it includes a non-fungible token with a zero-length commitment, push a 0 (VM Number). |
+| OP_UTXOTOKENAMOUNT       | 208  | 0xd0 | index          | number  | Pop the top item from the stack as an input index (VM Number). Push the fungible token amount of the Unspent Transaction Output (UTXO) spent by that input to the stack as a VM Number. If the UTXO includes no fungible tokens, push a 0 (VM Number). |
+| OP_OUTPUTTOKENCATEGORY   | 209  | 0xd1 | index          | script  | Pop the top item from the stack as an output index (VM Number). If the output at that index includes no tokens, push a 0 (VM Number) to the stack. If the output does not include a non-fungible token with a capability, push the output's token category, otherwise, push the concatenation of the token category and capability, where the mutable capability is represented by 1 (VM Number) and the minting capability is represented by 2 (VM Number). |
+| OP_OUTPUTTOKENCOMMITMENT | 210  | 0xd2 | index          | script  | Pop the top item from the stack as an output index (VM Number). Push the token commitment of the output at that index to the stack. If the output does not include a non-fungible token, or if it includes a non-fungible token with a zero-length commitment, push a 0 (VM Number). |
+| OP_OUTPUTTOKENAMOUNT     | 211  | 0xd3 | index          | number  | Pop the top item from the stack as an output index (VM Number). Push the fungible token amount of the output at that index to the stack as a VM Number. If the output includes no fungible tokens, push a 0 (VM Number). |
 
 ### Reserved
 
