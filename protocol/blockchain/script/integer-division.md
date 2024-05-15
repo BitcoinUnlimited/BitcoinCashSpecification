@@ -4,7 +4,7 @@ The Bitcoin Script [OP_DIV](/protocol/blockchain/script#arithmetic) and [OP_MOD]
 However, there are multiple valid approaches to signed integer division, particularly with respect to how negative values are handled, so this must be disambiguated.
 
 The above operations follow [C](https://en.wikipedia.org/wiki/C_(programming_language))-style integer division semantics.
-For a given `numerator` and `denominator`, if `OP_DIV` returns `quotient` and `OP_MOD` returns `remainder`, the following relation be true: `numerator = quotient * denominator + remainder`.
+For a given `numerator` and `denominator`, if `OP_DIV` returns `quotient` and `OP_MOD` returns `remainder`, the following relation will be true: `numerator = quotient * denominator + remainder`.
 This allows for both negative quotients and remainders.
 
 The following examples may provide clarity:
